@@ -4,6 +4,9 @@ Presentación académica inmersiva sobre **manejo de materiales y equipo para el
 (Capítulo VI · Ingeniería de Métodos 2 · UNSA). En lugar de diapositivas, la exposición recorre una fábrica 3D
 ficticia —NOVATEK Industrial S.A.C.— donde cada tema es un lugar, una máquina o una estación de trabajo.
 
+**En línea:** https://dandreamsd.github.io/TRANSPORTE-IM2/ (se publica automáticamente con cada push a `main`
+mediante `.github/workflows/deploy.yml`).
+
 ## Ejecutar
 
 Requisitos: Node.js 20 o superior.
