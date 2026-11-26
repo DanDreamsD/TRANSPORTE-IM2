@@ -1,4 +1,4 @@
-// Escenas de Vane: capítulos 6 (6.2–6.3) y 7 + caso 4 (AGV en planta de asientos).
+// Escenas de Vanessa: capítulos 6 (6.2–6.3) y 7 + caso 4 (AGV en planta de asientos).
 // La escena 6–6.1 (transportadores) está en transportadores.ts.
 // Datos verificados contra docs/extracted/guia_texto.md §6.2–6.3, §7 y §13.4.
 import type { SceneDef } from '../types';

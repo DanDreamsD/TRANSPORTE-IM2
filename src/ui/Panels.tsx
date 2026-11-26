@@ -62,10 +62,7 @@ export function SceneMenu() {
                     <span className="scene-menu__num">{i + 1}</span>
                     <span className="scene-menu__title">
                       {scene.title}
-                      <small>
-                        {scene.subchapter ? `${scene.subchapter.number} · ` : ''}
-                        {PRESENTERS[scene.presenter].name}
-                      </small>
+                      {scene.subchapter && <small>{scene.subchapter.number}</small>}
                     </span>
                   </button>
                 </li>
@@ -113,7 +110,7 @@ export function ExpandedPanel() {
             <div className="modal__crumb">
               {scene.chapter.number !== '—' && `Cap. ${scene.chapter.number} · `}
               {scene.chapter.title}
-              {scene.subchapter && ` › ${scene.subchapter.number} ${scene.subchapter.title}`} · {presenter.name}
+              {scene.subchapter && ` › ${scene.subchapter.number} ${scene.subchapter.title}`}
             </div>
             <h2>{scene.title}</h2>
           </div>
@@ -182,7 +179,7 @@ export function NotesPanel() {
     <Drawer side="right" open={open} title="Notas del expositor" onClose={() => toggle('showNotes')}>
       <div className="notes">
         <div className="notes__who" style={{ ['--presenter' as string]: PRESENTERS[scene.presenter].color }}>
-          {PRESENTERS[scene.presenter].name} · {scene.title}
+          {scene.title}
         </div>
         <p>{scene.notes ?? 'Sin notas para esta escena.'}</p>
       </div>

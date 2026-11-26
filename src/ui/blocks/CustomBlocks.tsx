@@ -2,6 +2,7 @@
 import type { CustomBlockId } from '../../content/types';
 import { usePresentation } from '../../state/store';
 import { SCENES } from '../../content/sceneRegistry';
+import { PRESENTERS, TEAM_BY_CHAPTER } from '../../content/presenters';
 import { useDemoTimeDom } from '../../world/demos/demoClock';
 import { landedCount, UNIT_LOAD, unitLoadDone } from '../../world/demos/unitLoadTimeline';
 import { activeMechLevel, MECH_LEVELS } from '../../world/demos/mechanizationTimeline';
@@ -580,10 +581,42 @@ function CashFlow({ compact }: { compact: boolean }) {
   );
 }
 
+/** Tabla 33 de la guía con el color asignado a cada integrante (el color los identifica en el resto de la presentación). */
+function TeamRoster() {
+  return (
+    <div className="blk team-roster">
+      <h3 className="blk-title">
+        <span className="blk-label">Tabla 33</span> Asignación de capítulos entre los cinco integrantes
+      </h3>
+      <ol className="team-roster__list">
+        {TEAM_BY_CHAPTER.map((id) => {
+          const p = PRESENTERS[id];
+          return (
+            <li key={id} className="team-roster__row" style={{ ['--presenter' as string]: p.color }}>
+              <span className="team-roster__swatch" aria-hidden="true" />
+              <div className="team-roster__who">
+                <strong>{p.fullName}</strong>
+                <span>{p.chapters}</span>
+              </div>
+              <p className="team-roster__topics">{p.topics}</p>
+            </li>
+          );
+        })}
+      </ol>
+      <p className="blk-note">
+        Nota. Elaboración propia de los autores de la guía. El reparto mantiene entre dos y tres capítulos consecutivos por
+        persona; en el resto de la presentación cada integrante se identifica por su color.
+      </p>
+    </div>
+  );
+}
+
 export function CustomBlockView({ id, variant }: { id: CustomBlockId; variant: BlockVariant }) {
   switch (id) {
     case 'unit-load-counter':
       return <UnitLoadCounter />;
+    case 'team-roster':
+      return <TeamRoster />;
     case 'conveyor-anatomy':
       return <ConveyorAnatomy />;
     case 'pallet-sizes':

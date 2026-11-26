@@ -1,6 +1,6 @@
 import type { SceneDef } from '../types';
 
-// Capítulo 6 · Transportadores (Vane). Datos verificados contra docs/extracted/guia_texto.md §6 y §5.3.
+// Capítulo 6 · Transportadores (Vanessa). Datos verificados contra docs/extracted/guia_texto.md §6 y §5.3.
 export const transportadores: SceneDef = {
   id: 'transportadores',
   chapter: { number: '6', title: 'Transportadores' },

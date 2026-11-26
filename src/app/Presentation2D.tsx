@@ -40,7 +40,6 @@ export function Presentation2D() {
                       <span className="scene-menu__num">{i + 1}</span>
                       <span className="scene-menu__title">
                         {sc.title}
-                        <small>{PRESENTERS[sc.presenter].name}</small>
                       </span>
                     </button>
                   </li>
@@ -75,7 +74,6 @@ export function Presentation2D() {
           <h1>{scene.title}</h1>
           <div className="presenter-chip presenter-chip--inline">
             <span className="presenter-chip__dot" />
-            <span className="presenter-chip__name">{presenter.name}</span>
             <span className="presenter-chip__role">{presenter.chapters}</span>
           </div>
         </header>

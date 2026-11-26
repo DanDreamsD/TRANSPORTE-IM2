@@ -85,7 +85,7 @@ Demos adicionales implementadas: descarga en recepción (`mover-materiales`), tr
 
 ## Observaciones académicas detectadas en la guía
 
-1. **Reparto de casos:** la Tabla 33 asigna el caso 4 (AGV) a Vane y el caso 3 (NIOSH) a Nicole, aunque el tema AGV
+1. **Reparto de casos:** la Tabla 33 asigna el caso 4 (AGV) a Vanessa y el caso 3 (NIOSH) a Nicole, aunque el tema AGV
    (cap. 8) es de Nicole y NIOSH (cap. 9) también. Se respeta el reparto de la Tabla 33; confirmar con el grupo.
 2. **Wilson** expone «casos aplicados (cap. 13)» y el caso 5: se le asignan la introducción (Tabla 27), el caso 5 y las
    lecciones comunes (13.6); los casos 1–4 los presenta el integrante afín (recuadro final del cap. 13).

@@ -131,6 +131,7 @@ export interface BarChartBlock extends BlockBase {
 }
 
 export type CustomBlockId =
+  | 'team-roster'
   | 'pallet-sizes'
   | 'unit-load-counter'
   | 'conveyor-anatomy'

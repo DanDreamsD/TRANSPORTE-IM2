@@ -138,7 +138,7 @@ code { font-size: 0.9em; color: var(--accent); }
 /* portada */
 .cover {
   position: absolute; left: 40px; top: 50%; transform: translateY(-46%);
-  width: min(640px, 44vw); padding: 36px 40px;
+  width: min(680px, 52vw); padding: 36px 40px;
   background: linear-gradient(135deg, rgba(10, 14, 17, 0.9), rgba(10, 14, 17, 0.72));
   border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 18px;
   backdrop-filter: blur(12px); box-shadow: var(--shadow);
@@ -675,3 +675,29 @@ code { font-size: 0.9em; color: var(--accent); }
 /* tarjeta de cierre */
 .closing-card .cover__title { font-size: 54px; }
 .closing-card .cover__title span { font-size: 34px; }
+
+/* ---------- Integrantes: identificados por color (nombres solo en la carátula) ---------- */
+.presenter-chip .presenter-chip__role { font-size: 15px; font-weight: 650; color: var(--text, #e9eef1); }
+.team-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.team-list li { display: flex; align-items: center; gap: 10px; }
+.team-list__dot { flex: none; width: 11px; height: 11px; border-radius: 50%; background: var(--presenter); box-shadow: 0 0 0 3px color-mix(in srgb, var(--presenter) 25%, transparent); }
+.team-list__name { font-weight: 600; }
+.team-list__code { margin-left: auto; padding-left: 16px; font-variant-numeric: tabular-nums; color: var(--muted); font-weight: 500; }
+.team-roster__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.team-roster__row { display: grid; grid-template-columns: 10px minmax(220px, 0.9fr) 2fr; gap: 14px; align-items: center; padding: 8px 12px 8px 0; border-radius: 8px; background: color-mix(in srgb, var(--presenter) 9%, transparent); }
+.team-roster__swatch { align-self: stretch; border-radius: 8px 0 0 8px; background: var(--presenter); }
+.team-roster__who { display: grid; gap: 2px; }
+.team-roster__who strong { font-size: 1.02em; }
+.team-roster__who span { font-size: 0.86em; opacity: 0.75; }
+.team-roster__topics { margin: 0; font-size: 0.9em; line-height: 1.4; }
+.team-list__name { white-space: nowrap; }
+@media (max-height: 820px) {
+  .cover { padding: 24px 32px; }
+  .cover__title { font-size: 48px; margin-top: 8px; }
+  .cover__title span { font-size: 34px; }
+  .cover__subtitle { font-size: 18px; margin: 10px 0 14px; }
+  .cover__meta { gap: 6px; }
+  .cover__meta dd { font-size: 15px; }
+  .team-list { gap: 2px; }
+  .cover__hint { margin-top: 12px; font-size: 13px; }
+}

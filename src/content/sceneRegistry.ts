@@ -26,7 +26,7 @@ export const SCENES: readonly SceneDef[] = [
   palletsNormalizacion,
   clasificacionEquipo,
   casoDynea,
-  // Vane · cap. 6 y 7 + caso 4
+  // Vanessa · cap. 6 y 7 + caso 4
   transportadores,
   transportadoresCriterios,
   gruas,

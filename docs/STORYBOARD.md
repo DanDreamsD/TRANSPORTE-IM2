@@ -23,11 +23,11 @@ Leyenda de datos: **[C]** curso (diapositivas, sin cita) · **[L]** literatura �
 | 11 | `pallets-normalizacion` | 4.3–4.4 | Carlos | Normalización de pallets | Almacén MP | pallets ISO a escala (4) | ✅ |
 | 12 | `clasificacion-equipo` | 5 | Carlos | Clasificación del equipo | Oficina de ingeniería | — | ✅ |
 | 13 | `caso-dynea` | 13.2 | Carlos | Caso 2: Dynea Pakistan | Almacén MP | rack 35→50 sacos | ✅ |
-| 14 | `transportadores` | 6–6.1 | Vane | Transportadores | Línea de ensamble | transportador (5) | ✅ |
-| 15 | `transportadores-criterios` | 6.2–6.3 | Vane | Ventajas, desventajas y criterios | Línea de ensamble | falla de línea | ✅ |
-| 16 | `gruas` | 7–7.1 | Vane | Grúas, polipastos y montacargas fijos | Procesamiento | grúas y polipastos (6) | ✅ |
-| 17 | `gruas-servicio` | 7.2–7.3 | Vane | Clasificación por servicio | Procesamiento | — | ✅ |
-| 18 | `caso-agv-asientos` | 13.4 | Vane | Caso 4: AGV en planta de asientos | Línea de asientos | 2 AGV con cinta | ✅ |
+| 14 | `transportadores` | 6–6.1 | Vanessa | Transportadores | Línea de ensamble | transportador (5) | ✅ |
+| 15 | `transportadores-criterios` | 6.2–6.3 | Vanessa | Ventajas, desventajas y criterios | Línea de ensamble | falla de línea | ✅ |
+| 16 | `gruas` | 7–7.1 | Vanessa | Grúas, polipastos y montacargas fijos | Procesamiento | grúas y polipastos (6) | ✅ |
+| 17 | `gruas-servicio` | 7.2–7.3 | Vanessa | Clasificación por servicio | Procesamiento | — | ✅ |
+| 18 | `caso-agv-asientos` | 13.4 | Vanessa | Caso 4: AGV en planta de asientos | Línea de asientos | 2 AGV con cinta | ✅ |
 | 19 | `transportes-montacargas` | 8–8.2 | Nicole | Transportes y montacargas | Pasillo / Almacén MP | montacargas (7) | ✅ |
 | 20 | `agv-amr` | 8.3 | Nicole | Del AGV al AMR | Pasillo central | AGV vs AMR (8) | ✅ |
 | 21 | `niosh` | 9.1 | Nicole | Ecuación de levantamiento NIOSH | Estación manual | levantamiento + calculadora (10) | ✅ |
@@ -109,28 +109,28 @@ Leyenda de datos: **[C]** curso (diapositivas, sin cita) · **[L]** literatura �
   a la derecha se completan capas hasta 50 sacos. Pantalla: problema/mejora + Tabla 29 en gráfico (como la Figura 17) **[R]**.
   Disposición de sacos por capa ilustrativa; nota de inconsistencia (12 p. p. vs 15 %).
 
-### 14 · `transportadores` — Vane (6–6.1) ✅
+### 14 · `transportadores` — Vanessa (6–6.1) ✅
 - **Cámara:** junto a la línea de ensamble, vista diagonal del transportador; FOV 42.
 - **Demo 5:** transportador de rodillos motorizado (motor-reductor, cadena) que alimenta un tramo de rodillos por
   gravedad con acumulación y sensor fotoeléctrico; velocidad ajustable desde el panel.
 - **Pizarra:** definición, sin motor/con motor **[C]**, taxonomía CICMHE (Tabla 10) **[L]**.
 - **Complementario:** Tabla 10 completa y Tabla 11 (ventajas/desventajas) **[C]**.
 
-### 15 · `transportadores-criterios` — Vane (6.2–6.3) ✅
+### 15 · `transportadores-criterios` — Vanessa (6.2–6.3) ✅
 - Misma línea vista desde el extremo por gravedad. Ciclo de 16 s: el motor falla de 4 a 12 s (baliza roja, el tramo
   motorizado se detiene y la gravedad termina de vaciarse). Pantalla compartida: Tabla 11 **[C]**;
   complementario: las 5 preguntas de selección **[S]**.
 
-### 16 · `gruas` — Vane (7–7.1) ✅
+### 16 · `gruas` — Vanessa (7–7.1) ✅
 - **Procesamiento, vista desde el este:** grúa puente con polipasto que iza una bobina y la traslada (ciclo de 24 s),
   grúa pluma giratoria y monorriel en ruta fija, cada una etiquetada. Pantalla colgante: definición + Figura 9;
   complementario: Tabla 12 **[C] [L]**. El pórtico solo se muestra en la Figura 9.
 
-### 17 · `gruas-servicio` — Vane (7.2–7.3) ✅
+### 17 · `gruas-servicio` — Vanessa (7.2–7.3) ✅
 - Misma pantalla, cámara cercana: Tabla 13 **[C]** + clasificación CMAA A–F e ISO 4301-1 A1–A8 **[L]**;
   complementario: factores de selección, grúa como recurso subutilizado e idea clave.
 
-### 18 · `caso-agv-asientos` — Vane (13.4) ✅
+### 18 · `caso-agv-asientos` — Vanessa (13.4) ✅
 - **Línea de asientos:** 2 AGV en un circuito de cinta magnética con paradas simétricas (almacén de componentes con
   carga en el piso / fin de línea). Pantalla compartida: contexto + Figura 19 recreada con la Tabla 30 (≈ 7,4 meses;
   los autores reportan ~8) **[R]**; nota de inconsistencias del artículo.

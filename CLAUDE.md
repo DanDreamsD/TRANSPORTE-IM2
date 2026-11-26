@@ -10,7 +10,9 @@ física. Al avanzar/retroceder, la cámara viaja de forma cinematográfica al pu
 
 - Curso: Ingeniería de Métodos 2 — UNSA, Ingeniería Industrial. Docente: Dra. Elisa Castañeda Huamán.
 - Tema: Capítulo VI — Manejo de materiales y equipo para el manejo de materiales.
-- Integrantes: Felipe (cap. 1–2), Carlos (cap. 3–5), Vane (cap. 6–7), Nicole (cap. 8–10), Wilson (cap. 11–14).
+- Integrantes: Felipe (cap. 1–2), Carlos (cap. 3–5), Vanessa (cap. 6–7), Nicole (cap. 8–10), Wilson (cap. 11–14).
+  Nombres completos y códigos en `src/content/presenters.ts`. **En pantalla los integrantes se identifican solo por su
+  color**; los nombres completos aparecen únicamente en la carátula (y en la tarjeta de cierre).
 
 ## Fuente académica (obligatoria)
 
