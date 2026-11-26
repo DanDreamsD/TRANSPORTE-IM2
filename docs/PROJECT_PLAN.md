@@ -17,7 +17,7 @@ exposición = ubicación + encuadre de cámara + contenido académico integrado 
   reconstruir cuando la guía también los publica en tabla (p. ej., Fig. 16 ↔ Tabla 26, Fig. 17 ↔ Tabla 29,
   Fig. 19 ↔ Tabla 30, Fig. 11 ↔ Tabla 18). Para Fig. 18 (FILI de 15 gabinetes) los valores individuales solo están en la
   imagen: se leerán de la figura y se marcarán como «valores leídos de la Figura 18», o se mostrará la imagen original.
-- Estructura: Presentación + 14 capítulos temáticos + preguntas de repaso (15) + glosario (16) + 36 referencias APA.
+- Estructura: Presentación + 14 capítulos temáticos + preguntas de repaso (15) + glosario (16) + 36 referencias APA (la presentación no cita las diapositivas del curso, por no ser una fuente publicada).
 - Reparto (Tabla 33): Felipe 1–2 (+caso 1) · Carlos 3–5 (+caso 2) · Vane 6–7 (+caso 4) · Nicole 8–10 (+caso 3) ·
   Wilson 11–14 (+caso 5, cap. 13).
 

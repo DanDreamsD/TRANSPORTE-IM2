@@ -233,6 +233,7 @@ code { font-size: 0.9em; color: var(--accent); }
 .scene-menu__title small { font-weight: 400; color: var(--muted); font-size: 13px; }
 
 .ref-list { padding-left: 18px; margin: 0; display: grid; gap: 10px; font-size: 15px; line-height: 1.45; color: #d6dee3; }
+.ref-empty { margin: 0; font-size: 15px; line-height: 1.45; color: #aab6bd; font-style: italic; }
 .ref-url { color: var(--brand); word-break: break-all; }
 .ref-all { margin-top: 18px; }
 .ref-all summary { cursor: pointer; color: var(--muted); margin-bottom: 10px; }

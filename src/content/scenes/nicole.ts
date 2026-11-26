@@ -28,7 +28,6 @@ export const transportesMontacargas: SceneDef = {
       kind: 'lead',
       text: 'Equipos de ruta libre: llevan la carga de un punto a otro sin depender de una infraestructura fija.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'table',
@@ -43,7 +42,6 @@ export const transportesMontacargas: SceneDef = {
         ['', 'No combinan manejo con procesamiento'],
       ],
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
   ],
   detailBlocks: [
@@ -51,7 +49,6 @@ export const transportesMontacargas: SceneDef = {
       kind: 'lead',
       text: 'Pertenecen a esta familia los carros de carga, los carros con grúa, los carros de mano, los montacargas de horquilla, los trenes de remolque y los vehículos guiados automáticamente (VGA o AGV).',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'table',
@@ -72,7 +69,7 @@ export const transportesMontacargas: SceneDef = {
     },
   ],
   animations: ['forklift'],
-  references: ['castaneda2026', 'osha_sf_a'],
+  references: ['osha_sf_a'],
   notes:
     'El montacargas retira un pallet del segundo nivel del rack y luego lo vuelve a guardar: muestra que los transportes «cargan, descargan y levantan» y que «se requieren pasillos». Con «C» se ven las siete clases de camiones industriales (OSHA). Demostración didáctica.',
 };
@@ -274,7 +271,7 @@ export const estacionRobots: SceneDef = {
         ['De control numérico (CN)', 'Se mueve según un programa numérico.'],
         ['Inteligente', 'Percibe su entorno y adapta sus decisiones.'],
       ],
-      note: 'Tipos: Castañeda (2026). Descripciones de los autores de la guía.',
+      note: 'Tipos: diapositivas del curso. Descripciones de los autores de la guía.',
       dataKind: 'synthesis',
     },
   ],
@@ -283,19 +280,16 @@ export const estacionRobots: SceneDef = {
       kind: 'lead',
       text: 'Cuando el rediseño del puesto no basta, se recurre a equipos que multiplican la fuerza humana. Los compensadores (balanceadores) sostienen el peso de la carga y dejan al operario solo guiar el movimiento; los manipuladores combinan un brazo con un dispositivo de agarre para posicionar piezas pesadas con poco esfuerzo.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'lead',
       text: 'El EOAT (end of arm tooling, herramental de extremo de brazo) es el dispositivo que cada robot lleva en la muñeca para sujetar o procesar la pieza, como pinzas, ventosas o garras.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'lead',
       text: 'La automatización fija resuelve movimientos repetitivos de alto volumen con mecanismos dedicados: la transferencia sincrónica desplaza todas las piezas de una estación a la siguiente al mismo tiempo, y los sistemas de ubicación y orientación colocan cada pieza en la posición correcta. Es muy eficiente para un solo producto, pero cambiar de producto exige rediseñar el mecanismo.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'callout',
@@ -305,7 +299,7 @@ export const estacionRobots: SceneDef = {
     },
   ],
   animations: ['robot-arm'],
-  references: ['castaneda2026'],
+  references: [],
   notes:
     'Recorrer de izquierda a derecha: transferencia sincrónica (todas las piezas avanzan a la vez), compensador que sostiene la carga mientras el operario solo la guía, y la celda con el brazo robótico y su EOAT (pinza). Cerrar con la jerarquía de intervención. Demostración didáctica.',
 };
@@ -422,7 +416,7 @@ export const recepcionAlmacenamiento: SceneDef = {
         ['Estación de trabajo', 'Posicionar y sujetar piezas en el puesto.', 'Manipuladores, compensadores, robots.'],
       ],
       dataKind: 'synthesis',
-      source: 'Hassan (2010); Heragu y Ekren (s. f.); Castañeda (2026)',
+      source: 'Hassan (2010); Heragu y Ekren (s. f.)',
     },
   ],
   detailBlocks: [
@@ -440,7 +434,7 @@ export const recepcionAlmacenamiento: SceneDef = {
     },
   ],
   animations: [],
-  references: ['hassan2010', 'heragu_sf', 'castaneda2026', 'kay_sf', 'peters1998'],
+  references: ['hassan2010', 'heragu_sf', 'kay_sf', 'peters1998'],
   notes:
     'Desde el pasillo se ven el almacén de producto terminado y, al fondo, el despacho: dos de las cuatro zonas de la Tabla 20. Repasar la lógica de Hassan (2010): primero las funciones de cada zona, después el equipo.',
 };

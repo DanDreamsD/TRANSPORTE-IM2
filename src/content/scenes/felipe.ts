@@ -33,7 +33,6 @@ export const definicionAlcance: SceneDef = {
             term: 'Curso',
             text: 'Operaciones básicas de movimiento de productos a granel, empacados y unitarios, con maquinaria, dentro de los límites de la planta.',
             dataKind: 'course',
-            source: 'Castañeda (2026)',
           },
         ],
         [
@@ -61,7 +60,7 @@ export const definicionAlcance: SceneDef = {
       title: 'Enfoques sobre el concepto de manejo de materiales',
       columns: ['Fuente', 'Enfoque', 'Qué enfatiza'],
       rows: [
-        ['Curso (Castañeda, 2026)', 'Operaciones básicas de movimiento de productos a granel, empacados y unitarios, con maquinaria, dentro de la planta.', 'El movimiento físico y la elección del equipo.'],
+        ['Curso', 'Operaciones básicas de movimiento de productos a granel, empacados y unitarios, con maquinaria, dentro de la planta.', 'El movimiento físico y la elección del equipo.'],
         ['MHIA, citada en Groover (2008)', 'Movimiento, almacenamiento, protección y control de materiales durante manufactura y distribución, incluyendo consumo y disposición.', 'Cuatro funciones y todo el ciclo de vida del material.'],
         ['Groover (2008)', 'El manejo debe hacerse de forma segura, eficiente, a bajo costo y a tiempo.', 'Criterios de desempeño del sistema.'],
         ['White (s. f.)', 'Punto de partida de diseño: el mejor manejo de materiales es el que no hace falta.', 'Eliminar movimientos antes de mecanizarlos.'],
@@ -80,11 +79,11 @@ export const definicionAlcance: SceneDef = {
       label: 'Figura 1',
       title: 'Alcance del manejo de materiales a lo largo de la planta',
       src: 'figures/fig01.png',
-      note: 'Nota. Elaboración propia. Las categorías de dirección, tipo de carga y equipo provienen de las diapositivas del curso (Castañeda, 2026).',
+      note: 'Nota. Elaboración propia. Las categorías de dirección, tipo de carga y equipo provienen de las diapositivas del curso.',
     },
   ],
   animations: ['material-flow'],
-  references: ['castaneda2026', 'groover2008', 'white_sf'],
+  references: ['groover2008', 'white_sf'],
   notes:
     'Contrastar las dos definiciones: el curso habla de movimiento; la MHIA añade almacenamiento, protección y control. Señalar la flecha del piso: el manejo acompaña al material desde el muelle de recepción hasta el despacho. Cerrar con White: «el mejor manejo de materiales es el que no hace falta».',
 };
@@ -122,7 +121,6 @@ export const moverMateriales: SceneDef = {
         'Mano de obra: el manejo mecanizado reduce operarios de traslado',
       ],
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     { kind: 'custom', component: 'material-flow-types' },
   ],
@@ -141,7 +139,7 @@ export const moverMateriales: SceneDef = {
     },
   ],
   animations: ['truck-unload'],
-  references: ['castaneda2026', 'kay_sf'],
+  references: ['kay_sf'],
   notes:
     'Mientras el montacargas descarga: señalar las tres direcciones del movimiento (descarga del camión, traslado horizontal, elevación vertical de las horquillas). Explicar los dos flujos de Kay: discreto (cargas unitarias, como este pallet) y continuo (granel). Usar el ejemplo del cemento.',
 };
@@ -186,7 +184,6 @@ export const objetivosCostos: SceneDef = {
               'Incrementar la productividad',
             ],
             dataKind: 'course',
-            source: 'Castañeda (2026)',
           },
         ],
         [{ kind: 'custom', component: 'cost-ranges' }],
@@ -207,14 +204,14 @@ export const objetivosCostos: SceneDef = {
         ['Facilitar el proceso de manufactura', 'El manejo se integra con la operación y no la interrumpe.', 'Tiempo de ciclo; paradas por falta de material.'],
         ['Incrementar la productividad', 'Más producto por hora-hombre y por metro cuadrado.', 'Unidades por operario-turno.'],
       ],
-      note: 'Nota. Los objetivos provienen de Castañeda (2026). Los indicadores son una propuesta de los autores de la guía.',
+      note: 'Nota. Los objetivos provienen del curso. Los indicadores son una propuesta de los autores de la guía.',
       dataKind: 'synthesis',
     },
     {
       kind: 'lead',
       text: 'El manejo de materiales incrementa el costo del producto sin aportarle valor agregado, retrasa las entregas y consume área de planta y de almacén: entre 20 % y 50 % del costo total del producto y entre 80 % y 95 % del tiempo global de las órdenes.',
       dataKind: 'course',
-      source: 'Castañeda (2026); Tompkins et al. (2010)',
+      source: 'Tompkins et al. (2010)',
     },
     {
       kind: 'bullets',
@@ -242,11 +239,10 @@ export const objetivosCostos: SceneDef = {
         'Se emplean métodos más complejos, como la teoría de líneas de espera y las técnicas de planificación de flujos.',
       ],
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
   ],
   animations: [],
-  references: ['castaneda2026', 'tompkins2010', 'groover2008', 'datar1991', 'saputro2015'],
+  references: ['tompkins2010', 'groover2008', 'datar1991', 'saputro2015'],
   notes:
     'Recorrer los seis objetivos y, en el gráfico, insistir en que cada barra usa una base distinta: 20–50 % del costo del producto, 20–25 % del costo de mano de obra (EE. UU.), ≈10 % del costo de fábrica en un caso, 80–95 % del tiempo de las órdenes. No se comparan entre sí. Con «C» se muestran los indicadores de la Tabla 2 y las ventajas (§1.5).',
 };
@@ -278,7 +274,7 @@ export const principios: SceneDef = {
       kind: 'lead',
       text: 'Reglas de diseño que condensan décadas de experiencia: sirven para evaluar un sistema existente y para guiar uno nuevo. El curso presenta 20; la MHIA y el CICMHE difunden una versión sintética de 10.',
       dataKind: 'literature',
-      source: 'Castañeda (2026); Heragu y Ekren (s. f.)',
+      source: 'Heragu y Ekren (s. f.)',
     },
     { kind: 'custom', component: 'principles-grid' },
   ],
@@ -310,7 +306,7 @@ export const principios: SceneDef = {
         ['', 'Desempeño', 'Evaluar el manejo por el costo por unidad movida.'],
         ['', 'Seguridad', 'Proveer métodos y equipo seguros para el manejo.'],
       ],
-      note: 'Nota. Los nombres de los principios provienen de Castañeda (2026). Las ideas centrales son una síntesis de los autores de la guía; deben contrastarse con Meyers y Stephens (2006) y Tompkins et al. (2010) antes de citarlas textualmente.',
+      note: 'Nota. Los nombres de los principios provienen del curso. Las ideas centrales son una síntesis de los autores de la guía; deben contrastarse con Meyers y Stephens (2006) y Tompkins et al. (2010) antes de citarlas textualmente.',
       dataKind: 'synthesis',
     },
     {
@@ -348,7 +344,7 @@ export const principios: SceneDef = {
     },
   ],
   animations: [],
-  references: ['castaneda2026', 'heragu_sf', 'kay_sf', 'meyers2006', 'tompkins2010'],
+  references: ['heragu_sf', 'kay_sf', 'meyers2006', 'tompkins2010'],
   notes:
     'Presentar los diez principios de la pizarra y anunciar que el del «trabajo» es el más cuantificable (siguiente escena). Con «C» se ve la tabla de los 20 principios del curso y su equivalencia. Aclarar que las ideas centrales y la correspondencia son síntesis de los autores de la guía.',
 };

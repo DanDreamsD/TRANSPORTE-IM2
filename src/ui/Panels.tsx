@@ -135,6 +135,9 @@ export function ExpandedPanel() {
 }
 
 export function ReferenceList({ ids }: { ids: readonly (keyof typeof REFERENCES)[] }) {
+  if (ids.length === 0) {
+    return <p className="ref-empty">Contenido de las diapositivas del curso; esta escena no cita fuentes publicadas.</p>;
+  }
   return (
     <ol className="ref-list">
       {ids.map((id) => {

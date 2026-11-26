@@ -122,10 +122,10 @@ function PalletSizes() {
 
 /** Recreación de la Figura 2: cada fila usa una base distinta y no son comparables entre sí. */
 const COST_RANGES = [
-  { label: 'Costo de manejo / costo total del producto', src: 'Tompkins et al. (2010); Castañeda (2026)', min: 20, max: 50, text: '20–50 %', color: '#4f86c6' },
+  { label: 'Costo de manejo / costo total del producto', src: 'Tompkins et al. (2010)', min: 20, max: 50, text: '20–50 %', color: '#4f86c6' },
   { label: 'Manejo / costo de mano de obra de manufactura, EE. UU.', src: 'Groover (2008)', min: 20, max: 25, text: '20–25 %', color: '#1fa392' },
   { label: 'Manejo / costo total de fábrica, caso de estudio', src: 'Datar et al. (1991)', min: 10, max: 10, text: '≈10 %', color: '#f0a35e' },
-  { label: 'Tiempo de manejo / tiempo global de las órdenes', src: 'Castañeda (2026)', min: 80, max: 95, text: '80–95 %', color: '#e5704f' },
+  { label: 'Tiempo de manejo / tiempo global de las órdenes', src: 'Diapositivas del curso', min: 80, max: 95, text: '80–95 %', color: '#e5704f' },
 ];
 
 function CostRanges() {
@@ -250,7 +250,7 @@ function MechanizationLevels() {
       </div>
       <span className="data-tag-row">
         <span className="data-tag data-tag--course">Curso</span>
-        <span className="data-source">Figura 5 · Castañeda (2026)</span>
+        <span className="data-source">Figura 5 · diapositivas del curso</span>
       </span>
     </div>
   );
@@ -306,7 +306,7 @@ function FamilyComparison() {
       </table>
       <span className="data-tag-row">
         <span className="data-tag data-tag--synthesis">Síntesis de los autores</span>
-        <span className="data-source">a partir de Castañeda (2026) y Heragu y Ekren (s. f.)</span>
+        <span className="data-source">a partir del curso y Heragu y Ekren (s. f.)</span>
       </span>
     </div>
   );

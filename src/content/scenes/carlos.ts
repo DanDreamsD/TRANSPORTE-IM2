@@ -28,7 +28,6 @@ export const gradosMecanizacion: SceneDef = {
       kind: 'lead',
       text: 'Cuánto del esfuerzo, de la decisión y del control recae en las personas y cuánto en las máquinas.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     { kind: 'custom', component: 'mechanization-levels' },
   ],
@@ -45,7 +44,7 @@ export const gradosMecanizacion: SceneDef = {
         ['Automatizado', 'Intervención humana mínima para guiar y operar.', 'Vehículos autoguiados, almacenamiento y retiro automatizados.'],
         ['Completamente automatizado', 'Sin intervención humana; las computadoras hacen el control en línea.', 'Almacenes y líneas totalmente robotizados.'],
       ],
-      note: 'Nota. Descripciones adaptadas de Castañeda (2026). Los ejemplos del último grado son propios de los autores de la guía.',
+      note: 'Nota. Descripciones adaptadas del curso. Los ejemplos del último grado son propios de los autores de la guía.',
       dataKind: 'course',
     },
     {
@@ -53,11 +52,11 @@ export const gradosMecanizacion: SceneDef = {
       label: 'Figura 5',
       title: 'Grados de mecanización del manejo de materiales',
       src: 'figures/fig05.png',
-      note: 'Nota. Elaboración propia a partir de Castañeda (2026). El aumento de inversión y la pérdida de flexibilidad corresponden a las ventajas y desventajas del nivel alto señaladas en la misma fuente.',
+      note: 'Nota. Elaboración propia a partir del curso. El aumento de inversión y la pérdida de flexibilidad corresponden a las ventajas y desventajas del nivel alto señaladas en la misma fuente.',
     },
   ],
   animations: ['mechanization-levels'],
-  references: ['castaneda2026'],
+  references: [],
   notes:
     'Recorrer las cinco estaciones de izquierda a derecha mientras se iluminan: carretilla y transpaleta manual (1), montacargas (2), transportador con control programable y sensores (3), AGV sobre cinta (4) y celda robotizada (5). La flecha del piso resume la Figura 5: más inversión, velocidad y control; menos flexibilidad. Los equipos de la estación 5 son ejemplos propios de los autores.',
 };
@@ -99,7 +98,6 @@ export const mecanizacionDecision: SceneDef = {
         ['Mejor control de registros del inventario', ''],
       ],
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
   ],
   detailBlocks: [
@@ -115,7 +113,7 @@ export const mecanizacionDecision: SceneDef = {
         'Distribución disponible: el espacio, las columnas y la altura limitan la solución (capítulo 11).',
       ],
       dataKind: 'synthesis',
-      source: 'Propuesta de los autores de la guía, coherente con Castañeda (2026) y Peters (1998)',
+      source: 'Propuesta de los autores de la guía, coherente con el curso y Peters (1998)',
     },
     {
       kind: 'callout',
@@ -125,7 +123,7 @@ export const mecanizacionDecision: SceneDef = {
     },
   ],
   animations: ['mechanization-levels'],
-  references: ['castaneda2026', 'peters1998'],
+  references: ['peters1998'],
   notes:
     'Leer la Tabla 7 en pares ventaja/desventaja. Con «C» mostrar los seis criterios de decisión (propuesta de los autores). Mensaje: no existe un grado «correcto» en abstracto; se decide con datos de volumen, variedad, peso, capital, mantenimiento y distribución. Anticipar el caso 5 (AHP-MOORA), donde el equipo más automatizado quedó último.',
 };
@@ -264,13 +262,12 @@ export const clasificacionEquipo: SceneDef = {
       kind: 'lead',
       text: 'El curso organiza el equipo en tres familias: transportadores (sin motor: rodillos, ruedas y tolvas; con motor: neumáticos, rodillos y bandas), grúas (fijas: malacate, pluma, puente, pescante, monorriel y montacargas; móviles: plataformas aéreas, mesas elevadoras y elevadores de mantenimiento) y transportes (carros de carga, carros con grúa, carros de mano, montacargas de horquilla, trenes de remolque y vehículos guiados automáticamente). Para el manejo en la propia estación de trabajo añade un cuarto bloque: manual, compensadores y manipuladores, y robots.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'table',
       label: 'Tabla 9',
       title: 'Comparación de tres clasificaciones del equipo de manejo',
-      columns: ['Función', 'Curso (Castañeda, 2026)', 'Heragu y Ekren (s. f.)', 'Kay (s. f.)'],
+      columns: ['Función', 'Curso', 'Heragu y Ekren (s. f.)', 'Kay (s. f.)'],
       rows: [
         ['Mover cargas en ruta fija', 'Transportadores', 'Transportadores', 'Transportadores'],
         ['Elevar y trasladar', 'Grúas', 'Polipastos, grúas y plumas', 'Equipo de posicionamiento'],
@@ -293,7 +290,7 @@ export const clasificacionEquipo: SceneDef = {
       label: 'Figura 8',
       title: 'Comparación cualitativa de transportadores, grúas y transportes',
       src: 'figures/fig08.png',
-      note: 'Nota. Valoración cualitativa elaborada por los autores de la guía a partir de las ventajas y desventajas de las diapositivas 10 a 15 del curso (Castañeda, 2026) y de las características descritas por Heragu y Ekren (s. f.). Los valores «Media» y la inversión de transportadores y transportes son interpretación de los autores, no datos medidos.',
+      note: 'Nota. Valoración cualitativa elaborada por los autores de la guía a partir de las ventajas y desventajas de las diapositivas 10 a 15 del curso y de las características descritas por Heragu y Ekren (s. f.). Los valores «Media» y la inversión de transportadores y transportes son interpretación de los autores, no datos medidos.',
     },
     {
       kind: 'callout',
@@ -303,7 +300,7 @@ export const clasificacionEquipo: SceneDef = {
     },
   ],
   animations: [],
-  references: ['castaneda2026', 'heragu_sf', 'kay_sf'],
+  references: ['heragu_sf', 'kay_sf'],
   notes:
     'Presentar las tres familias del curso más el bloque de estación de trabajo (Figura 7) y el semáforo de la Figura 8. Aclarar que la Figura 8 es una valoración cualitativa de los autores de la guía, no datos medidos. Cerrar con la idea clave: la familia se elige según el flujo.',
 };

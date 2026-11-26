@@ -74,7 +74,6 @@ export const transportadoresCriterios: SceneDef = {
       kind: 'lead',
       text: 'Tabla 11 · Ventajas y desventajas de los transportadores.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
   ],
   detailBlocks: [
@@ -100,7 +99,7 @@ export const transportadoresCriterios: SceneDef = {
     },
   ],
   animations: ['conveyor-failure'],
-  references: ['castaneda2026'],
+  references: [],
   notes:
     'La línea simula una falla del motor: el tramo motorizado se detiene, la baliza se pone en rojo y las cajas dejan de entrar; el tramo por gravedad termina de vaciarse. Ilustra «una falla puede detener toda la línea» y «pueden crear cuellos de botella». Con «C» se ven las cinco preguntas para elegir un transportador (síntesis de los autores). Demostración didáctica.',
 };
@@ -124,7 +123,6 @@ export const gruas: SceneDef = {
       kind: 'lead',
       text: 'Izan y trasladan cargas dentro de un área limitada, generalmente por encima del nivel del piso: ahorran espacio y minimizan la interferencia con el tránsito de personas y vehículos.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'figure',
@@ -139,7 +137,7 @@ export const gruas: SceneDef = {
       kind: 'lead',
       text: 'El curso distingue grúas fijas (malacate, pluma, puente, pescante, monorriel y montacargas) y móviles (plataformas aéreas, mesas elevadoras y elevadores de mantenimiento). Entre las grúas aéreas, la más usada en entornos de manufactura es la grúa puente.',
       dataKind: 'course',
-      source: 'Castañeda (2026); The Fabricator (s. f.)',
+      source: 'The Fabricator (s. f.)',
     },
     {
       kind: 'table',
@@ -165,7 +163,7 @@ export const gruas: SceneDef = {
     },
   ],
   animations: ['cranes'],
-  references: ['castaneda2026', 'fabricator_sf', 'cmco_sf', 'mmh_sf_b'],
+  references: ['fabricator_sf', 'cmco_sf', 'mmh_sf_b'],
   notes:
     'En el área de procesamiento: la grúa puente recorre sus rieles, el polipasto baja, iza una bobina y la traslada; la grúa pluma gira en su estación y el monorriel lleva piezas por una ruta fija. El pórtico se explica con la Figura 9 (no tiene sentido dentro de esta nave cubierta). Demostración didáctica.',
 };
@@ -203,7 +201,6 @@ export const gruasServicio: SceneDef = {
               ['Sirven para carga y descarga', 'Es necesario un operario'],
             ],
             dataKind: 'course',
-            source: 'Castañeda (2026)',
           },
         ],
         [
@@ -242,7 +239,7 @@ export const gruasServicio: SceneDef = {
     },
   ],
   animations: ['cranes'],
-  references: ['castaneda2026', 'fabricator_sf', 'designingbuildings_sf'],
+  references: ['fabricator_sf', 'designingbuildings_sf'],
   notes:
     'Leer la Tabla 13 en pares. Explicar las dos escalas de clasificación por servicio (CMAA A–F; ISO 4301-1 A1–A8). Con «C»: factores de selección y el comentario sobre la grúa como recurso subutilizado. Mientras tanto, la grúa puente del fondo sigue con su ciclo.',
 };

@@ -19,10 +19,6 @@ export const REFERENCES = {
     apa: 'British Standards Institution. (s. f.). BS 6884: Recommendations for plan dimensions of unit loads.',
     url: 'https://knowledge.bsigroup.com/products/recommendations-for-plan-dimensions-of-unit-loads',
   },
-  castaneda2026: {
-    cite: 'Castañeda (2026)',
-    apa: 'Castañeda Huamán, E. (2026). Capítulo VI: Manejo de materiales y equipo para el manejo de materiales [Diapositivas de clase]. Ingeniería de Métodos 2, Universidad Nacional de San Agustín de Arequipa.',
-  },
   cdc_sf: {
     cite: 'CDC (s. f.)',
     apa: 'Centers for Disease Control and Prevention. (s. f.). Revised NIOSH lifting equation.',

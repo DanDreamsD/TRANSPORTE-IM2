@@ -38,7 +38,7 @@ export const portada: SceneDef = {
       kind: 'callout',
       variant: 'expo',
       title: 'Convenciones de la guía',
-      text: 'Cuando un dato proviene de las diapositivas del curso se cita como Castañeda (2026). Los ejemplos numéricos marcados como hipotéticos son inventados con fines didácticos y no describen ninguna empresa real.',
+      text: 'Los contenidos tomados de las diapositivas del curso llevan la etiqueta «Curso». Los ejemplos numéricos marcados como hipotéticos son inventados con fines didácticos y no describen ninguna empresa real.',
     },
     {
       kind: 'bullets',
@@ -51,7 +51,7 @@ export const portada: SceneDef = {
     },
   ],
   animations: ['material-flow'],
-  references: ['castaneda2026'],
+  references: [],
   notes:
     'Presentar al equipo y la empresa ficticia. Explicar que el recorrido de la cámara sigue el flujo del material: recepción → almacén → procesamiento → ensamble → almacén automatizado → despacho. La flecha animada del piso es ese recorrido.',
 };

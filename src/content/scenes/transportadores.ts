@@ -27,7 +27,6 @@ export const transportadores: SceneDef = {
       term: 'Transportador',
       text: 'Equipo de manejo de ruta fija que traslada materiales de un punto a otro de forma continua. Especialmente útil para cargas pesadas o voluminosas.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'columns',
@@ -39,7 +38,6 @@ export const transportadores: SceneDef = {
             title: 'Sin motor',
             items: ['Rodillos', 'Ruedas', 'Tolvas'],
             dataKind: 'course',
-            source: 'Castañeda (2026)',
           },
         ],
         [
@@ -48,7 +46,6 @@ export const transportadores: SceneDef = {
             title: 'Con motor',
             items: ['Neumáticos', 'Rodillos', 'Bandas'],
             dataKind: 'course',
-            source: 'Castañeda (2026)',
           },
         ],
       ],
@@ -93,7 +90,7 @@ export const transportadores: SceneDef = {
         ['No requieren rutas en línea recta', ''],
         ['Aprovechan el espacio cúbico', ''],
       ],
-      note: 'Nota. Castañeda (2026).',
+      note: 'Nota. Contenido de las diapositivas del curso.',
       dataKind: 'course',
     },
     {
@@ -110,7 +107,7 @@ export const transportadores: SceneDef = {
     },
   ],
   animations: ['conveyor'],
-  references: ['castaneda2026', 'cicmhe_sf', 'heragu_sf'],
+  references: ['cicmhe_sf', 'heragu_sf'],
   notes:
     'Señalar las partes: motor-reductor, rodillos motorizados, sensor fotoeléctrico y tramo de rodillos por gravedad donde las cajas se acumulan. Usar el control de velocidad (abajo a la derecha) para mostrar la «velocidad ajustable» y el botón «Detener motor» para mostrar que una falla detiene toda la línea (Tabla 11). Aclarar que es una demostración didáctica.',
 };

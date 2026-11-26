@@ -27,7 +27,6 @@ export const cargaUnitaria: SceneDef = {
       term: 'Carga unitaria',
       text: 'Número de objetos dispuestos de forma que puedan ser manejados como un solo objeto: tarimas, contenedores y sacos.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'columns',
@@ -45,7 +44,6 @@ export const cargaUnitaria: SceneDef = {
               'Proteger el producto contra daños',
             ],
             dataKind: 'course',
-            source: 'Castañeda (2026)',
           },
         ],
         [
@@ -75,7 +73,7 @@ export const cargaUnitaria: SceneDef = {
         ['Apilamiento', 'Resistencia de las cajas inferiores, altura del almacén.', 'Pérdida de volumen o daño por aplastamiento.'],
         ['Protección del material', 'Humedad, golpes, polvo, contaminación.', 'Mermas y reclamos del cliente.'],
       ],
-      note: 'Nota. Los factores provienen de Castañeda (2026). La columna de verificación y las consecuencias son aportes de los autores de la guía.',
+      note: 'Nota. Los factores provienen del curso. La columna de verificación y las consecuencias son aportes de los autores de la guía.',
       dataKind: 'synthesis',
     },
     {
@@ -119,7 +117,7 @@ export const cargaUnitaria: SceneDef = {
     },
   ],
   animations: ['unit-load'],
-  references: ['castaneda2026', 'kay_sf', 'waseem2021'],
+  references: ['kay_sf', 'waseem2021'],
   notes:
     'Mientras las cajas forman la carga: «cada caja suelta es una manipulación; al formar la carga unitaria, el montacargas hace un solo viaje». Recalcar los cinco objetivos del curso y la condición de Kay: la carga debe mantener su integridad (el film estirable cumple ese papel). Anunciar el caso Dynea: subir de 35 a 50 sacos por pallet llevó el uso del espacio de 54 % a 80 % sin comprar equipo. Pulsar R para repetir la animación.',
 };

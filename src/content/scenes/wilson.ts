@@ -48,7 +48,6 @@ export const distribucionManejo: SceneDef = {
       kind: 'lead',
       text: 'La distribución define dónde está cada área; el manejo, cómo se mueve el material entre ellas. Comparten datos (longitud, tiempo, origen y destino), persiguen reducir costos y deben resolverse al mismo tiempo.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     { kind: 'custom', component: 'layout-compare' },
   ],
@@ -57,14 +56,13 @@ export const distribucionManejo: SceneDef = {
       kind: 'lead',
       text: 'El manejo influye en las características físicas del edificio, como el ancho de los pasillos, la altura del cielo raso y las columnas, que condicionan la selección del equipo y su enrutamiento; y la distribución influye en los requerimientos y la utilización del espacio.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'figure',
       label: 'Figura 13',
       title: 'Interdependencia entre distribución de planta y manejo de materiales',
       src: 'figures/fig13.png',
-      note: 'Nota. Elaboración propia a partir de Castañeda (2026).',
+      note: 'Nota. Elaboración propia a partir del curso.',
     },
     {
       kind: 'lead',
@@ -80,7 +78,7 @@ export const distribucionManejo: SceneDef = {
     },
   ],
   animations: ['material-flow', 'layout-compare'],
-  references: ['castaneda2026', 'muther1973', 'tompkins2010'],
+  references: ['muther1973', 'tompkins2010'],
   notes:
     'NOVATEK está diseñada en espina: el pasillo central concentra el flujo y cada área entra y sale por él; la flecha del piso es el recorrido del material. La pantalla compara un esquema en espina con uno sin canal central (cruces y retrocesos); es un esquema ilustrativo, sin cifras. Cerrar con la idea clave.',
 };
@@ -129,7 +127,7 @@ export const seleccionEquipo: SceneDef = {
         ['Costos', 'Inversión, operación, depreciación', '¿Cuánto cuesta comprar, operar y mantener? ¿Cuándo se recupera?'],
         ['Otros factores', 'Flexibilidad, obsolescencia', '¿Servirá si cambia el producto? ¿Cuándo quedará obsoleto?'],
       ],
-      note: 'Nota. Factores de Castañeda (2026). Las preguntas guía son de los autores de la guía.',
+      note: 'Nota. Factores del curso. Las preguntas guía son de los autores de la guía.',
       dataKind: 'synthesis',
     },
     {
@@ -172,7 +170,7 @@ export const seleccionEquipo: SceneDef = {
     },
   ],
   animations: ['weighted-scoring'],
-  references: ['castaneda2026', 'peters1998', 'hassan2010', 'saputro2015', 'chakraborthy2006', 'chan2001', 'kulak2005'],
+  references: ['peters1998', 'hassan2010', 'saputro2015', 'chakraborthy2006', 'chan2001', 'kulak2005'],
   notes:
     'Con los pesos de la Tabla 24 (ejemplo hipotético) gana el montacargas eléctrico: 3,90 frente a 3,45 del AGV y 3,40 del transportador. Usar el botón «Sensibilidad» (costo 20 %, capacidad 30 %), la pregunta que plantea la guía: el montacargas sigue ganando (3,80 frente a 3,65 y 3,60; cálculo propio con los datos de la tabla). Mover los pesos para mostrar cuándo cambia la decisión.',
 };
@@ -266,7 +264,6 @@ export const analisisDiseno: SceneDef = {
         'Justificación del proyecto (periodo de recuperación, rendimiento de la inversión)',
       ],
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'callout',
@@ -286,14 +283,13 @@ export const analisisDiseno: SceneDef = {
       kind: 'lead',
       text: 'Analizar un sistema existente significa determinar si funciona sin crear cuellos de botella ni inventarios excesivos, y si transporta las unidades cuando y adonde se necesitan.',
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'figure',
       label: 'Figura 14',
       title: 'Síntomas de un sistema de manejo deficiente agrupados por familia',
       src: 'figures/fig14.png',
-      note: 'Nota. Elaboración propia de los autores de la guía. Los síntomas provienen de las diapositivas 26 a 28 de Castañeda (2026); la agrupación en familias es de los autores.',
+      note: 'Nota. Elaboración propia de los autores de la guía. Los síntomas provienen de las diapositivas 26 a 28 del curso; la agrupación en familias es de los autores.',
     },
     {
       kind: 'table',
@@ -312,7 +308,7 @@ export const analisisDiseno: SceneDef = {
         ['Transportes demorados o atascados', 'Rutas congestionadas', 'Separar flujos o ajustar horarios de entrega'],
         ['Daño en el producto', 'Manejo inadecuado o falta de protección', 'Rediseñar contenedores y equipos'],
       ],
-      note: 'Nota. Elaboración propia de los autores de la guía. Los síntomas figuran en Castañeda (2026).',
+      note: 'Nota. Elaboración propia de los autores de la guía. Los síntomas figuran en el curso.',
       dataKind: 'synthesis',
     },
     {
@@ -326,18 +322,17 @@ export const analisisDiseno: SceneDef = {
         'Determinar el sistema básico de manejo y el grado de mecanización.',
       ],
       dataKind: 'course',
-      source: 'Castañeda (2026)',
     },
     {
       kind: 'figure',
       label: 'Figura 15',
       title: 'Procedimiento de diseño y selección de un sistema de manejo',
       src: 'figures/fig15.png',
-      note: 'Nota. Elaboración propia a partir de Castañeda (2026). Los pasos 5 a 7 desarrollan las fases de evaluación, justificación y puesta en marcha mencionadas en el curso.',
+      note: 'Nota. Elaboración propia a partir del curso. Los pasos 5 a 7 desarrollan las fases de evaluación, justificación y puesta en marcha mencionadas en el curso.',
     },
   ],
   animations: ['workshop-symptoms'],
-  references: ['castaneda2026'],
+  references: [],
   notes:
     'En el rincón de recepción se montó el taller del ejemplo integrado (§12.5, hipotético): tableros pesados apilados en el piso y trasladados a mano a una sierra. Señalar los cuatro síntomas marcados (material apilado en el piso, esfuerzo manual excesivo, acarreos largos, daño en los cantos) y relacionarlos con la Tabla 25. El taller es ilustrativo y no describe ninguna empresa real.',
 };
@@ -366,7 +361,6 @@ export const justificacionEconomica: SceneDef = {
             kind: 'formula',
             tex: '\\mathrm{PRI} = \\dfrac{\\text{Inversión}}{\\text{Ahorro neto anual}}',
             dataKind: 'course',
-            source: 'Castañeda (2026)',
           },
           {
             kind: 'formula',
@@ -382,7 +376,7 @@ export const justificacionEconomica: SceneDef = {
       kind: 'lead',
       text: 'Los dos métodos que cita el curso son el periodo de recuperación de la inversión (PRI) y el rendimiento de la inversión (ROI). Ambos son sencillos y permiten comparar alternativas con rapidez, aunque no consideran el valor del dinero en el tiempo; para proyectos largos o de gran inversión conviene complementarlos con indicadores como el VAN y la TIR.',
       dataKind: 'course',
-      source: 'Castañeda (2026); guía, §12.4',
+      source: 'Guía, §12.4',
     },
     {
       kind: 'table',
@@ -411,7 +405,7 @@ export const justificacionEconomica: SceneDef = {
     },
   ],
   animations: ['economics'],
-  references: ['castaneda2026'],
+  references: [],
   notes:
     'Con el ejemplo hipotético de la Tabla 26 (inversión S/ 120 000; ahorro neto S/ 40 000 al año) el PRI es 3 años y el ROI 33,3 % anual: la curva cruza el cero en el año 3. Mover los controles para mostrar cómo cambia la recuperación. Recordar la limitación: no consideran el valor del dinero en el tiempo (VAN, TIR).',
 };
@@ -515,7 +509,7 @@ export const tendenciasConclusiones: SceneDef = {
         'Selección asistida por decisión multicriterio (AHP, sistemas expertos, lógica difusa)',
       ],
       dataKind: 'literature',
-      source: 'Castañeda (2026); Keith y La (2024); Fragapane et al. (2021); Azadeh et al. (2019); Roodbergen y Vis (2009); CDC (s. f.); Saputro et al. (2015)',
+      source: 'Keith y La (2024); Fragapane et al. (2021); Azadeh et al. (2019); Roodbergen y Vis (2009); CDC (s. f.); Saputro et al. (2015)',
     },
   ],
   detailBlocks: [
@@ -537,7 +531,7 @@ export const tendenciasConclusiones: SceneDef = {
     },
   ],
   animations: ['material-flow'],
-  references: ['castaneda2026', 'keith2024', 'fragapane2021', 'azadeh2019', 'roodbergen2009', 'cdc_sf', 'saputro2015'],
+  references: ['keith2024', 'fragapane2021', 'azadeh2019', 'roodbergen2009', 'cdc_sf', 'saputro2015'],
   notes:
     'Vista desde el despacho hacia atrás: el material recorrió toda la planta. Presentar las tendencias y, con «C», las ocho conclusiones de la guía. Ceder la palabra para el cierre.',
 };
@@ -619,7 +613,7 @@ export const cierrePreguntas: SceneDef = {
     },
   ],
   animations: ['material-flow'],
-  references: ['castaneda2026'],
+  references: [],
   notes:
     'Agradecer y abrir las preguntas. Con «C» se muestran el banco de 16 preguntas con respuesta (Tabla 34) y el glosario (Tabla 35); con «B», todas las referencias de la guía.',
 };

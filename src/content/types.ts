@@ -49,7 +49,7 @@ export type AnimationId =
 
 /**
  * Naturaleza del dato (regla académica): permite distinguir datos reales de ejemplos hipotéticos.
- * course = diapositivas del curso (Castañeda, 2026); literature = fuente publicada;
+ * course = diapositivas del curso; literature = fuente publicada;
  * case = resultado de investigación real; hypothetical = ejemplo didáctico inventado por la guía;
  * synthesis = interpretación o síntesis de los autores de la guía.
  */
@@ -57,7 +57,7 @@ export type DataKind = 'course' | 'literature' | 'case' | 'hypothetical' | 'synt
 
 interface BlockBase {
   dataKind?: DataKind;
-  /** Cita corta visible, p. ej. «Castañeda (2026)». */
+  /** Cita corta visible, p. ej. «Tompkins et al. (2010)». */
   source?: string;
 }
 

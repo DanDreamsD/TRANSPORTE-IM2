@@ -25,10 +25,12 @@ física. Al avanzar/retroceder, la cámara viaja de forma cinematográfica al pu
 1. **No inventar ni alterar datos.** Toda cifra mostrada debe existir en la guía. Copiar valores literalmente
    (con coma decimal, como en la guía: `3,88`, `61,7 %`).
 2. **Distinguir siempre el tipo de dato** con el campo `dataKind` de cada bloque:
-   `course` (Castañeda, 2026), `literature` (fuente publicada), `case` (investigación real),
+   `course` (diapositivas del curso), `literature` (fuente publicada), `case` (investigación real),
    `hypothetical` (ejemplo didáctico inventado por la guía) y `synthesis` (interpretación de los autores).
    Los datos hipotéticos llevan la etiqueta visible «Ejemplo hipotético».
 3. **Citar en APA 7** usando los IDs de `src/content/references.ts`. Cada escena declara `references`.
+   Las diapositivas del curso **no se citan** (no son una fuente publicada): su contenido solo lleva la etiqueta
+   «Curso» (`dataKind: 'course'`) y nunca aparece como «Castañeda (2026)» ni en la lista de referencias.
 4. Las animaciones son **demostraciones didácticas**: nunca presentarlas como simulación industrial validada.
    Las escenas con demo muestran el aviso «Demostración didáctica».
 5. Respetar las notas de inconsistencias que la guía señala (Dynea: 12 p. p. vs 15 %; Kubasáková: 3 vs 4 operarios).

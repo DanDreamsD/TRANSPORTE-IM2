@@ -3,7 +3,7 @@
 33 escenas principales (configurables en `src/content/sceneRegistry.ts`). Duración objetivo de la exposición:
 ≈ 45–55 min (≈ 9–11 min por integrante). Estado: ✅ implementada · ⏳ planificada. **Las 33 escenas están implementadas.**
 
-Leyenda de datos: **[C]** curso (Castañeda, 2026) · **[L]** literatura · **[R]** caso real de investigación ·
+Leyenda de datos: **[C]** curso (diapositivas, sin cita) · **[L]** literatura · **[R]** caso real de investigación ·
 **[H]** ejemplo hipotético · **[S]** síntesis de los autores de la guía.
 
 ## Mapa de escenas
