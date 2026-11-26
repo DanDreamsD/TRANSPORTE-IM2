@@ -31,6 +31,8 @@ export function Board({ scene, active, rotationOverride }: Props) {
   const transitioning = usePresentation((s) => s.transitioning);
   const placement = scene.board;
   if (!placement) return null;
+  // Las pantallas colgantes se despliegan solo en su escena: apagadas estorbarían las vistas de otras escenas.
+  if (placement.mount === 'hanging' && !active) return null;
   const w = placement.width;
   const h = placement.height ?? (w * 9) / 16;
   const rotationY = rotationOverride ?? boardRotation(scene);

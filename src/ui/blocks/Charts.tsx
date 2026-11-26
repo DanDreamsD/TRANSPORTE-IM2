@@ -1,5 +1,7 @@
 // Gráficos 2D (Recharts). Colores alineados con el tema de la interfaz.
-import { Bar, BarChart, CartesianGrid, LabelList, Legend, Line, LineChart, ReferenceDot, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, LabelList, Legend, Line, LineChart, ReferenceDot, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import type { EconInput } from '../../state/store';
+import { cumulativeCashFlow, payback } from '../../world/demos/decisionCalc';
 import type { BarChartBlock } from '../../content/types';
 
 const fmt = (v: unknown) => (typeof v === 'number' ? v.toLocaleString('es-ES') : String(v ?? ''));
@@ -54,6 +56,30 @@ export function AgvPaybackChart({ compact = false }: { compact?: boolean }) {
           <Line type="linear" dataKey="inv" name="Inversión en 2 AGV (EUR 49 000)" stroke="#e5704f" strokeDasharray="7 5" strokeWidth={2.5} dot={false} isAnimationActive={false} />
           <ReferenceDot x={Math.round(pb * 10) / 10} y={AGV_CASE.investment} r={6} fill="#f5b301" stroke="none" ifOverflow="extendDomain" label={{ value: `≈ ${pb.toFixed(1).replace('.', ',')} meses`, position: 'top', fill: 'var(--chart-text)', fontSize: compact ? 16 : 13 }} />
         </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+/** Flujo de caja acumulado (Figura 16): cruza el cero en el periodo de recuperación. */
+export function CashFlowChart({ econ, compact = false }: { econ: EconInput; compact?: boolean }) {
+  const { pri } = payback(econ);
+  const years = Math.max(5, Math.min(10, Math.ceil(pri) + 2));
+  const data = cumulativeCashFlow(econ, years);
+  const fmtK = (v: unknown) => (typeof v === 'number' ? `${(v / 1000).toLocaleString('es-ES')} mil` : String(v ?? ''));
+  return (
+    <div className="chart-box" style={{ height: compact ? 250 : 260 }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={data} margin={{ top: 14, right: 20, bottom: 18, left: 8 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
+          <XAxis dataKey="year" type="number" domain={[0, years]} allowDecimals={false} tick={{ fill: 'var(--chart-text)', fontSize: compact ? 15 : 12 }} label={{ value: 'Años', position: 'insideBottom', offset: -10, fill: 'var(--chart-text)', fontSize: 13 }} />
+          <YAxis tickFormatter={fmtK} tick={{ fill: 'var(--chart-text)', fontSize: compact ? 14 : 12 }} width={72} />
+          <ReferenceLine y={0} stroke="var(--chart-text)" strokeWidth={1.5} />
+          <Area type="linear" dataKey="value" name="Flujo de caja acumulado (S/)" stroke="var(--chart-after)" fill="var(--chart-after)" fillOpacity={0.18} strokeWidth={3} isAnimationActive={false} />
+          {pri <= years && (
+            <ReferenceDot x={Math.round(pri * 10) / 10} y={0} r={6} fill="#f5b301" stroke="none" label={{ value: `PRI ≈ ${pri.toLocaleString('es-ES', { maximumFractionDigits: 1 })} años`, position: 'top', fill: 'var(--chart-text)', fontSize: compact ? 16 : 13 }} />
+          )}
+        </AreaChart>
       </ResponsiveContainer>
     </div>
   );

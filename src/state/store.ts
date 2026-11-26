@@ -17,10 +17,29 @@ export interface NioshInput {
 /** Ejemplo hipotético de la Tabla 18 de la guía. */
 export const NIOSH_EXAMPLE: NioshInput = { weight: 15, H: 40, V: 60, D: 40, A: 0 };
 
+/** Pesos (%) de la puntuación ponderada; por defecto los de la Tabla 24 (ejemplo hipotético). */
+export interface ScoringWeights {
+  cost: number;
+  flex: number;
+  capacity: number;
+  safety: number;
+  maintenance: number;
+}
+export const TABLE24_WEIGHTS: ScoringWeights = { cost: 30, flex: 25, capacity: 20, safety: 15, maintenance: 10 };
+
+/** Datos del ejemplo hipotético de la Tabla 26 (soles). */
+export interface EconInput {
+  investment: number;
+  saving: number;
+}
+export const TABLE26_ECON: EconInput = { investment: 120000, saving: 40000 };
+
 export interface DemoParams {
   conveyorSpeed: number; // m/s
   conveyorRunning: boolean;
   niosh: NioshInput;
+  weights: ScoringWeights;
+  econ: EconInput;
 }
 
 export interface PresentationState {
@@ -102,7 +121,7 @@ export const usePresentation = create<PresentationState>()((set, get) => ({
   replayToken: 0,
   demoStartedAt: now(),
   transitioning: false,
-  demo: { conveyorSpeed: 0.8, conveyorRunning: true, niosh: NIOSH_EXAMPLE },
+  demo: { conveyorSpeed: 0.8, conveyorRunning: true, niosh: NIOSH_EXAMPLE, weights: TABLE24_WEIGHTS, econ: TABLE26_ECON },
 
   goTo: (index) => {
     const i = clampIndex(index, get().sceneCount);

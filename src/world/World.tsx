@@ -25,6 +25,7 @@ import { NioshDemo } from './demos/NioshDemo';
 import { RobotStationDemo } from './demos/RobotStationDemo';
 import { CabinetLoadingDemo } from './demos/CabinetLoadingDemo';
 import { AsrsDemo } from './demos/AsrsDemo';
+import { WorkshopDemo } from './demos/WorkshopDemo';
 
 // Varias escenas pueden compartir una misma pizarra física (misma posición): se dibuja una sola vez.
 function boardKey(p: readonly number[]): string {
@@ -68,6 +69,7 @@ export function World() {
       <RobotStationDemo />
       <CabinetLoadingDemo />
       <AsrsDemo />
+      <WorkshopDemo />
       {boardGroups.map((g) => {
         const current = g.find((i) => i === index);
         const scene = SCENES[current ?? g[0]];

@@ -1,7 +1,7 @@
 # STORYBOARD — Recorrido de la presentación
 
 33 escenas principales (configurables en `src/content/sceneRegistry.ts`). Duración objetivo de la exposición:
-≈ 45–55 min (≈ 9–11 min por integrante). Estado: ✅ implementada en el MVP · ⏳ planificada.
+≈ 45–55 min (≈ 9–11 min por integrante). Estado: ✅ implementada · ⏳ planificada. **Las 33 escenas están implementadas.**
 
 Leyenda de datos: **[C]** curso (Castañeda, 2026) · **[L]** literatura · **[R]** caso real de investigación ·
 **[H]** ejemplo hipotético · **[S]** síntesis de los autores de la guía.
@@ -35,14 +35,14 @@ Leyenda de datos: **[C]** curso (Castañeda, 2026) · **[L]** literatura · **[R
 | 23 | `caso-schrock` | 13.3 | Nicole | Caso 3: Schrock Cabinet (EE. UU.) | Despacho | carga manual de camión | ✅ |
 | 24 | `recepcion-almacenamiento` | 10.1–10.2 | Nicole | Recepción, envío y almacenamiento | Almacén PT | — | ✅ |
 | 25 | `asrs` | 10.3 | Nicole | AS/RS | Almacén automatizado | SRM (11) | ✅ |
-| 26 | `distribucion-manejo` | 11.1 | Wilson | Distribución y manejo: dos sistemas | Vista aérea | comparación de distribuciones (12) | ⏳ |
-| 27 | `seleccion-equipo` | 11.2–11.3 | Wilson | Selección del equipo y puntuación ponderada | Oficina de ingeniería | puntuación interactiva | ⏳ |
-| 28 | `caso-ahp-moora` | 13.5 | Wilson | Caso 5: AHP y MOORA (Turquía) | Oficina de ingeniería | — | ⏳ |
-| 29 | `analisis-diseno` | 12.1–12.3 | Wilson | Analizar y diseñar el sistema | Recorrido de síntomas | marcadores de síntomas | ⏳ |
-| 30 | `justificacion-economica` | 12.4–12.5 | Wilson | Justificación económica | Sala de gestión | evaluación económica (14) | ⏳ |
-| 31 | `lecciones-casos` | 13, 13.6 | Wilson | Lecciones de los cinco casos | Sala de reuniones | — | ⏳ |
-| 32 | `tendencias-conclusiones` | 14 | Wilson | Tendencias y conclusiones | Vuelo final | flujo (1) | ⏳ |
-| 33 | `cierre-preguntas` | 15–16 | Equipo | Preguntas, glosario y referencias | Vista aérea | — | ⏳ |
+| 26 | `distribucion-manejo` | 11.1 | Wilson | Distribución y manejo: dos sistemas | Vista aérea | comparación de distribuciones (12) | ✅ |
+| 27 | `seleccion-equipo` | 11.2–11.3 | Wilson | Selección del equipo y puntuación ponderada | Oficina de ingeniería | puntuación interactiva | ✅ |
+| 28 | `caso-ahp-moora` | 13.5 | Wilson | Caso 5: AHP y MOORA (Turquía) | Oficina de ingeniería | — | ✅ |
+| 29 | `analisis-diseno` | 12.1–12.3 | Wilson | Analizar y diseñar el sistema | Recorrido de síntomas | marcadores de síntomas | ✅ |
+| 30 | `justificacion-economica` | 12.4–12.5 | Wilson | Justificación económica | Sala de gestión | evaluación económica (14) | ✅ |
+| 31 | `lecciones-casos` | 13, 13.6 | Wilson | Lecciones de los cinco casos | Sala de reuniones | — | ✅ |
+| 32 | `tendencias-conclusiones` | 14 | Wilson | Tendencias y conclusiones | Vuelo final | flujo (1) | ✅ |
+| 33 | `cierre-preguntas` | 15–16 | Equipo | Preguntas, glosario y referencias | Vista aérea | — | ✅ |
 
 ## Detalle por escena
 
@@ -166,27 +166,36 @@ Leyenda de datos: **[C]** curso (Castañeda, 2026) · **[L]** literatura · **[R
   entrega en la estación de entrada/salida y lo vuelve a guardar (ciclo de 36 s). Pantalla: definición + Figura 12;
   complementario: Tabla 21 **[L]**.
 
-### 26 · `distribucion-manejo` — Wilson (11.1)
-- **Demo 12:** comparación de distribuciones (espina vs desordenada) proyectada sobre la planta; Figura 13 **[C]**; SLP (Muther).
+### 26 · `distribucion-manejo` — Wilson (11.1) ✅
+- **Vista a lo largo del pasillo central desde recepción:** NOVATEK misma es una distribución en espina; la flecha del
+  flujo recorre la planta. Pantalla colgante: definición + esquema animado espina vs sin canal central (ilustrativo,
+  sin cifras); complementario: Figura 13, SLP (Muther) e idea clave **[C] [L]**.
 
-### 27 · `seleccion-equipo` — Wilson (11.2–11.3)
-- Pantalla con Tabla 22 y puntuación ponderada interactiva (Tabla 24: 3,40 / 3,90 / 3,45) con análisis de sensibilidad **[H]**.
+### 27 · `seleccion-equipo` — Wilson (11.2–11.3) ✅
+- **Oficina de ingeniería, muro sur:** puntuación ponderada en vivo (Tabla 24: 3,40 / 3,90 / 3,45 **[H]**) con pesos
+  ajustables y botón «Sensibilidad» (costo 20 %, capacidad 30 % → 3,60 / 3,80 / 3,65, cálculo propio).
+  Complementario: Tablas 22, 23 y 24.
 
-### 28 · `caso-ahp-moora` — Wilson (13.5)
-- Pesos AHP (Tabla 31) y ranking MOORA **[R]**.
+### 28 · `caso-ahp-moora` — Wilson (13.5) ✅
+- Pizarra de ingeniería (compartida con 2.1–2.2): barras con los pesos AHP de la Tabla 31 y ranking MOORA **[R]**.
 
-### 29 · `analisis-diseno` — Wilson (12.1–12.3)
-- Marcadores de síntomas sobre la planta (Figura 14, Tabla 25); procedimiento de diseño (Figura 15) **[C] [S]**.
+### 29 · `analisis-diseno` — Wilson (12.1–12.3) ✅
+- **Taller del ejemplo integrado (§12.5, hipotético)** en el rincón sur de recepción: tableros apilados en el piso,
+  operario que los lleva a mano a la sierra y cantos dañados, con cuatro síntomas etiquetados. Pizarra: 4 pasos + idea
+  clave; complementario: Figura 14, Tabla 25, diseño de un sistema nuevo y Figura 15 **[C] [S] [H]**.
 
-### 30 · `justificacion-economica` — Wilson (12.4–12.5)
-- **Demo 14:** flujo de caja acumulado interactivo (Tabla 26, Figura 16: S/ 120 000; S/ 40 000/año → PRI 3 años,
-  ROI 33,3 %) **[H]**; limitación: sin valor del dinero en el tiempo (VAN, TIR).
+### 30 · `justificacion-economica` — Wilson (12.4–12.5) ✅
+- **Sala de gestión (pantalla compartida):** fórmulas KaTeX de PRI y ROI + flujo de caja acumulado en vivo con
+  inversión y ahorro ajustables (Tabla 26: PRI 3 años, ROI 33,3 %) **[H]**; complementario: limitaciones (VAN, TIR),
+  Figura 16 y ejemplo integrado.
 
-### 31 · `lecciones-casos` — Wilson (13, 13.6)
-- Tabla 27 y Tabla 32 en la pantalla de la sala de reuniones **[R] [S]**.
+### 31 · `lecciones-casos` — Wilson (13, 13.6) ✅
+- Pantalla de la sala de gestión: Tabla 32 **[S]**; complementario: Tabla 27 **[R]**, lecciones comunes y recuadro.
 
-### 32 · `tendencias-conclusiones` — Wilson (14)
-- Vuelo final por el recorrido del material; tendencias (§14.1) y conclusiones (§14.2).
+### 32 · `tendencias-conclusiones` — Wilson (14) ✅
+- Vista desde el despacho hacia atrás, con el flujo del material activo. Pantalla colgante: tendencias (§14.1);
+  complementario: las ocho conclusiones (§14.2).
 
-### 33 · `cierre-preguntas` — Equipo (15–16)
-- Banco de preguntas (Tabla 34), glosario (Tabla 35) y referencias APA.
+### 33 · `cierre-preguntas` — Equipo (15–16) ✅
+- Vista aérea con tarjeta de cierre («¿Preguntas?»); complementario: Tabla 34 (16 preguntas) y Tabla 35 (glosario);
+  referencias con «B».

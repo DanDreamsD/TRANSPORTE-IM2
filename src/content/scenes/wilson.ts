@@ -1,0 +1,625 @@
+// Escenas de Wilson: capítulos 11 a 14 + caso 5 (AHP-MOORA), y la escena de cierre del equipo.
+// Datos verificados contra docs/extracted/guia_texto.md §11–§16.
+import type { SceneDef } from '../types';
+
+/** Pantalla mural de la sala de gestión (compartida con la escena 1.3–1.5). */
+const MEET_SCREEN = {
+  position: [53.5, 1.8, -31.2] as const,
+  width: 7.2,
+  height: 2.8,
+  rotationY: 0,
+  style: 'screen' as const,
+  mount: 'wall' as const,
+};
+
+/** Pizarra mural de la oficina de ingeniería (compartida con la escena 2.1–2.2). */
+const ENG_WHITEBOARD = {
+  position: [39.5, 1.8, -31.2] as const,
+  width: 7.2,
+  height: 2.8,
+  rotationY: 0,
+  style: 'whiteboard' as const,
+  mount: 'wall' as const,
+};
+
+export const distribucionManejo: SceneDef = {
+  id: 'distribucion-manejo',
+  chapter: { number: '11', title: 'Relación con la distribución de planta y selección del equipo' },
+  subchapter: { number: '11.1', title: 'Dos sistemas que se condicionan' },
+  presenter: 'wilson',
+  title: 'Distribución y manejo: dos sistemas',
+  zone: 'spine',
+  camera: {
+    position: [-57, 7.0, 2.2],
+    target: [-14, 0.8, -3],
+    fov: 50,
+    duration: 4.2,
+  },
+  board: {
+    position: [-45.5, 4.8, -4.2],
+    width: 6.0,
+    height: 3.4,
+    pxWidth: 1240,
+    style: 'screen',
+    mount: 'hanging',
+  },
+  boardBlocks: [
+    {
+      kind: 'lead',
+      text: 'La distribución define dónde está cada área; el manejo, cómo se mueve el material entre ellas. Comparten datos (longitud, tiempo, origen y destino), persiguen reducir costos y deben resolverse al mismo tiempo.',
+      dataKind: 'course',
+      source: 'Castañeda (2026)',
+    },
+    { kind: 'custom', component: 'layout-compare' },
+  ],
+  detailBlocks: [
+    {
+      kind: 'lead',
+      text: 'El manejo influye en las características físicas del edificio, como el ancho de los pasillos, la altura del cielo raso y las columnas, que condicionan la selección del equipo y su enrutamiento; y la distribución influye en los requerimientos y la utilización del espacio.',
+      dataKind: 'course',
+      source: 'Castañeda (2026)',
+    },
+    {
+      kind: 'figure',
+      label: 'Figura 13',
+      title: 'Interdependencia entre distribución de planta y manejo de materiales',
+      src: 'figures/fig13.png',
+      note: 'Nota. Elaboración propia a partir de Castañeda (2026).',
+    },
+    {
+      kind: 'lead',
+      text: 'Muther (1973) propuso un procedimiento sistemático de distribución (SLP) que parte del análisis del flujo de materiales y de las relaciones entre actividades. Tompkins et al. (2010) integran el diseño del manejo con la elaboración de alternativas de distribución: se desarrollan varias alternativas con su sistema de manejo y se evalúa el conjunto. Un ejemplo es la distribución en espina, en la que un canal central concentra el flujo y cada departamento tiene su entrada y salida sobre él, lo que reduce el movimiento de material.',
+      dataKind: 'literature',
+      source: 'Muther (1973); Tompkins et al. (2010)',
+    },
+    {
+      kind: 'callout',
+      variant: 'idea',
+      title: 'Idea clave',
+      text: 'Distribución y manejo se resuelven juntos. Elegir el equipo antes de definir la distribución, o la distribución sin considerar el equipo, suele producir pasillos que no dan el radio de giro, columnas que estorban o recorridos con retrocesos.',
+    },
+  ],
+  animations: ['material-flow', 'layout-compare'],
+  references: ['castaneda2026', 'muther1973', 'tompkins2010'],
+  notes:
+    'NOVATEK está diseñada en espina: el pasillo central concentra el flujo y cada área entra y sale por él; la flecha del piso es el recorrido del material. La pantalla compara un esquema en espina con uno sin canal central (cruces y retrocesos); es un esquema ilustrativo, sin cifras. Cerrar con la idea clave.',
+};
+
+export const seleccionEquipo: SceneDef = {
+  id: 'seleccion-equipo',
+  chapter: { number: '11', title: 'Relación con la distribución de planta y selección del equipo' },
+  subchapter: { number: '11.2–11.3', title: 'Factores de selección y puntuación ponderada' },
+  presenter: 'wilson',
+  title: 'Selección del equipo: puntuación ponderada',
+  zone: 'eng',
+  camera: {
+    position: [39.5, 1.85, -22.4],
+    target: [39.5, 1.75, -14.85],
+    fov: 50,
+    duration: 3.6,
+  },
+  board: {
+    position: [39.5, 1.8, -14.85],
+    width: 7.2,
+    height: 2.8,
+    pxWidth: 1340,
+    rotationY: Math.PI,
+    style: 'whiteboard',
+    mount: 'wall',
+  },
+  boardBlocks: [
+    { kind: 'custom', component: 'weighted-scoring' },
+    {
+      kind: 'lead',
+      text: '¿Sigue ganando el montacargas si el costo pesa 20 % y la capacidad 30 %? Un cambio en los pesos puede cambiar la decisión.',
+      dataKind: 'synthesis',
+      source: 'Guía, §11.3',
+    },
+  ],
+  detailBlocks: [
+    {
+      kind: 'table',
+      label: 'Tabla 22',
+      title: 'Factores de selección del equipo de manejo y preguntas guía',
+      columns: ['Factor', 'Incluye', 'Preguntas guía'],
+      rows: [
+        ['Material a mover', 'Características del material', '¿Qué peso, tamaño, forma, fragilidad y estado tiene? ¿Es unitario o a granel?'],
+        ['Movimiento', 'Frecuencia, ruta, espacio del pasillo, mecanismos de carga y descarga', '¿Cuántos viajes por turno? ¿Qué distancia? ¿Qué ancho de pasillo hay? ¿Cómo se carga y descarga?'],
+        ['Almacenamiento', 'Área, volumen, forma y tamaño del local', '¿Cuánto espacio hay y qué altura? ¿Qué forma tiene el local?'],
+        ['Costos', 'Inversión, operación, depreciación', '¿Cuánto cuesta comprar, operar y mantener? ¿Cuándo se recupera?'],
+        ['Otros factores', 'Flexibilidad, obsolescencia', '¿Servirá si cambia el producto? ¿Cuándo quedará obsoleto?'],
+      ],
+      note: 'Nota. Factores de Castañeda (2026). Las preguntas guía son de los autores de la guía.',
+      dataKind: 'synthesis',
+    },
+    {
+      kind: 'table',
+      label: 'Tabla 23',
+      title: 'Aportes de la literatura sobre selección de equipo',
+      columns: ['Fuente', 'Aporte'],
+      rows: [
+        ['Peters (1998), CICMHE', 'Guías generales de selección según movimiento, volumen y tipo de material.'],
+        ['Hassan (2010)', 'Marco por pasos basado en las funciones de manejo de la instalación.'],
+        ['Saputro et al. (2015)', 'Revisión del problema de selección: niveles, contextos y enfoques.'],
+        ['Chakraborthy y Banik (2006)', 'Modelo de selección con proceso analítico jerárquico (AHP).'],
+        ['Chan et al. (2001)', 'Sistema experto integrado con AHP.'],
+        ['Kulak (2005)', 'Sistema de apoyo a decisiones con atributos múltiples y lógica difusa.'],
+      ],
+      note: 'Nota. Elaboración propia de los autores de la guía.',
+      dataKind: 'literature',
+    },
+    {
+      kind: 'table',
+      label: 'Tabla 24',
+      title: 'Ejemplo hipotético de selección por puntuación ponderada',
+      columns: ['Criterio', 'Peso', 'Transportador', 'Montacargas eléctrico', 'AGV'],
+      rows: [
+        ['Costo de inversión (5 = menor costo)', '30 %', '3', '4', '2'],
+        ['Flexibilidad', '25 %', '2', '5', '4'],
+        ['Capacidad de flujo', '20 %', '5', '3', '4'],
+        ['Seguridad', '15 %', '4', '3', '5'],
+        ['Facilidad de mantenimiento', '10 %', '4', '4', '3'],
+        ['Puntaje ponderado', '100 %', '3,40', '3,90', '3,45'],
+      ],
+      note: 'Nota. Datos inventados con fines didácticos; en un caso real, pesos y calificaciones deben salir de datos de la planta. Ejemplo del cálculo para el montacargas: 0,30×4 + 0,25×5 + 0,20×3 + 0,15×3 + 0,10×4 = 3,90.',
+      dataKind: 'hypothetical',
+    },
+    {
+      kind: 'lead',
+      text: 'El método es transparente pero subjetivo: un cambio en los pesos puede cambiar la decisión. Por eso conviene probar la sensibilidad del resultado: ¿sigue ganando el montacargas si el costo pesa 20 % y la capacidad 30 %? Si la respuesta cambia, hay que discutir más los criterios antes de decidir.',
+      dataKind: 'synthesis',
+      source: 'Guía, §11.3',
+    },
+  ],
+  animations: ['weighted-scoring'],
+  references: ['castaneda2026', 'peters1998', 'hassan2010', 'saputro2015', 'chakraborthy2006', 'chan2001', 'kulak2005'],
+  notes:
+    'Con los pesos de la Tabla 24 (ejemplo hipotético) gana el montacargas eléctrico: 3,90 frente a 3,45 del AGV y 3,40 del transportador. Usar el botón «Sensibilidad» (costo 20 %, capacidad 30 %), la pregunta que plantea la guía: el montacargas sigue ganando (3,80 frente a 3,65 y 3,60; cálculo propio con los datos de la tabla). Mover los pesos para mostrar cuándo cambia la decisión.',
+};
+
+export const casoAhpMoora: SceneDef = {
+  id: 'caso-ahp-moora',
+  chapter: { number: '13', title: 'Casos aplicados en investigaciones' },
+  subchapter: { number: '13.5', title: 'Caso 5: selección de equipo con AHP y MOORA (Turquía)' },
+  presenter: 'wilson',
+  title: 'Caso 5: AHP y MOORA (Turquía)',
+  zone: 'eng',
+  camera: {
+    position: [40.6, 1.9, -24.4],
+    target: [39.5, 1.75, -31],
+    fov: 46,
+    duration: 2.8,
+  },
+  board: { ...ENG_WHITEBOARD, pxWidth: 1220 },
+  boardBlocks: [{ kind: 'custom', component: 'ahp-weights' }],
+  detailBlocks: [
+    {
+      kind: 'lead',
+      text: 'Satoglu y Türkekul (2021) resolvieron la elección de un equipo de manejo en una empresa manufacturera turca. Tres decisores definieron los criterios en un grupo focal, hicieron las comparaciones por pares y calificaron las alternativas. Compararon cinco tipos de transpaletas: manual, hidráulica manual, hidráulica, eléctrica y semieléctrica. Usaron el método AHP para dar peso a 11 criterios y el método MOORA para ordenar las alternativas.',
+      dataKind: 'case',
+      source: 'Satoglu y Türkekul (2021)',
+    },
+    {
+      kind: 'table',
+      label: 'Tabla 31',
+      title: 'Criterios con mayor peso en el caso de selección',
+      columns: ['Criterio', 'Tipo', 'Peso AHP'],
+      rows: [
+        ['Costo', 'Costo', '0,272'],
+        ['Facilidad de operación', 'Beneficio', '0,200'],
+        ['Riesgo', 'Costo', '0,137'],
+        ['Aplicación', 'Beneficio', '0,095'],
+        ['Capacidad de carga', 'Beneficio', '0,082'],
+      ],
+      note: 'Nota. Satoglu y Türkekul (2021). Se muestran los cinco primeros de 11 criterios; los pesos se leen de la figura del artículo, que no los lista en una tabla.',
+      dataKind: 'case',
+    },
+    {
+      kind: 'lead',
+      text: 'Los autores señalan como limitación que el método supone información precisa y proponen usar datos difusos en trabajos futuros.',
+      dataKind: 'case',
+      source: 'Satoglu y Türkekul (2021)',
+    },
+    {
+      kind: 'callout',
+      variant: 'case',
+      title: 'Qué enseña el caso',
+      text: 'Es una versión formal del método de puntuación ponderada de la sección 11.3: los pesos de los criterios deciden el resultado. Refuerza una idea del capítulo 3: más mecanización no siempre es mejor; con estos criterios y pesos, el equipo más automatizado quedó último.',
+    },
+  ],
+  animations: [],
+  references: ['satoglu2021'],
+  notes:
+    'Mostrar los cinco pesos AHP más altos (el costo pesa 0,272) y el ranking MOORA: gana la transpaleta manual y la eléctrica queda última. Advertir que los pesos se leen de una figura del artículo. Conectar con la puntuación ponderada de la escena anterior.',
+};
+
+export const analisisDiseno: SceneDef = {
+  id: 'analisis-diseno',
+  chapter: { number: '12', title: 'Análisis y diseño de sistemas de manejo de materiales' },
+  subchapter: { number: '12.1–12.3', title: 'Pasos, análisis de un sistema existente y diseño de uno nuevo' },
+  presenter: 'wilson',
+  title: 'Analizar y diseñar el sistema',
+  zone: 'rec',
+  camera: {
+    position: [-49.0, 3.4, 16.0],
+    target: [-53.0, 1.3, 23.5],
+    fov: 50,
+    duration: 3.6,
+  },
+  board: {
+    position: [-53.6, 2.5, 27.6],
+    width: 4.6,
+    height: 2.9,
+    pxWidth: 1100,
+    style: 'whiteboard',
+    mount: 'stand',
+  },
+  boardBlocks: [
+    {
+      kind: 'bullets',
+      title: 'Cuatro pasos para solucionar problemas de manejo',
+      ordered: true,
+      items: [
+        'Identificación del problema',
+        'Análisis y cuantificación del problema',
+        'Selección y evaluación de alternativas',
+        'Justificación del proyecto (periodo de recuperación, rendimiento de la inversión)',
+      ],
+      dataKind: 'course',
+      source: 'Castañeda (2026)',
+    },
+    {
+      kind: 'callout',
+      variant: 'idea',
+      title: 'Idea clave',
+      text: 'Diagnosticar antes de comprar: la mayoría de los síntomas se corrigen primero con distribución, contenedores y orden; el equipo viene después, y solo si el cálculo económico lo respalda.',
+    },
+    {
+      kind: 'lead',
+      text: 'En la planta: el taller del ejemplo integrado (§12.5), con cuatro síntomas de la Tabla 25.',
+      dataKind: 'hypothetical',
+      source: 'Guía, §12.5 · no describe una empresa real',
+    },
+  ],
+  detailBlocks: [
+    {
+      kind: 'lead',
+      text: 'Analizar un sistema existente significa determinar si funciona sin crear cuellos de botella ni inventarios excesivos, y si transporta las unidades cuando y adonde se necesitan.',
+      dataKind: 'course',
+      source: 'Castañeda (2026)',
+    },
+    {
+      kind: 'figure',
+      label: 'Figura 14',
+      title: 'Síntomas de un sistema de manejo deficiente agrupados por familia',
+      src: 'figures/fig14.png',
+      note: 'Nota. Elaboración propia de los autores de la guía. Los síntomas provienen de las diapositivas 26 a 28 de Castañeda (2026); la agrupación en familias es de los autores.',
+    },
+    {
+      kind: 'table',
+      label: 'Tabla 25',
+      title: 'Síntomas frecuentes, causas probables y acciones correctivas',
+      columns: ['Síntoma', 'Causa probable', 'Acción correctiva'],
+      rows: [
+        ['Retroceso en la ruta del flujo', 'Distribución que no sigue la secuencia de operaciones', 'Reubicar áreas según el diagrama de recorrido'],
+        ['Pasillos invadidos', 'Falta de espacio de almacenamiento o de disciplina', 'Definir zonas, señalizar y almacenar en altura'],
+        ['Material apilado en el piso', 'Sin racks ni contenedores', 'Estandarizar contenedores y racks'],
+        ['Acarreos largos', 'Áreas con alto flujo muy separadas', 'Acercar las áreas de mayor flujo'],
+        ['Manejo excesivo de piezas individuales', 'Falta de carga unitaria', 'Formar cargas unitarias con pallets o contenedores'],
+        ['Omisión del aprovechamiento de la gravedad', 'Diseño de rutas sin pendiente', 'Usar rampas, rodillos por gravedad o tolvas'],
+        ['Esfuerzo manual excesivo', 'Cargas pesadas o repetitivas', 'Evaluar con NIOSH; compensadores o manipuladores'],
+        ['Máquinas inactivas', 'Falta de material a tiempo', 'Revisar flujo, entregas internas y tamaño de lote'],
+        ['Transportes demorados o atascados', 'Rutas congestionadas', 'Separar flujos o ajustar horarios de entrega'],
+        ['Daño en el producto', 'Manejo inadecuado o falta de protección', 'Rediseñar contenedores y equipos'],
+      ],
+      note: 'Nota. Elaboración propia de los autores de la guía. Los síntomas figuran en Castañeda (2026).',
+      dataKind: 'synthesis',
+    },
+    {
+      kind: 'bullets',
+      title: 'Diseñar un nuevo sistema',
+      ordered: true,
+      items: [
+        'Enunciar la función pretendida del manejo de materiales (por ejemplo, una bodega que guarda, empaca, inspecciona y despacha).',
+        'Reunir los datos del material: características y cantidad.',
+        'Identificar los movimientos: origen, destino, ruta y longitud.',
+        'Determinar el sistema básico de manejo y el grado de mecanización.',
+      ],
+      dataKind: 'course',
+      source: 'Castañeda (2026)',
+    },
+    {
+      kind: 'figure',
+      label: 'Figura 15',
+      title: 'Procedimiento de diseño y selección de un sistema de manejo',
+      src: 'figures/fig15.png',
+      note: 'Nota. Elaboración propia a partir de Castañeda (2026). Los pasos 5 a 7 desarrollan las fases de evaluación, justificación y puesta en marcha mencionadas en el curso.',
+    },
+  ],
+  animations: ['workshop-symptoms'],
+  references: ['castaneda2026'],
+  notes:
+    'En el rincón de recepción se montó el taller del ejemplo integrado (§12.5, hipotético): tableros pesados apilados en el piso y trasladados a mano a una sierra. Señalar los cuatro síntomas marcados (material apilado en el piso, esfuerzo manual excesivo, acarreos largos, daño en los cantos) y relacionarlos con la Tabla 25. El taller es ilustrativo y no describe ninguna empresa real.',
+};
+
+export const justificacionEconomica: SceneDef = {
+  id: 'justificacion-economica',
+  chapter: { number: '12', title: 'Análisis y diseño de sistemas de manejo de materiales' },
+  subchapter: { number: '12.4–12.5', title: 'Justificación económica y ejemplo integrado' },
+  presenter: 'wilson',
+  title: 'Justificación económica',
+  zone: 'meet',
+  camera: {
+    position: [53.5, 1.85, -24.2],
+    target: [53.5, 1.75, -31],
+    fov: 46,
+    duration: 3.6,
+  },
+  board: { ...MEET_SCREEN, pxWidth: 1480 },
+  boardBlocks: [
+    {
+      kind: 'columns',
+      ratio: [2, 3],
+      columns: [
+        [
+          {
+            kind: 'formula',
+            tex: '\\mathrm{PRI} = \\dfrac{\\text{Inversión}}{\\text{Ahorro neto anual}}',
+            dataKind: 'course',
+            source: 'Castañeda (2026)',
+          },
+          {
+            kind: 'formula',
+            tex: '\\mathrm{ROI} = \\dfrac{\\text{Ahorro neto anual}}{\\text{Inversión}}',
+          },
+        ],
+        [{ kind: 'custom', component: 'cash-flow' }],
+      ],
+    },
+  ],
+  detailBlocks: [
+    {
+      kind: 'lead',
+      text: 'Los dos métodos que cita el curso son el periodo de recuperación de la inversión (PRI) y el rendimiento de la inversión (ROI). Ambos son sencillos y permiten comparar alternativas con rapidez, aunque no consideran el valor del dinero en el tiempo; para proyectos largos o de gran inversión conviene complementarlos con indicadores como el VAN y la TIR.',
+      dataKind: 'course',
+      source: 'Castañeda (2026); guía, §12.4',
+    },
+    {
+      kind: 'table',
+      label: 'Tabla 26',
+      title: 'Indicadores simples de rentabilidad y ejemplo hipotético',
+      columns: ['Indicador', 'Fórmula', 'Ejemplo (inversión S/ 120 000; ahorro neto anual S/ 40 000)'],
+      rows: [
+        ['Periodo de recuperación (PRI)', 'Inversión ÷ ahorro neto anual', '120 000 ÷ 40 000 = 3 años'],
+        ['Rendimiento de la inversión (ROI)', 'Ahorro neto anual ÷ inversión', '40 000 ÷ 120 000 = 33,3 % anual'],
+      ],
+      note: 'Nota. Datos hipotéticos. El ahorro neto es el ahorro bruto en mano de obra y manejo menos los costos de operación y mantenimiento del nuevo sistema.',
+      dataKind: 'hypothetical',
+    },
+    {
+      kind: 'figure',
+      label: 'Figura 16',
+      title: 'Flujo de caja acumulado del ejemplo hipotético',
+      src: 'figures/fig16.png',
+      note: 'Nota. Elaboración propia con los datos de la Tabla 26. La curva cruza el cero en el año 3, que es el periodo de recuperación.',
+    },
+    {
+      kind: 'lead',
+      text: 'Ejemplo integrado (hipotético): un taller que recibe tableros pesados, los almacena en el piso y los traslada a mano a una sierra presenta material apilado en el piso, esfuerzo manual excesivo, acarreos largos y daño en los cantos. El procedimiento sería: definir la función, reunir datos de peso, tamaño y cantidad, medir los recorridos, elegir un sistema básico con grado de mecanización medio, comparar alternativas como un rack con un apilador eléctrico frente a un carro con elevación, y justificar con periodo de recuperación.',
+      dataKind: 'hypothetical',
+      source: 'Guía, §12.5',
+    },
+  ],
+  animations: ['economics'],
+  references: ['castaneda2026'],
+  notes:
+    'Con el ejemplo hipotético de la Tabla 26 (inversión S/ 120 000; ahorro neto S/ 40 000 al año) el PRI es 3 años y el ROI 33,3 % anual: la curva cruza el cero en el año 3. Mover los controles para mostrar cómo cambia la recuperación. Recordar la limitación: no consideran el valor del dinero en el tiempo (VAN, TIR).',
+};
+
+export const leccionesCasos: SceneDef = {
+  id: 'lecciones-casos',
+  chapter: { number: '13', title: 'Casos aplicados en investigaciones' },
+  subchapter: { number: '13.6', title: 'Lecciones comunes' },
+  presenter: 'wilson',
+  title: 'Lecciones de los cinco casos',
+  zone: 'meet',
+  camera: {
+    position: [51.8, 2.0, -22.6],
+    target: [53.5, 1.75, -31],
+    fov: 46,
+    duration: 2.4,
+  },
+  board: { ...MEET_SCREEN, pxWidth: 1300 },
+  boardBlocks: [
+    {
+      kind: 'table',
+      label: 'Tabla 32',
+      title: 'Lecciones de los casos',
+      columns: ['Caso', 'Lección principal', 'Dónde se vio'],
+      rows: [
+        ['1. Marcopolo', 'Rediseñar el flujo y el servicio antes de sumar montacargas', 'Cap. 2 y 8'],
+        ['2. Dynea Pakistan', 'Ajustar la carga unitaria y el uso del espacio da mejoras sin equipo nuevo', 'Cap. 4 y 10'],
+        ['3. Schrock Cabinet', 'Medir el riesgo con NIOSH y aplicar primero controles de ingeniería', 'Cap. 9'],
+        ['4. Planta de asientos', 'El AGV se justifica con un cálculo de recuperación y condiciones favorables', 'Cap. 8 y 12'],
+        ['5. AHP-MOORA', 'Los pesos de los criterios determinan qué equipo se elige', 'Cap. 11 y 3'],
+      ],
+      dataKind: 'synthesis',
+      source: 'Guía, §13.6',
+    },
+  ],
+  detailBlocks: [
+    {
+      kind: 'table',
+      label: 'Tabla 27',
+      title: 'Resumen de los cinco casos aplicados',
+      columns: ['Caso', 'Lugar y sector', 'Problema', 'Intervención', 'Resultado clave'],
+      rows: [
+        ['1. Marcopolo', 'Brasil; carrocerías de buses', 'Montacargas saturados, colisiones y esperas en las máquinas', 'Tren de arrastre con carros, contenedores nuevos y paradas por estación', 'Seguridad 3,88/5; agilidad es el factor que más pesa en la satisfacción'],
+        ['2. Dynea Pakistan', 'Pakistán; resinas y polvos de moldeo', 'Racks mal dimensionados, viajes innecesarios de montacargas', 'Pallet de 35 a 50 sacos; reasignación de montacargas; proceso en paralelo', 'Uso del espacio de 54 % a 80 %'],
+        ['3. Schrock Cabinet', 'EE. UU.; muebles de madera', 'Carga manual de camiones; dolor musculoesquelético', 'Evaluación con la ecuación NIOSH y controles de ingeniería', 'Índice compuesto de 3,9 a 8,2; 79 % con dolor'],
+        ['4. Planta de asientos', 'Eslovaquia; asientos de automóvil', 'Transporte manual lento y riesgo de colisión', 'Dos AGV con cinta magnética', 'Recuperación en cerca de 8 meses'],
+        ['5. Selección con AHP-MOORA', 'Turquía; manufactura', 'Elegir entre cinco tipos de pallet truck', 'Ponderación AHP de 11 criterios y ranking MOORA', 'El costo pesa más; gana el transpaleta manual'],
+      ],
+      note: 'Nota. Elaboración propia de los autores de la guía a partir de Vieira et al. (2011), Waseem et al. (2021), NIOSH (1996), Kubasáková et al. (2024) y Satoglu y Türkekul (2021).',
+      dataKind: 'case',
+    },
+    {
+      kind: 'lead',
+      text: 'Los cinco casos se parecen en tres puntos. Primero, ninguno empezó comprando equipo: todos partieron de medir el problema. Segundo, las mejoras de método (flujo, medidas del pallet, ayudas ergonómicas) fueron tan importantes como el equipo. Tercero, la decisión final dependió de criterios explícitos y de los datos de cada planta.',
+      dataKind: 'synthesis',
+      source: 'Guía, §13.6',
+    },
+    {
+      kind: 'callout',
+      variant: 'expo',
+      title: 'Para la exposición',
+      text: 'Al citar cifras, mencionen siempre la fuente y las condiciones del caso (tamaño de muestra, turnos, país).',
+    },
+  ],
+  animations: [],
+  references: ['vieira2011', 'waseem2021', 'niosh1996', 'kubasakova2024', 'satoglu2021'],
+  notes:
+    'Repasar los cinco casos en una línea cada uno y subrayar las tres lecciones comunes: medir antes de comprar, las mejoras de método pesan tanto como el equipo, y la decisión depende de criterios explícitos y datos de la planta.',
+};
+
+export const tendenciasConclusiones: SceneDef = {
+  id: 'tendencias-conclusiones',
+  chapter: { number: '14', title: 'Tendencias y conclusiones' },
+  presenter: 'wilson',
+  title: 'Tendencias y conclusiones',
+  zone: 'spine',
+  camera: {
+    position: [57, 7.0, -2.2],
+    target: [14, 0.8, 3],
+    fov: 50,
+    duration: 4.6,
+  },
+  board: {
+    position: [45.5, 4.8, 4.2],
+    width: 6.0,
+    height: 3.8,
+    pxWidth: 1240,
+    style: 'screen',
+    mount: 'hanging',
+  },
+  boardBlocks: [
+    {
+      kind: 'bullets',
+      title: 'Hacia dónde evoluciona',
+      items: [
+        'Equipos con menores emisiones y sistemas computarizados que siguen todo el proceso',
+        'Robots móviles autónomos (AMR) con decisiones descentralizadas',
+        'Almacenes automatizados con shuttles autónomos',
+        'Modelos dinámicos para AS/RS',
+        'Ergonomía cuantificada (NIOSH) en el diseño de puestos',
+        'Selección asistida por decisión multicriterio (AHP, sistemas expertos, lógica difusa)',
+      ],
+      dataKind: 'literature',
+      source: 'Castañeda (2026); Keith y La (2024); Fragapane et al. (2021); Azadeh et al. (2019); Roodbergen y Vis (2009); CDC (s. f.); Saputro et al. (2015)',
+    },
+  ],
+  detailBlocks: [
+    {
+      kind: 'bullets',
+      title: '14.2 Conclusiones',
+      items: [
+        'El manejo de materiales comprende movimiento, almacenamiento, protección y control, y atraviesa toda la planta hasta el cliente.',
+        'Representa una parte importante del costo y del tiempo; la cifra concreta depende de la base de cálculo y de la industria.',
+        'Los principios (veinte en el curso, diez en MHIA/CICMHE) son criterios de evaluación y de diseño; el del trabajo (flujo × distancia) es el más cuantificable.',
+        'El grado de mecanización debe elegirse según volumen, variedad, riesgo ergonómico, capital y capacidad de mantenimiento, no por moda tecnológica.',
+        'La carga unitaria es el vínculo entre el producto y el equipo; su normalización (por ejemplo ISO 6780) facilita el manejo.',
+        'Transportadores, grúas y transportes se complementan: cada uno responde a un tipo de flujo distinto.',
+        'En la estación de trabajo, primero se rediseña el puesto, luego se usan ayudas mecánicas y solo después robots; la ecuación NIOSH sirve de guía.',
+        'Distribución de planta y manejo de materiales se diseñan juntos; el equipo se selecciona con criterios técnicos y económicos y se justifica con indicadores de rentabilidad.',
+      ],
+      dataKind: 'synthesis',
+      source: 'Guía, §14.2',
+    },
+  ],
+  animations: ['material-flow'],
+  references: ['castaneda2026', 'keith2024', 'fragapane2021', 'azadeh2019', 'roodbergen2009', 'cdc_sf', 'saputro2015'],
+  notes:
+    'Vista desde el despacho hacia atrás: el material recorrió toda la planta. Presentar las tendencias y, con «C», las ocho conclusiones de la guía. Ceder la palabra para el cierre.',
+};
+
+export const cierrePreguntas: SceneDef = {
+  id: 'cierre-preguntas',
+  chapter: { number: '15', title: 'Preguntas de repaso, glosario y referencias' },
+  presenter: 'equipo',
+  title: '¿Preguntas?',
+  zone: 'overview',
+  closing: true,
+  camera: {
+    position: [56, 96, 128],
+    target: [48, 0, 2],
+    fov: 38,
+    duration: 4.2,
+  },
+  boardBlocks: [
+    {
+      kind: 'lead',
+      text: 'Gracias. El banco de preguntas, el glosario bilingüe y las referencias de la guía están en el contenido complementario.',
+    },
+  ],
+  detailBlocks: [
+    {
+      kind: 'table',
+      label: 'Tabla 34',
+      title: 'Banco de preguntas y respuestas',
+      columns: ['Pregunta', 'Respuesta breve'],
+      rows: [
+        ['¿Qué abarca el manejo de materiales más allá del simple traslado?', 'Movimiento, almacenamiento, protección y control del material en toda la cadena, hasta el cliente (cap. 1).'],
+        ['¿Por qué no se puede afirmar un único porcentaje de costo del manejo?', 'Porque cada fuente usa una base distinta (costo del producto, mano de obra, fábrica o tiempo) y el valor cambia según la industria (cap. 1).'],
+        ['¿Cómo se calcula el trabajo de manejo?', 'Como la suma del flujo de material por la distancia recorrida; reducir cualquiera de los dos reduce el trabajo (cap. 2).'],
+        ['¿Qué mostró el caso de Dynea Pakistan?', 'Que subir la carga unitaria de 35 a 50 sacos por pallet y reorganizar rutas elevó el uso del espacio de 54 % a 80 % sin comprar equipo (cap. 13).'],
+        ['¿Qué mostró el informe de NIOSH en Schrock Cabinet?', 'Que los levantamientos manuales de gabinetes tenían índices de hasta 6,0 y que 79 % de los trabajadores reportó dolor; recomendó primero controles de ingeniería (cap. 13).'],
+        ['¿Por qué ganó la transpaleta manual en el caso AHP-MOORA?', 'Porque el costo tuvo el mayor peso entre los criterios; con otros pesos podría cambiar el orden (cap. 13).'],
+        ['¿Cuándo conviene automatizar el manejo?', 'Cuando el volumen es alto y estable y la variedad baja, y existen capital y mantenimiento especializado; no como meta en sí misma (cap. 3).'],
+        ['¿Qué ventaja da la carga unitaria?', 'Se maneja un solo objeto en vez de muchos: menos viajes, mejor uso del espacio, protección y equipo estandarizado (cap. 4).'],
+        ['¿Cuál es la diferencia esencial entre un transportador y un transporte?', 'El transportador tiene ruta fija y flujo continuo; el transporte sigue una ruta libre y suele requerir operario (caps. 5, 6 y 8).'],
+        ['¿Qué distingue a una grúa puente de un pórtico?', 'El puente corre sobre rieles elevados fijados a la estructura; el pórtico se apoya en patas que corren sobre rieles o ruedas en el piso (cap. 7).'],
+        ['¿Qué diferencia hay entre un AGV y un AMR?', 'El AGV sigue rutas definidas con control central; el AMR navega sin infraestructura previa y decide de forma descentralizada (cap. 8).'],
+        ['¿Qué mide el índice de levantamiento de NIOSH?', 'El peso levantado dividido entre el límite de peso recomendado; un valor mayor que 1 indica un levantamiento que puede suponer riesgo (cap. 9).'],
+        ['¿Qué es un AS/RS y cuándo se justifica?', 'Un sistema automatizado de racks, máquina de almacenamiento y control por computadora; se justifica por volumen, valor del espacio y necesidad de exactitud (cap. 10).'],
+        ['¿Por qué se diseñan juntas la distribución y el manejo de materiales?', 'Porque comparten datos, objetivos y restricciones físicas: pasillos, columnas, altura y flujo (cap. 11).'],
+        ['¿Cuáles son los cuatro pasos para solucionar un problema de manejo?', 'Identificar, analizar y cuantificar, seleccionar y evaluar alternativas, y justificar el proyecto (cap. 12).'],
+        ['¿Qué limitación tienen el periodo de recuperación y el ROI simples?', 'No consideran el valor del dinero en el tiempo; se complementan con VAN y TIR en proyectos grandes (cap. 12).'],
+      ],
+      note: 'Nota. Elaboración propia de los autores de la guía a partir del contenido de la guía.',
+      dataKind: 'synthesis',
+    },
+    {
+      kind: 'table',
+      label: 'Tabla 35',
+      title: 'Términos clave en español e inglés',
+      columns: ['Término', 'Inglés', 'Definición'],
+      rows: [
+        ['Manejo de materiales', 'Material handling', 'Movimiento, almacenamiento, protección y control de materiales.'],
+        ['Carga unitaria', 'Unit load', 'Conjunto de objetos dispuestos para manejarse como uno solo.'],
+        ['Tarima (pallet)', 'Pallet', 'Plataforma plana sobre la que se forma una carga unitaria.'],
+        ['Transportador', 'Conveyor', 'Equipo de ruta fija que traslada materiales de forma continua.'],
+        ['Polipasto', 'Hoist', 'Mecanismo para izar y bajar cargas.'],
+        ['Grúa puente', 'Bridge crane', 'Grúa con puente móvil sobre rieles elevados.'],
+        ['Montacargas de horquilla', 'Forklift / lift truck', 'Camión industrial con horquillas para levantar y mover cargas.'],
+        ['VGA / AGV', 'Automated guided vehicle', 'Vehículo que sigue rutas definidas, con control central.'],
+        ['AMR', 'Autonomous mobile robot', 'Robot móvil que navega y decide sin infraestructura previa.'],
+        ['AS/RS', 'Automated storage and retrieval system', 'Sistema automatizado de almacenamiento y recuperación.'],
+        ['SRM', 'Storage and retrieval machine', 'Máquina con mástil, carro y dispositivo de carga de un AS/RS.'],
+        ['VLM', 'Vertical lift module', 'Módulo de elevación vertical con bandejas y extractor.'],
+        ['EOAT', 'End of arm tooling', 'Herramental de extremo de brazo de un robot.'],
+        ['RWL', 'Recommended weight limit', 'Límite de peso recomendado según la ecuación NIOSH.'],
+        ['LI', 'Lifting index', 'Peso levantado dividido por el RWL.'],
+        ['PRI / ROI', 'Payback / return on investment', 'Periodo de recuperación y rendimiento de la inversión.'],
+        ['Cuello de botella', 'Bottleneck', 'Punto del proceso que limita el flujo del conjunto.'],
+        ['Inventario en proceso', 'Work in process (WIP)', 'Material que está entre operaciones, sin terminar.'],
+        ['Intralogística', 'Intralogistics', 'Logística de flujo de materiales dentro de una instalación.'],
+      ],
+      note: 'Nota. Elaboración propia de los autores de la guía.',
+      dataKind: 'synthesis',
+    },
+  ],
+  animations: ['material-flow'],
+  references: ['castaneda2026'],
+  notes:
+    'Agradecer y abrir las preguntas. Con «C» se muestran el banco de 16 preguntas con respuesta (Tabla 34) y el glosario (Tabla 35); con «B», todas las referencias de la guía.',
+};

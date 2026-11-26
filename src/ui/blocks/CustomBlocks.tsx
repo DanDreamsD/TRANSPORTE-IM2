@@ -7,6 +7,8 @@ import { landedCount, UNIT_LOAD, unitLoadDone } from '../../world/demos/unitLoad
 import { activeMechLevel, MECH_LEVELS } from '../../world/demos/mechanizationTimeline';
 import { fmt, liLevel, niosh } from '../../world/demos/nioshCalc';
 import { agvAt } from '../../world/demos/AgvAmrDemo';
+import { ALTERNATIVES, payback, TABLE24, weightedScores, weightSum, winner } from '../../world/demos/decisionCalc';
+import { CashFlowChart } from './Charts';
 import type { BlockVariant } from './BlockRenderer';
 import { AgvPaybackChart } from './Charts';
 
@@ -407,6 +409,177 @@ function AgvAmrCompare() {
   );
 }
 
+/** Esquema ilustrativo: distribución en espina frente a una sin canal central (sin cifras). */
+function LayoutCompare() {
+  const deps = ['A', 'B', 'C', 'D', 'E', 'F'];
+  return (
+    <div className="blk layout-cmp">
+      <figure>
+        <svg viewBox="0 0 300 170" role="img" aria-label="Distribución en espina">
+          <rect x="10" y="74" width="280" height="22" rx="4" className="lc-spine" />
+          {deps.map((d, i) => {
+            const x = 22 + (i % 3) * 92;
+            const top = i < 3;
+            const y = top ? 14 : 112;
+            return (
+              <g key={d}>
+                <rect x={x} y={y} width="72" height="44" rx="6" className="lc-dep" />
+                <text x={x + 36} y={y + 27} textAnchor="middle" className="lc-txt">{d}</text>
+                <line x1={x + 36} y1={top ? y + 44 : y} x2={x + 36} y2={top ? 74 : 96} className="lc-flow" />
+              </g>
+            );
+          })}
+          <line x1="16" y1="85" x2="284" y2="85" className="lc-flow lc-flow--main" />
+        </svg>
+        <figcaption>
+          <b>En espina</b> · un canal central concentra el flujo; cada área entra y sale por él
+        </figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 300 170" role="img" aria-label="Distribución sin canal central">
+          {[
+            [20, 14], [210, 112], [116, 112], [210, 14], [20, 112], [116, 14],
+          ].map(([x, y], i) => (
+            <g key={i}>
+              <rect x={x} y={y} width="72" height="44" rx="6" className="lc-dep" />
+              <text x={x + 36} y={y + 27} textAnchor="middle" className="lc-txt">{deps[i]}</text>
+            </g>
+          ))}
+          <polyline points="56,58 246,112 152,112 246,58 56,112 152,58" className="lc-flow lc-flow--bad" />
+        </svg>
+        <figcaption>
+          <b>Sin canal central</b> · recorridos que se cruzan y retroceden
+        </figcaption>
+      </figure>
+      <span className="data-tag-row">
+        <span className="data-tag data-tag--synthesis">Esquema ilustrativo</span>
+        <span className="data-source">a partir de Muther (1973) y Tompkins et al. (2010), citados en la guía</span>
+      </span>
+    </div>
+  );
+}
+
+/** Puntuación ponderada en vivo (Tabla 24); los pesos se ajustan desde el panel de la demo. */
+function WeightedScoring() {
+  const w = usePresentation((s) => s.demo.weights);
+  const scores = weightedScores(w);
+  const best = winner(scores);
+  const total = weightSum(w);
+  const isTable24 = w.cost === 30 && w.flex === 25 && w.capacity === 20 && w.safety === 15 && w.maintenance === 10;
+  const f = (n: number) => n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return (
+    <div className="blk wscore">
+      <table>
+        <thead>
+          <tr>
+            <th>Criterio</th>
+            <th>Peso</th>
+            {ALTERNATIVES.map((a, i) => (
+              <th key={a} className={i === best ? 'is-best' : ''}>{a}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {TABLE24.map((row) => (
+            <tr key={row.key}>
+              <td>{row.label}</td>
+              <td>{Math.round((w[row.key] / (total || 1)) * 100)} %</td>
+              {row.scores.map((s, i) => (
+                <td key={i} className={i === best ? 'is-best' : ''}>{s}</td>
+              ))}
+            </tr>
+          ))}
+          <tr className="wscore-total">
+            <td>Puntaje ponderado</td>
+            <td>100 %</td>
+            {scores.map((s, i) => (
+              <td key={i} className={i === best ? 'is-best' : ''}>
+                {f(s)}
+                <span className="wscore-bar" style={{ width: `${(s / 5) * 100}%` }} />
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+      <span className="data-tag-row">
+        <span className={`data-tag data-tag--${isTable24 ? 'hypothetical' : 'synthesis'}`}>{isTable24 ? 'Ejemplo hipotético' : 'Pesos ajustados (sensibilidad)'}</span>
+        <span className="data-source">Tabla 24 de la guía{isTable24 ? '' : ' · cálculo con las calificaciones de la tabla'}</span>
+      </span>
+    </div>
+  );
+}
+
+/** Pesos AHP (Tabla 31) y ranking MOORA del caso 5. */
+const AHP: [string, string, number][] = [
+  ['Costo', 'Costo', 0.272],
+  ['Facilidad de operación', 'Beneficio', 0.2],
+  ['Riesgo', 'Costo', 0.137],
+  ['Aplicación', 'Beneficio', 0.095],
+  ['Capacidad de carga', 'Beneficio', 0.082],
+];
+const MOORA = ['Transpaleta manual', 'Transpaleta hidráulica', 'Semieléctrica', 'Hidráulica manual', 'Eléctrica (no recomendada)'];
+
+function AhpWeights() {
+  return (
+    <div className="blk ahp">
+      <div>
+        <h3 className="blk-title">
+          <span className="blk-label">Tabla 31</span> Pesos AHP (5 de 11 criterios)
+        </h3>
+        {AHP.map(([name, type, wgt]) => (
+          <div className="ahp-row" key={name}>
+            <span className="ahp-name">
+              {name} <small>{type}</small>
+            </span>
+            <span className="ahp-track">
+              <span className={`ahp-bar ${type === 'Costo' ? 'is-cost' : ''}`} style={{ width: `${(wgt / 0.3) * 100}%` }} />
+            </span>
+            <b>{wgt.toLocaleString('es-ES', { minimumFractionDigits: 3 })}</b>
+          </div>
+        ))}
+      </div>
+      <div>
+        <h3 className="blk-title">Ranking MOORA</h3>
+        <ol className="ahp-rank">
+          {MOORA.map((m, i) => (
+            <li key={m} className={i === 0 ? 'is-first' : i === MOORA.length - 1 ? 'is-last' : ''}>{m}</li>
+          ))}
+        </ol>
+      </div>
+      <span className="data-tag-row">
+        <span className="data-tag data-tag--case">Caso real</span>
+        <span className="data-source">Satoglu y Türkekul (2021) · pesos leídos de una figura del artículo</span>
+      </span>
+    </div>
+  );
+}
+
+/** Flujo de caja acumulado (Figura 16) con PRI y ROI en vivo. */
+function CashFlow({ compact }: { compact: boolean }) {
+  const e = usePresentation((s) => s.demo.econ);
+  const { pri, roi } = payback(e);
+  const isTable26 = e.investment === 120000 && e.saving === 40000;
+  return (
+    <div className="blk cashflow">
+      <div className="cf-kpis">
+        <div>
+          <span>PRI</span>
+          <strong>{pri.toLocaleString('es-ES', { maximumFractionDigits: 1 })} años</strong>
+        </div>
+        <div>
+          <span>ROI</span>
+          <strong>{(roi * 100).toLocaleString('es-ES', { maximumFractionDigits: 1 })} % anual</strong>
+        </div>
+      </div>
+      <CashFlowChart econ={e} compact={compact} />
+      <span className="data-tag-row">
+        <span className={`data-tag data-tag--${isTable26 ? 'hypothetical' : 'synthesis'}`}>{isTable26 ? 'Ejemplo hipotético' : 'Valores ajustados'}</span>
+        <span className="data-source">Tabla 26 · Figura 16 de la guía</span>
+      </span>
+    </div>
+  );
+}
+
 export function CustomBlockView({ id, variant }: { id: CustomBlockId; variant: BlockVariant }) {
   switch (id) {
     case 'unit-load-counter':
@@ -431,5 +604,13 @@ export function CustomBlockView({ id, variant }: { id: CustomBlockId; variant: B
       return <NioshCalc />;
     case 'agv-amr-compare':
       return <AgvAmrCompare />;
+    case 'layout-compare':
+      return <LayoutCompare />;
+    case 'weighted-scoring':
+      return <WeightedScoring />;
+    case 'ahp-weights':
+      return <AhpWeights />;
+    case 'cash-flow':
+      return <CashFlow compact={variant === 'board'} />;
   }
 }

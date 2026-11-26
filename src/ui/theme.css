@@ -622,3 +622,55 @@ code { font-size: 0.9em; color: var(--accent); }
 .aa-card--amr .aa-status { color: #2fd0d9; }
 .blocks--board .aa-card ul { font-size: 22px; }
 .modal .aa-card { border-color: #cfd6d2; background: #fff; }
+
+/* distribución en espina vs sin canal central */
+.layout-cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.layout-cmp .data-tag-row { grid-column: 1 / -1; margin-top: 0; }
+.layout-cmp figure { margin: 0; }
+.layout-cmp svg { width: 100%; display: block; }
+.layout-cmp figcaption { font-size: 15px; margin-top: 4px; }
+.lc-spine { fill: rgba(245, 179, 1, 0.25); stroke: #f5b301; stroke-width: 1.5; }
+.lc-dep { fill: rgba(47, 208, 217, 0.12); stroke: currentColor; stroke-opacity: 0.6; stroke-width: 1.2; }
+.lc-txt { font-size: 16px; font-weight: 800; fill: currentColor; }
+.lc-flow { stroke: #f5b301; stroke-width: 3; fill: none; stroke-dasharray: 8 6; animation: lc-dash 1.2s linear infinite; }
+.lc-flow--main { stroke-width: 4; }
+.lc-flow--bad { stroke: #e0483e; }
+@keyframes lc-dash { to { stroke-dashoffset: -28; } }
+.blocks--board .layout-cmp figcaption { font-size: 19px; }
+
+/* puntuación ponderada */
+.wscore table { width: 100%; border-collapse: collapse; font-size: 16px; }
+.wscore th { text-align: left; padding: 6px 8px; background: #1d2a33; color: #fff; font-weight: 650; }
+.wscore th.is-best { background: #0e7c86; }
+.wscore td { padding: 6px 8px; border-bottom: 1px solid rgba(0, 0, 0, 0.1); font-variant-numeric: tabular-nums; position: relative; }
+.wscore td.is-best { background: rgba(14, 124, 134, 0.1); font-weight: 700; }
+.wscore-total td { font-weight: 800; font-size: 1.15em; }
+.wscore-bar { display: block; height: 5px; border-radius: 3px; background: #0e7c86; margin-top: 4px; opacity: 0.7; }
+.blocks--board .wscore table { font-size: 22px; }
+.dock-note { margin: 0; font-size: 12px; color: var(--muted); }
+
+/* AHP-MOORA */
+.ahp { display: grid; grid-template-columns: 3fr 2fr; gap: 24px; }
+.ahp .data-tag-row { grid-column: 1 / -1; margin-top: 0; }
+.ahp-row { display: grid; grid-template-columns: 210px 1fr 60px; gap: 10px; align-items: center; margin: 8px 0; font-size: 17px; }
+.ahp-name small { display: block; font-size: 12px; opacity: 0.65; }
+.ahp-track { height: 18px; background: rgba(0, 0, 0, 0.06); border-radius: 4px; overflow: hidden; }
+.ahp-bar { display: block; height: 100%; background: #0e7c86; border-radius: 4px; }
+.ahp-bar.is-cost { background: #e5704f; }
+.ahp-rank { margin: 0; padding-left: 24px; display: grid; gap: 8px; font-size: 18px; }
+.ahp-rank .is-first { font-weight: 800; color: #0e7c86; }
+.ahp-rank .is-last { opacity: 0.65; }
+.blocks--board .ahp-row { font-size: 22px; grid-template-columns: 290px 1fr 80px; }
+.blocks--board .ahp-rank { font-size: 24px; }
+.flat .ahp-track { background: rgba(255, 255, 255, 0.08); }
+
+/* flujo de caja */
+.cf-kpis { display: flex; gap: 14px; margin-bottom: 6px; }
+.cf-kpis div { flex: 1; padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(47, 208, 217, 0.5); }
+.cf-kpis span { display: block; font-size: 13px; opacity: 0.75; }
+.cf-kpis strong { font-size: 26px; font-variant-numeric: tabular-nums; }
+.blocks--board .cf-kpis strong { font-size: 32px; }
+
+/* tarjeta de cierre */
+.closing-card .cover__title { font-size: 54px; }
+.closing-card .cover__title span { font-size: 34px; }

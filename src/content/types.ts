@@ -32,6 +32,8 @@ export type AnimationId =
   | 'conveyor-failure'
   | 'agv-seats'
   | 'cabinet-loading'
+  | 'weighted-scoring'
+  | 'workshop-symptoms'
   // Planificadas (aún sin implementación; se ignoran si no existen):
   | 'mechanization-levels'
   | 'pallet-sizes'
@@ -139,7 +141,11 @@ export type CustomBlockId =
   | 'family-comparison'
   | 'agv-payback'
   | 'niosh-calc'
-  | 'agv-amr-compare';
+  | 'agv-amr-compare'
+  | 'layout-compare'
+  | 'weighted-scoring'
+  | 'ahp-weights'
+  | 'cash-flow';
 
 export interface CustomBlock extends BlockBase {
   kind: 'custom';
@@ -214,4 +220,6 @@ export interface SceneDef {
   notes?: string;
   /** Tarjeta de portada superpuesta (solo para escenas de portada/cierre). */
   cover?: boolean;
+  /** Tarjeta de cierre superpuesta (preguntas y agradecimiento). */
+  closing?: boolean;
 }

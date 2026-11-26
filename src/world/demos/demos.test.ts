@@ -128,3 +128,26 @@ describe('SRM del AS/RS', () => {
     expect(srmAt(ASRS_CYCLE + 18).at).toBe('io');
   });
 });
+
+import { payback, weightedScores, winner } from './decisionCalc';
+
+describe('puntuación ponderada (Tabla 24, ejemplo hipotético)', () => {
+  it('3,40 / 3,90 / 3,45 con los pesos de la tabla; gana el montacargas', () => {
+    const s = weightedScores({ cost: 30, flex: 25, capacity: 20, safety: 15, maintenance: 10 });
+    expect(s.map((v) => Math.round(v * 100) / 100)).toEqual([3.4, 3.9, 3.45]);
+    expect(winner(s)).toBe(1);
+  });
+  it('sensibilidad (costo 20 %, capacidad 30 %): el montacargas sigue ganando', () => {
+    const s = weightedScores({ cost: 20, flex: 25, capacity: 30, safety: 15, maintenance: 10 });
+    expect(s.map((v) => Math.round(v * 100) / 100)).toEqual([3.6, 3.8, 3.65]);
+    expect(winner(s)).toBe(1);
+  });
+});
+
+describe('justificación económica (Tabla 26, ejemplo hipotético)', () => {
+  it('PRI 3 años y ROI 33,3 %', () => {
+    const r = payback({ investment: 120000, saving: 40000 });
+    expect(r.pri).toBe(3);
+    expect(Math.round(r.roi * 1000) / 10).toBe(33.3);
+  });
+});

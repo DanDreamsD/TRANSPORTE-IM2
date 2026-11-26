@@ -2,7 +2,8 @@
 import type { ReactNode } from 'react';
 import { SCENES } from '../content/sceneRegistry';
 import { COURSE_INFO, PRESENTERS } from '../content/presenters';
-import { NIOSH_EXAMPLE, usePresentation, useCurrentScene, type NioshInput } from '../state/store';
+import { NIOSH_EXAMPLE, TABLE24_WEIGHTS, TABLE26_ECON, usePresentation, useCurrentScene, type NioshInput, type ScoringWeights } from '../state/store';
+import { payback, TABLE24 } from '../world/demos/decisionCalc';
 import { fmt, liLevel, niosh as nioshCalc, NIOSH_RANGES } from '../world/demos/nioshCalc';
 import { Icon } from './icons';
 import { Minimap } from './Minimap';
@@ -33,7 +34,7 @@ function TopBar() {
             NOVATEK <em>Material Flow</em>
           </span>
         </button>
-        {!scene.cover && (
+        {!scene.cover && !scene.closing && (
           <div className="scene-heading" key={scene.id}>
             <div className="scene-heading__crumb">
               Cap. {scene.chapter.number} · {scene.chapter.title}
@@ -106,6 +107,30 @@ export function ProgressNav() {
 function CoverCard() {
   const scene = useCurrentScene();
   const transitioning = usePresentation((s) => s.transitioning);
+  if (scene.closing) {
+    return (
+      <section className={`cover closing-card ${transitioning ? '' : 'is-live'}`} aria-label="Cierre">
+        <div className="cover__eyebrow">{COURSE_INFO.course} · {COURSE_INFO.chapter}</div>
+        <h1 className="cover__title">
+          ¿Preguntas? <span>Gracias por su atención</span>
+        </h1>
+        <p className="cover__subtitle">{COURSE_INFO.title}</p>
+        <dl className="cover__meta">
+          <div>
+            <dt>Integrantes</dt>
+            <dd>{COURSE_INFO.members.join(' · ')}</dd>
+          </div>
+          <div>
+            <dt>Docente</dt>
+            <dd>{COURSE_INFO.teacher}</dd>
+          </div>
+        </dl>
+        <p className="cover__hint">
+          <kbd>C</kbd> banco de preguntas y glosario · <kbd>B</kbd> referencias · <kbd>M</kbd> volver a cualquier tema
+        </p>
+      </section>
+    );
+  }
   if (!scene.cover) return null;
   return (
     <section className={`cover ${transitioning ? '' : 'is-live'}`} aria-label="Portada">
@@ -151,6 +176,8 @@ function DemoControls() {
         <span>No es una simulación industrial validada.</span>
       </div>
       {scene.animations.includes('niosh-lift') && <NioshControls />}
+      {scene.animations.includes('weighted-scoring') && <ScoringControls />}
+      {scene.animations.includes('economics') && <EconControls />}
       {scene.animations.includes('conveyor') && (
         <div className="demo-dock__controls">
           <label className="slider">
@@ -220,6 +247,65 @@ function NioshControls() {
   );
 }
 
+const SCORING_KEYS: { key: keyof ScoringWeights; label: string }[] = TABLE24.map((r) => ({ key: r.key, label: r.label.replace(' (5 = menor costo)', '') }));
+
+function ScoringControls() {
+  const w = usePresentation((s) => s.demo.weights);
+  const setDemo = usePresentation((s) => s.setDemo);
+  return (
+    <div className="demo-dock__controls niosh-controls">
+      {SCORING_KEYS.map((k) => (
+        <label className="slider slider--compact" key={k.key}>
+          <span>
+            {k.label} <b>{w[k.key]} %</b>
+          </span>
+          <input type="range" min={0} max={60} step={5} value={w[k.key]} onChange={(e) => setDemo({ weights: { ...w, [k.key]: Number(e.target.value) } })} aria-label={`Peso de ${k.label}`} />
+        </label>
+      ))}
+      <p className="dock-note">Si los pesos no suman 100 %, se normalizan.</p>
+      <div className="niosh-presets">
+        <button type="button" className="chip-btn" onClick={() => setDemo({ weights: TABLE24_WEIGHTS })}>
+          Tabla 24
+        </button>
+        <button type="button" className="chip-btn" onClick={() => setDemo({ weights: { ...TABLE24_WEIGHTS, cost: 20, capacity: 30 } })}>
+          Sensibilidad
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function EconControls() {
+  const e = usePresentation((s) => s.demo.econ);
+  const setDemo = usePresentation((s) => s.setDemo);
+  const { pri, roi } = payback(e);
+  const soles = (n: number) => `S/ ${n.toLocaleString('es-ES')}`;
+  return (
+    <div className="demo-dock__controls niosh-controls">
+      <label className="slider slider--compact">
+        <span>
+          Inversión <b>{soles(e.investment)}</b>
+        </span>
+        <input type="range" min={20000} max={300000} step={10000} value={e.investment} onChange={(ev) => setDemo({ econ: { ...e, investment: Number(ev.target.value) } })} aria-label="Inversión" />
+      </label>
+      <label className="slider slider--compact">
+        <span>
+          Ahorro neto anual <b>{soles(e.saving)}</b>
+        </span>
+        <input type="range" min={5000} max={120000} step={5000} value={e.saving} onChange={(ev) => setDemo({ econ: { ...e, saving: Number(ev.target.value) } })} aria-label="Ahorro neto anual" />
+      </label>
+      <div className="niosh-readout">
+        PRI <b>{pri.toLocaleString('es-ES', { maximumFractionDigits: 1 })} años</b> · ROI <b>{(roi * 100).toLocaleString('es-ES', { maximumFractionDigits: 1 })} %</b>
+      </div>
+      <div className="niosh-presets">
+        <button type="button" className="chip-btn" onClick={() => setDemo({ econ: TABLE26_ECON })}>
+          Tabla 26
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function FreeModeBanner() {
   const mode = usePresentation((s) => s.mode);
   const setMode = usePresentation((s) => s.setMode);
@@ -240,7 +326,7 @@ export function Hud() {
       <TopBar />
       <CoverCard />
       <FreeModeBanner />
-      {showMinimap && !scene.cover && <Minimap />}
+      {showMinimap && !scene.cover && !scene.closing && <Minimap />}
       <DemoControls />
       <ProgressNav />
       <SceneMenu />

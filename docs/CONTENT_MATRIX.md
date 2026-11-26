@@ -42,46 +42,46 @@ Figuras: archivo `public/figures/figNN.png` (extraídas de `docs/extracted/media
 | 10 | 10.1 Equipo por zona | **`recepcion-almacenamiento`** ✅ | 20 | — | — | S | hassan2010, heragu_sf, castaneda2026 |
 | 10 | 10.2 Almacenamiento | **`recepcion-almacenamiento`** ✅ | — | — | — | L | kay_sf, peters1998 |
 | 10 | 10.3 AS/RS | **`asrs`** ✅ | 21 | 12 | 11 AS/RS | L | roodbergen2009, mmh_sf_c, azadeh2019 |
-| 11 | 11.1 Dos sistemas | `distribucion-manejo` | — | 13 | 12 Distribuciones | C, L | castaneda2026, muther1973, tompkins2010 |
-| 11 | 11.2 Factores de selección | `seleccion-equipo` | 22, 23 | — | — | C, L | castaneda2026, peters1998, hassan2010, saputro2015, chakraborthy2006, chan2001, kulak2005 |
-| 11 | 11.3 Puntuación ponderada | `seleccion-equipo` | 24 | — | puntuación interactiva | H | — |
-| 12 | 12.1 Pasos | `analisis-diseno` | — | — | — | C | castaneda2026 |
-| 12 | 12.2 Sistema existente | `analisis-diseno` | 25 | 14 | marcadores | C, S | castaneda2026 |
-| 12 | 12.3 Nuevo sistema | `analisis-diseno` | — | 15 | — | C | castaneda2026 |
-| 12 | 12.4 Justificación económica | `justificacion-economica` | 26 | 16 | 14 Económica | C, H | castaneda2026 |
-| 12 | 12.5 Ejemplo integrado | `justificacion-economica` | — | — | — | H | — |
-| 13 | Intro + Tabla 27 | `lecciones-casos` | 27 | — | — | R | (5 casos) |
+| 11 | 11.1 Dos sistemas | **`distribucion-manejo`** ✅ | — | 13 | 12 Distribuciones | C, L | castaneda2026, muther1973, tompkins2010 |
+| 11 | 11.2 Factores de selección | **`seleccion-equipo`** ✅ | 22, 23 | — | — | C, L | castaneda2026, peters1998, hassan2010, saputro2015, chakraborthy2006, chan2001, kulak2005 |
+| 11 | 11.3 Puntuación ponderada | **`seleccion-equipo`** ✅ | 24 | — | puntuación interactiva | H | — |
+| 12 | 12.1 Pasos | **`analisis-diseno`** ✅ | — | — | — | C | castaneda2026 |
+| 12 | 12.2 Sistema existente | **`analisis-diseno`** ✅ | 25 | 14 | marcadores | C, S | castaneda2026 |
+| 12 | 12.3 Nuevo sistema | **`analisis-diseno`** ✅ | — | 15 | — | C | castaneda2026 |
+| 12 | 12.4 Justificación económica | **`justificacion-economica`** ✅ | 26 | 16 | 14 Económica | C, H | castaneda2026 |
+| 12 | 12.5 Ejemplo integrado | **`justificacion-economica`** ✅ | — | — | — | H | — |
+| 13 | Intro + Tabla 27 | **`lecciones-casos`** ✅ | 27 | — | — | R | (5 casos) |
 | 13 | 13.1 Marcopolo | **`caso-marcopolo`** ✅ | 28 | — | tren de arrastre | R | vieira2011 |
 | 13 | 13.2 Dynea Pakistan | **`caso-dynea`** ✅ (+ avance en `carga-unitaria`) | 29 | 17 | rack 35→50 | R | waseem2021 |
 | 13 | 13.3 Schrock Cabinet | **`caso-schrock`** ✅ | — | 18 | carga manual | R | niosh1996 |
 | 13 | 13.4 AGV asientos | **`caso-agv-asientos`** ✅ | 30 | 19 | 2 AGV | R | kubasakova2024 |
-| 13 | 13.5 AHP-MOORA | `caso-ahp-moora` | 31 | — | — | R | satoglu2021 |
-| 13 | 13.6 Lecciones | `lecciones-casos` | 32 | — | — | S | — |
-| 14 | 14.1 Tendencias | `tendencias-conclusiones` | — | — | 1 Flujo | C, L | castaneda2026, keith2024, fragapane2021, azadeh2019, roodbergen2009, cdc_sf, saputro2015 |
-| 14 | 14.2 Conclusiones | `tendencias-conclusiones` | — | — | — | S | — |
-| 15 | Preguntas de repaso | `cierre-preguntas` | 34 | — | — | S | — |
-| 16 | Glosario | `cierre-preguntas` | 35 | — | — | S | — |
+| 13 | 13.5 AHP-MOORA | **`caso-ahp-moora`** ✅ | 31 | — | — | R | satoglu2021 |
+| 13 | 13.6 Lecciones | **`lecciones-casos`** ✅ | 32 | — | — | S | — |
+| 14 | 14.1 Tendencias | **`tendencias-conclusiones`** ✅ | — | — | 1 Flujo | C, L | castaneda2026, keith2024, fragapane2021, azadeh2019, roodbergen2009, cdc_sf, saputro2015 |
+| 14 | 14.2 Conclusiones | **`tendencias-conclusiones`** ✅ | — | — | — | S | — |
+| 15 | Preguntas de repaso | **`cierre-preguntas`** ✅ | 34 | — | — | S | — |
+| 16 | Glosario | **`cierre-preguntas`** ✅ | 35 | — | — | S | — |
 
 ## Cobertura de demostraciones solicitadas
 
 | # | Demostración | Escena | Estado |
 |---|---|---|---|
 | 1 | Flujo de materiales recepción → despacho | `portada`, `definicion-alcance`, `tendencias-conclusiones` | ✅ (flecha animada en piso) |
-| 2 | Grados de mecanización | **`grados-mecanizacion`** ✅ | ⏳ |
+| 2 | Grados de mecanización | `grados-mecanizacion` | ✅ |
 | 3 | Formación de cargas unitarias | `carga-unitaria` | ✅ |
-| 4 | Dimensiones y normalización de pallets | **`pallets-normalizacion`** ✅ | ⏳ |
+| 4 | Dimensiones y normalización de pallets | `pallets-normalizacion` | ✅ |
 | 5 | Funcionamiento de transportadores | `transportadores` | ✅ |
-| 6 | Grúas y polipastos | **`gruas`** ✅ | ⏳ |
+| 6 | Grúas y polipastos | `gruas` | ✅ |
 | 7 | Montacargas | `transportes-montacargas` | ✅ |
 | 8 | AGV vs AMR | `agv-amr` | ✅ |
 | 9 | Brazos robóticos | `estacion-robots` | ✅ |
 | 10 | Levantamiento manual / NIOSH | `niosh` | ✅ |
 | 11 | AS/RS | `asrs` | ✅ |
-| 12 | Comparación de distribuciones | `distribucion-manejo` | ⏳ |
-| 13 | Cálculo flujo × distancia | **`trabajo-flujo-distancia`** ✅ | ⏳ |
-| 14 | Evaluación económica | `justificacion-economica` | ⏳ |
+| 12 | Comparación de distribuciones | `distribucion-manejo` | ✅ |
+| 13 | Cálculo flujo × distancia | `trabajo-flujo-distancia` | ✅ |
+| 14 | Evaluación económica | `justificacion-economica` | ✅ |
 
-Demos adicionales implementadas: descarga en recepción (`mover-materiales`), tren de arrastre (`caso-marcopolo`) rack 35 → 50 sacos (`caso-dynea`), falla de línea (`transportadores-criterios`), circuito de 2 AGV (`caso-agv-asientos`) y carga manual de gabinetes (`caso-schrock`).
+Demos adicionales implementadas: descarga en recepción (`mover-materiales`), tren de arrastre (`caso-marcopolo`) rack 35 → 50 sacos (`caso-dynea`), falla de línea (`transportadores-criterios`), circuito de 2 AGV (`caso-agv-asientos`), carga manual de gabinetes (`caso-schrock`) y taller del ejemplo integrado (`analisis-diseno`).
 
 ## Observaciones académicas detectadas en la guía
 

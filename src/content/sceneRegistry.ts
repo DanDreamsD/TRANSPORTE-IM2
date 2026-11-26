@@ -7,6 +7,7 @@ import { transportadores } from './scenes/transportadores';
 import { casoDynea, clasificacionEquipo, gradosMecanizacion, mecanizacionDecision, palletsNormalizacion } from './scenes/carlos';
 import { casoAgvAsientos, gruas, gruasServicio, transportadoresCriterios } from './scenes/vane';
 import { agvAmr, asrs, casoSchrock, estacionRobots, niosh, recepcionAlmacenamiento, transportesMontacargas } from './scenes/nicole';
+import { analisisDiseno, casoAhpMoora, cierrePreguntas, distribucionManejo, justificacionEconomica, leccionesCasos, seleccionEquipo, tendenciasConclusiones } from './scenes/wilson';
 import { casoMarcopolo, definicionAlcance, moverMateriales, objetivosCostos, principios, trabajoFlujoDistancia } from './scenes/felipe';
 
 export const SCENES: readonly SceneDef[] = [
@@ -39,6 +40,16 @@ export const SCENES: readonly SceneDef[] = [
   casoSchrock,
   recepcionAlmacenamiento,
   asrs,
+  // Wilson · cap. 11 a 14 + caso 5
+  distribucionManejo,
+  seleccionEquipo,
+  casoAhpMoora,
+  analisisDiseno,
+  justificacionEconomica,
+  leccionesCasos,
+  tendenciasConclusiones,
+  // Equipo · cierre
+  cierrePreguntas,
 ];
 
 export function sceneIndexById(id: string): number {
