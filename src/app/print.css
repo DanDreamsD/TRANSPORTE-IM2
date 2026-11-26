@@ -1,0 +1,56 @@
+/* Vista de impresión de diapositivas (?mode=print). Solo se carga en ese modo. */
+@page { size: 1920px 1080px; margin: 0; }
+
+html, body, #root { margin: 0; padding: 0; height: auto; background: #0b1014; }
+body { overflow: visible; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+.print-deck { display: block; }
+.print-page {
+  position: relative; box-sizing: border-box; overflow: hidden;
+  display: flex; flex-direction: column;
+  background: radial-gradient(120% 120% at 0% 0%, #17222a 0%, #0b1014 62%);
+  color: var(--text, #eef2f4); font-family: var(--font);
+  break-after: page; page-break-after: always;
+}
+.print-page:last-child { break-after: auto; page-break-after: auto; }
+@media screen { .print-page { margin: 0 auto 24px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); } }
+
+.print-page::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--presenter);
+}
+.print-page__stage { flex: 1; min-height: 0; display: grid; place-items: center; padding: 48px 56px 0; }
+.print-page__footer {
+  height: 92px; box-sizing: border-box; padding: 0 56px;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;
+  font-size: 20px; color: #9fb0bc;
+}
+.print-page__brand b { color: #eef2f4; letter-spacing: 0.08em; }
+.print-page__note { color: #f5c542; font-weight: 600; }
+.print-page__num { justify-self: end; display: inline-flex; align-items: center; gap: 12px; font-variant-numeric: tabular-nums; font-weight: 650; color: #d6dee3; }
+.print-page__dot { width: 16px; height: 16px; border-radius: 50%; background: var(--presenter); }
+
+.print-board { position: relative; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45); }
+.print-board .board { transition: none; }
+.print-board .board--fit { overflow: visible; }
+.print-board .recharts-tooltip-wrapper { display: none; }
+
+/* Carátula y cierre */
+.print-cover {
+  align-self: center; justify-self: start; margin-left: 80px; width: 1180px;
+  padding: 64px 72px; border-left: 8px solid var(--accent, #f5b301); border-radius: 22px;
+  background: linear-gradient(135deg, rgba(20, 28, 34, 0.96), rgba(12, 17, 21, 0.9));
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.5);
+}
+.print-cover__eyebrow { font-size: 24px; color: var(--accent, #f5b301); font-weight: 650; }
+.print-cover__title { margin: 22px 0 8px; font-size: 120px; line-height: 0.95; font-weight: 850; letter-spacing: -0.02em; }
+.print-cover__title span { display: block; font-size: 72px; font-weight: 300; color: #d7e0e6; margin-top: 10px; }
+.print-cover__subtitle { margin: 22px 0 40px; font-size: 34px; color: #cdd8df; }
+.print-cover__meta { margin: 0; display: grid; gap: 20px; }
+.print-cover__meta div { display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: baseline; }
+.print-cover__meta dt { font-size: 24px; color: #a3b2bd; }
+.print-cover__meta dd { margin: 0; font-size: 28px; font-weight: 550; }
+.print-cover .team-list { gap: 10px; }
+.print-cover .team-list li { gap: 16px; }
+.print-cover .team-list__dot { width: 18px; height: 18px; }
+.print-cover .team-list__code { font-size: 26px; }
+.print-cover--closing .print-cover__title { font-size: 110px; }

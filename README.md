@@ -19,7 +19,13 @@ npm run dev        # http://localhost:5173
 Otros comandos: `npm run typecheck`, `npm test`, `npm run build` (genera `dist/`, funciona sin internet) y
 `npm run preview`.
 
-Parámetros de URL: `?scene=<id>` abre una escena concreta; `?mode=2d` fuerza el modo 2D alternativo.
+### Diapositivas en PDF
+
+`npm run pdf` compila y genera [`pdf/NOVATEK_Diapositivas.pdf`](pdf/NOVATEK_Diapositivas.pdf): carátula, una
+página 16:9 por pizarra de la simulación y cierre. Usa la vista `?mode=print` y Edge o Chrome instalados (sin
+dependencias nuevas; otra ruta de navegador con la variable `BROWSER_PATH`).
+
+Parámetros de URL: `?scene=<id>` abre una escena concreta; `?mode=2d` fuerza el modo 2D alternativo; `?mode=print` muestra la vista de impresión de diapositivas.
 
 ## Controles
 

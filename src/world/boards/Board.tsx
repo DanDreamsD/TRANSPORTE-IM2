@@ -3,14 +3,11 @@
 // Solo la pizarra de la escena activa «se enciende»; las demás muestran la superficie apagada.
 import { Html } from '@react-three/drei';
 import type { SceneDef } from '../../content/types';
-import { PRESENTERS } from '../../content/presenters';
 import { faceTowards } from '../../engine/cameraPaths';
 import { usePresentation } from '../../state/store';
-import { BlockRenderer } from '../../ui/blocks/BlockRenderer';
+import { BoardSurface, boardPixelSize } from '../../ui/BoardSurface';
 import { GEO, mat } from '../materials';
 
-/** Ancho del contenido HTML en píxeles CSS (la altura se deriva de la proporción de la pizarra). */
-const DEFAULT_PX_W = 1040;
 /** drei <Html transform> escala 1 px CSS = 1/40 unidades del mundo (distanceFactor = 10). */
 const PX_PER_UNIT = 40;
 
@@ -36,13 +33,11 @@ export function Board({ scene, active, rotationOverride }: Props) {
   const w = placement.width;
   const h = placement.height ?? (w * 9) / 16;
   const rotationY = rotationOverride ?? boardRotation(scene);
-  const PX_W = placement.pxWidth ?? DEFAULT_PX_W;
-  const pxH = Math.round((PX_W * h) / w);
-  const scale = w / (PX_W / PX_PER_UNIT);
+  const { pxW } = boardPixelSize(scene);
+  const scale = w / (pxW / PX_PER_UNIT);
   const isScreen = placement.style === 'screen';
   const [x, y, z] = placement.position;
   const bottom = y - h / 2;
-  const presenter = PRESENTERS[scene.presenter];
 
   return (
     <group position={[x, y, z]} rotation={[0, rotationY, 0]}>
@@ -81,21 +76,7 @@ export function Board({ scene, active, rotationOverride }: Props) {
       {active && (
         <group scale={scale} position={[0, 0, 0.01]}>
           <Html transform zIndexRange={[20, 0]} style={{ pointerEvents: 'none' }}>
-            <div
-              className={`board board--${placement.style} ${transitioning ? '' : 'is-live'}`}
-              style={{ width: PX_W, height: pxH, ['--presenter' as string]: presenter.color }}
-            >
-              <header className="board__header">
-                <span className="board__chapter">
-                  {scene.chapter.number !== '—' ? `Cap. ${scene.subchapter?.number ?? scene.chapter.number}` : ''}
-                </span>
-                <h2 className="board__title">{scene.title}</h2>
-                <span className="board__brand">NOVATEK</span>
-              </header>
-              <div className="board__body">
-                <BlockRenderer blocks={scene.boardBlocks} variant="board" />
-              </div>
-            </div>
+            <BoardSurface scene={scene} live={!transitioning} />
           </Html>
         </group>
       )}

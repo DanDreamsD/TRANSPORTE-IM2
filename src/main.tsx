@@ -23,13 +23,28 @@ function initFromUrl() {
   }
 }
 
-initFromUrl();
+const root = createRoot(document.getElementById('root')!);
 
-// Acceso de depuración al estado en desarrollo.
-if (import.meta.env.DEV) (window as unknown as { __novatek: typeof usePresentation }).__novatek = usePresentation;
+if (new URLSearchParams(window.location.search).get('mode') === 'print') {
+  // Vista de impresión de diapositivas (sin escena 3D). Los bloques sincronizados con demos muestran su estado estático.
+  usePresentation.getState().setView('2d');
+  document.title = 'NOVATEK · Material Flow — Diapositivas';
+  void import('./app/PrintDeck').then(({ PrintDeck }) =>
+    root.render(
+      <StrictMode>
+        <PrintDeck />
+      </StrictMode>,
+    ),
+  );
+} else {
+  initFromUrl();
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+  // Acceso de depuración al estado en desarrollo.
+  if (import.meta.env.DEV) (window as unknown as { __novatek: typeof usePresentation }).__novatek = usePresentation;
+
+  root.render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
+}

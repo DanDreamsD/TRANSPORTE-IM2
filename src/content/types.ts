@@ -186,6 +186,8 @@ export interface CameraShot {
   direct?: boolean;
 }
 
+export type BoardStyle = 'whiteboard' | 'screen';
+
 export interface BoardPlacement {
   position: Vec3;
   /** Ancho en metros; la altura se deriva de la relación 16:9 salvo que se indique. */
@@ -193,7 +195,7 @@ export interface BoardPlacement {
   height?: number;
   /** Rotación alrededor de Y en radianes. Si se omite, la pizarra mira hacia la cámara de la escena. */
   rotationY?: number;
-  style: 'whiteboard' | 'screen';
+  style: BoardStyle;
   /** Ancho del contenido HTML en píxeles CSS (por defecto 1040). Mayor valor = texto relativamente más pequeño. */
   pxWidth?: number;
   /** Soporte: patas (pizarra móvil), colgada de la estructura o montada en muro. */
