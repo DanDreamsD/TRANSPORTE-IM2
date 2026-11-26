@@ -50,7 +50,7 @@ export const MATERIAL_FLOW_PATH: [number, number][] = [
   [21, -1.5],
   [16, 10.5], // AS/RS
   [27, 1.5],
-  [40, 9.5], // almacén PT
+  [36, 9.0], // almacén PT
   [46, 2],
   [52, 8], // despacho
 ];

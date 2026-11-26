@@ -2,7 +2,7 @@
 import { Bar, BarChart, CartesianGrid, LabelList, Legend, Line, LineChart, ReferenceDot, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import type { BarChartBlock } from '../../content/types';
 
-const fmt = (v: unknown) => (typeof v === 'number' ? v.toLocaleString('es-PE') : String(v ?? ''));
+const fmt = (v: unknown) => (typeof v === 'number' ? v.toLocaleString('es-ES') : String(v ?? ''));
 
 export function BeforeAfterChart({ block, compact = false }: { block: BarChartBlock; compact?: boolean }) {
   const data = block.data.map((d) => ({ name: d.label, before: d.before, after: d.after }));
@@ -41,7 +41,7 @@ export function AgvPaybackChart({ compact = false }: { compact?: boolean }) {
   const monthly = AGV_CASE.annualCost / 12;
   const data = Array.from({ length: 13 }, (_, m) => ({ m, saved: Math.round(monthly * m), inv: AGV_CASE.investment }));
   const pb = agvPaybackMonths();
-  const fmtEur = (v: unknown) => (typeof v === 'number' ? `${(v / 1000).toLocaleString('es-PE')} mil` : String(v ?? ''));
+  const fmtEur = (v: unknown) => (typeof v === 'number' ? `${(v / 1000).toLocaleString('es-ES')} mil` : String(v ?? ''));
   return (
     <div className="chart-box" style={{ height: compact ? 270 : 280 }}>
       <ResponsiveContainer width="100%" height="100%">

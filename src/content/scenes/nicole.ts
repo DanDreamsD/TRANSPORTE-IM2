@@ -1,0 +1,523 @@
+// Escenas de Nicole: capítulos 8, 9 y 10 + caso 3 (Schrock Cabinet).
+// Datos verificados contra docs/extracted/guia_texto.md §8, §9, §10 y §13.3.
+import type { SceneDef } from '../types';
+
+export const transportesMontacargas: SceneDef = {
+  id: 'transportes-montacargas',
+  chapter: { number: '8', title: 'Transportes industriales y vehículos automatizados' },
+  subchapter: { number: '8.1–8.2', title: 'Ventajas, desventajas y clases de camiones industriales' },
+  presenter: 'nicole',
+  title: 'Transportes y montacargas',
+  zone: 'pt',
+  camera: {
+    position: [46.0, 4.2, 0.6],
+    target: [42.6, 1.9, 9.6],
+    fov: 46,
+    duration: 3.6,
+  },
+  board: {
+    position: [40.6, 2.5, 8.8],
+    width: 4.4,
+    height: 3.0,
+    pxWidth: 1120,
+    style: 'whiteboard',
+    mount: 'stand',
+  },
+  boardBlocks: [
+    {
+      kind: 'lead',
+      text: 'Equipos de ruta libre: llevan la carga de un punto a otro sin depender de una infraestructura fija.',
+      dataKind: 'course',
+      source: 'Castañeda (2026)',
+    },
+    {
+      kind: 'table',
+      label: 'Tabla 14',
+      title: 'Ventajas y desventajas de los transportes',
+      columns: ['Ventajas', 'Desventajas'],
+      rows: [
+        ['No siguen una ruta fija', 'No mueven cargas muy pesadas'],
+        ['Cargan, descargan y levantan', 'La capacidad por viaje es limitada'],
+        ['Alta utilización por su movilidad irrestricta', 'Se requieren pasillos'],
+        ['', 'Deben ser guiados por un operario'],
+        ['', 'No combinan manejo con procesamiento'],
+      ],
+      dataKind: 'course',
+      source: 'Castañeda (2026)',
+    },
+  ],
+  detailBlocks: [
+    {
+      kind: 'lead',
+      text: 'Pertenecen a esta familia los carros de carga, los carros con grúa, los carros de mano, los montacargas de horquilla, los trenes de remolque y los vehículos guiados automáticamente (VGA o AGV).',
+      dataKind: 'course',
+      source: 'Castañeda (2026)',
+    },
+    {
+      kind: 'table',
+      label: 'Tabla 15',
+      title: 'Siete clases de camiones industriales motorizados',
+      columns: ['Clase', 'Denominación', 'Ejemplos'],
+      rows: [
+        ['I', 'Camiones de motor eléctrico con conductor sentado o de pie', 'Contrabalanceado con conductor de pie; de tres ruedas'],
+        ['II', 'Camiones eléctricos de pasillo angosto', 'Apilador de elevación alta con patas'],
+        ['III', 'Camiones eléctricos de mano o de mano y conductor', 'Plataforma de elevación baja; transpaleta de conductor a pie; tractores'],
+        ['IV', 'Camiones de combustión interna con llantas sólidas', 'Contrabalanceado con llantas de cojín'],
+        ['V', 'Camiones de combustión interna con llantas neumáticas', 'Contrabalanceado con llantas neumáticas'],
+        ['VI', 'Tractores eléctricos y de combustión interna', 'Conductor sentado con fuerza de arrastre alta'],
+        ['VII', 'Camiones para terreno accidentado', 'Obras de construcción y terrenos sin acondicionar'],
+      ],
+      note: 'Nota. Elaboración propia de los autores de la guía a partir de OSHA (s. f.-a). La clasificación no incluye todos los camiones cubiertos por la norma. Cada clase presenta peligros de operación distintos, y la norma 29 CFR 1910.178 regula su uso.',
+      dataKind: 'literature',
+    },
+  ],
+  animations: ['forklift'],
+  references: ['castaneda2026', 'osha_sf_a'],
+  notes:
+    'El montacargas retira un pallet del segundo nivel del rack y luego lo vuelve a guardar: muestra que los transportes «cargan, descargan y levantan» y que «se requieren pasillos». Con «C» se ven las siete clases de camiones industriales (OSHA). Demostración didáctica.',
+};
+
+export const agvAmr: SceneDef = {
+  id: 'agv-amr',
+  chapter: { number: '8', title: 'Transportes industriales y vehículos automatizados' },
+  subchapter: { number: '8.3', title: 'De los vehículos guiados a los robots móviles' },
+  presenter: 'nicole',
+  title: 'Del AGV al AMR',
+  zone: 'spine',
+  camera: {
+    position: [-17.4, 4.6, 7.4],
+    target: [-18.4, 1.0, -1.2],
+    fov: 46,
+    duration: 3.6,
+  },
+  board: {
+    position: [-18.4, 2.6, -5.0],
+    width: 4.6,
+    height: 2.9,
+    pxWidth: 1120,
+    style: 'screen',
+    mount: 'stand',
+  },
+  boardBlocks: [{ kind: 'custom', component: 'agv-amr-compare' }],
+  detailBlocks: [
+    {
+      kind: 'lead',
+      text: 'El primer sistema de vehículos guiados automáticamente se instaló en 1953. Estos equipos pueden ser total o parcialmente automáticos, tienen trayectorias controlables y pueden incorporarse en otros dispositivos de manejo. Los más simples y baratos son los vehículos remolcadores o tuggers.',
+      dataKind: 'literature',
+      source: 'Heragu y Ekren (s. f.); Modern Materials Handling (s. f.-a)',
+    },
+    {
+      kind: 'table',
+      label: 'Tabla 16',
+      title: 'Comparación entre AGV y AMR',
+      columns: ['Característica', 'AGV', 'AMR'],
+      rows: [
+        ['Navegación', 'Sigue rutas definidas, apoyado en infraestructura instalada.', 'Navega sin infraestructura previa.'],
+        ['Decisiones', 'Centralizadas: una unidad coordina rutas y despacho.', 'Descentralizadas: cada robot decide y negocia con otros recursos.'],
+        ['Flexibilidad ante cambios', 'Menor; cambiar la ruta exige modificar la infraestructura.', 'Mayor; reacciona al entorno dinámico.'],
+        ['Entornos de uso', 'Transporte de productos y cargas dentro de la planta.', 'Intralogística: manufactura, almacenes, cross-docks, terminales y hospitales.'],
+      ],
+      note: 'Nota. Elaboración propia de los autores de la guía a partir de Keith y La (2024) y Fragapane et al. (2021).',
+      dataKind: 'literature',
+    },
+    {
+      kind: 'figure',
+      label: 'Figura 10',
+      title: 'Línea de tiempo simplificada de la automatización del manejo',
+      src: 'figures/fig10.png',
+      note: 'Nota. Elaboración propia a partir de Heragu y Ekren (s. f.), Roodbergen y Vis (2009), Modern Materials Handling (s. f.-c), Keith y La (2024) y Fragapane et al. (2021). Las décadas son aproximadas.',
+    },
+    {
+      kind: 'callout',
+      variant: 'expo',
+      title: 'Para la exposición',
+      text: 'Subraye que el AMR no reemplaza al AGV en todos los casos: ambos son opciones. La elección depende de qué tan cambiante sea el entorno, de la infraestructura disponible y del costo.',
+    },
+  ],
+  animations: ['agv-amr'],
+  references: ['heragu_sf', 'mmh_sf_a', 'keith2024', 'fragapane2021', 'roodbergen2009', 'mmh_sf_c'],
+  notes:
+    'Ambos vehículos encuentran un pallet olvidado en el pasillo. El AGV sigue su cinta y se detiene hasta que alguien despeje la ruta; el AMR detecta el obstáculo y planifica un desvío. Aclarar que el AMR no reemplaza al AGV en todos los casos (recuadro «Para la exposición»). Demostración didáctica.',
+};
+
+export const niosh: SceneDef = {
+  id: 'niosh',
+  chapter: { number: '9', title: 'Manejo de materiales en la estación de trabajo' },
+  subchapter: { number: '9.1', title: 'Manejo manual y la ecuación de levantamiento de NIOSH' },
+  presenter: 'nicole',
+  title: 'Ecuación de levantamiento de NIOSH',
+  zone: 'man',
+  camera: {
+    position: [-12.7, 2.5, 17.7],
+    target: [-16.4, 1.3, 14.5],
+    fov: 46,
+    duration: 3.2,
+  },
+  board: {
+    position: [-19.4, 2.3, 16.4],
+    width: 4.2,
+    height: 3.0,
+    pxWidth: 1060,
+    style: 'whiteboard',
+    mount: 'stand',
+  },
+  boardBlocks: [
+    {
+      kind: 'formula',
+      tex: '\\mathrm{RWL} = \\mathrm{LC}\\cdot\\mathrm{HM}\\cdot\\mathrm{VM}\\cdot\\mathrm{DM}\\cdot\\mathrm{AM}\\cdot\\mathrm{FM}\\cdot\\mathrm{CM}\\qquad \\mathrm{LI}=\\dfrac{\\text{peso levantado}}{\\mathrm{RWL}}',
+      dataKind: 'literature',
+      source: 'Waters et al. (1993)',
+    },
+    { kind: 'custom', component: 'niosh-calc' },
+  ],
+  detailBlocks: [
+    {
+      kind: 'lead',
+      text: 'La ecuación revisada de levantamiento de NIOSH (RNLE) calcula el riesgo de trastornos musculoesqueléticos asociados con levantamientos manuales con dos manos, en especial lesiones de la zona lumbar. La versión original data de 1981 y fue revisada en 1991. Calcula el límite de peso recomendado (RWL) a partir de una constante de carga de 23 kg (51 libras) reducida por seis multiplicadores.',
+      dataKind: 'literature',
+      source: 'CDC (s. f.); Waters et al. (1993)',
+    },
+    {
+      kind: 'table',
+      label: 'Tabla 17',
+      title: 'Variables de la ecuación de levantamiento de NIOSH (unidades métricas)',
+      columns: ['Variable', 'Cálculo', 'Qué representa'],
+      rows: [
+        ['LC', '23 kg', 'Carga máxima recomendada en condiciones ideales (51 libras).'],
+        ['HM (horizontal)', '25 ÷ H, con H en cm', 'Distancia horizontal de las manos al punto medio entre los tobillos. A mayor distancia, menor límite.'],
+        ['VM (vertical)', '1 − 0,003 × |V − 75|', 'Altura de las manos sobre el piso al inicio y al final del levantamiento; el valor óptimo está a 75 cm.'],
+        ['DM (recorrido)', '0,82 + 4,5 ÷ D', 'Distancia vertical que recorre la carga.'],
+        ['AM (asimetría)', '1 − 0,0032 × A', 'Ángulo de giro del tronco, en grados.'],
+        ['FM (frecuencia)', 'Tabla del manual', 'Frecuencia de levantamiento y duración del trabajo.'],
+        ['CM (agarre)', 'Tabla del manual', 'Calidad del agarre: bueno, regular o malo.'],
+      ],
+      note: 'Nota. Elaboración propia de los autores de la guía a partir de Waters et al. (1993), CDC (s. f.) y OSHA (s. f.-b). Los valores de FM y CM se leen en las tablas del manual de aplicaciones (Waters et al., 2021).',
+      dataKind: 'literature',
+    },
+    {
+      kind: 'table',
+      label: 'Tabla 18',
+      title: 'Ejemplo de cálculo del RWL y del LI',
+      columns: ['Variable', 'Dato', 'Multiplicador'],
+      rows: [
+        ['Peso levantado', '15 kg', '—'],
+        ['Distancia horizontal H', '40 cm', 'HM = 25 ÷ 40 = 0,625'],
+        ['Altura vertical V', '60 cm', 'VM = 1 − 0,003 × 15 = 0,955'],
+        ['Recorrido vertical D', '40 cm', 'DM = 0,82 + 4,5 ÷ 40 = 0,933'],
+        ['Asimetría A', '0°', 'AM = 1,000'],
+        ['Frecuencia', 'Ocasional', 'FM = 1,00'],
+        ['Agarre', 'Bueno', 'CM = 1,00'],
+        ['RWL', '23 × 0,625 × 0,955 × 0,933', '12,8 kg'],
+        ['LI', '15 ÷ 12,8', '1,17'],
+      ],
+      note: 'Nota. Datos hipotéticos. Se muestra el cálculo con los valores sin redondear. Si se acerca la caja a 25 cm del cuerpo, HM sube a 1,00 y el límite pasa a 20,5 kg, con lo que el LI baja a 0,73.',
+      dataKind: 'hypothetical',
+    },
+    {
+      kind: 'callout',
+      variant: 'limit',
+      title: 'Límites de la ecuación',
+      text: 'Se aplica a levantamientos con dos manos. No evalúa tareas de empuje, tracción o transporte continuo, ni condiciones fuera de los rangos de las variables. Su uso exige medir las variables en el puesto real.',
+    },
+    {
+      kind: 'lead',
+      text: 'NIOSH recomienda interpretar los resultados con el LI: valores superiores a 1 indican una tarea que puede suponer riesgo para algunos trabajadores; valores muy altos (por encima de 3) se consideran de alto riesgo.',
+      dataKind: 'literature',
+      source: 'CDC (s. f.); Waters et al. (1993)',
+    },
+    {
+      kind: 'figure',
+      label: 'Figura 11',
+      title: 'Multiplicadores y comparación entre RWL y carga levantada en el ejemplo',
+      src: 'figures/fig11.png',
+      note: 'Nota. Elaboración propia a partir del cálculo de la Tabla 18. Un LI mayor que 1 indica que la carga excede el límite recomendado.',
+    },
+  ],
+  animations: ['niosh-lift'],
+  references: ['cdc_sf', 'waters1993', 'waters2021', 'osha_sf_b'],
+  notes:
+    'Usar la calculadora (abajo a la derecha): con el ejemplo hipotético de la Tabla 18 (15 kg, H 40, V 60, D 40, A 0°) el RWL es 12,8 kg y el LI 1,17. Pulsar «Rediseño»: acercar la caja a 25 cm sube HM a 1,00, el RWL a 20,5 kg y el LI baja a 0,73. FM y CM se fijan en 1,00 (ocasional, buen agarre), como en el ejemplo. Recalcar los límites de la ecuación.',
+};
+
+export const estacionRobots: SceneDef = {
+  id: 'estacion-robots',
+  chapter: { number: '9', title: 'Manejo de materiales en la estación de trabajo' },
+  subchapter: { number: '9.2–9.4', title: 'Compensadores, robots y automatización fija' },
+  presenter: 'nicole',
+  title: 'Compensadores, robots y automatización fija',
+  zone: 'man',
+  camera: {
+    position: [-1.0, 5.0, 11.2],
+    target: [-10.5, 2.4, 21.5],
+    fov: 50,
+    duration: 3.0,
+  },
+  board: {
+    position: [-14.5, 4.8, 23.6],
+    width: 5.0,
+    height: 3.0,
+    pxWidth: 1180,
+    style: 'screen',
+    mount: 'hanging',
+  },
+  boardBlocks: [
+    {
+      kind: 'table',
+      label: 'Tabla 19',
+      title: 'Tipos de manipuladores y robots',
+      columns: ['Tipo', 'Cómo opera'],
+      rows: [
+        ['Manipulador manual', 'Un operario guía directamente el movimiento.'],
+        ['De secuencia fija', 'Repite una secuencia programada difícil de modificar.'],
+        ['De secuencia variable', 'Repite una secuencia que puede modificarse con facilidad.'],
+        ['De reproducción (playback)', 'Memoriza los movimientos que le enseña un operario.'],
+        ['De control numérico (CN)', 'Se mueve según un programa numérico.'],
+        ['Inteligente', 'Percibe su entorno y adapta sus decisiones.'],
+      ],
+      note: 'Tipos: Castañeda (2026). Descripciones de los autores de la guía.',
+      dataKind: 'synthesis',
+    },
+  ],
+  detailBlocks: [
+    {
+      kind: 'lead',
+      text: 'Cuando el rediseño del puesto no basta, se recurre a equipos que multiplican la fuerza humana. Los compensadores (balanceadores) sostienen el peso de la carga y dejan al operario solo guiar el movimiento; los manipuladores combinan un brazo con un dispositivo de agarre para posicionar piezas pesadas con poco esfuerzo.',
+      dataKind: 'course',
+      source: 'Castañeda (2026)',
+    },
+    {
+      kind: 'lead',
+      text: 'El EOAT (end of arm tooling, herramental de extremo de brazo) es el dispositivo que cada robot lleva en la muñeca para sujetar o procesar la pieza, como pinzas, ventosas o garras.',
+      dataKind: 'course',
+      source: 'Castañeda (2026)',
+    },
+    {
+      kind: 'lead',
+      text: 'La automatización fija resuelve movimientos repetitivos de alto volumen con mecanismos dedicados: la transferencia sincrónica desplaza todas las piezas de una estación a la siguiente al mismo tiempo, y los sistemas de ubicación y orientación colocan cada pieza en la posición correcta. Es muy eficiente para un solo producto, pero cambiar de producto exige rediseñar el mecanismo.',
+      dataKind: 'course',
+      source: 'Castañeda (2026)',
+    },
+    {
+      kind: 'callout',
+      variant: 'idea',
+      title: 'Idea clave',
+      text: 'La jerarquía de intervención es: rediseñar el puesto (acercar, subir o bajar la carga), luego ayudas mecánicas (compensadores, manipuladores) y solo después robots. Los robots resuelven el movimiento, pero no corrigen un puesto mal diseñado.',
+    },
+  ],
+  animations: ['robot-arm'],
+  references: ['castaneda2026'],
+  notes:
+    'Recorrer de izquierda a derecha: transferencia sincrónica (todas las piezas avanzan a la vez), compensador que sostiene la carga mientras el operario solo la guía, y la celda con el brazo robótico y su EOAT (pinza). Cerrar con la jerarquía de intervención. Demostración didáctica.',
+};
+
+export const casoSchrock: SceneDef = {
+  id: 'caso-schrock',
+  chapter: { number: '13', title: 'Casos aplicados en investigaciones' },
+  subchapter: { number: '13.3', title: 'Caso 3: levantamiento manual en Schrock Cabinet (Estados Unidos)' },
+  presenter: 'nicole',
+  title: 'Caso 3: Schrock Cabinet',
+  zone: 'desp',
+  camera: {
+    position: [50.6, 3.6, 29.0],
+    target: [57.2, 1.6, 23.4],
+    fov: 46,
+    duration: 3.6,
+  },
+  board: {
+    position: [59.75, 2.55, 21.9],
+    width: 4.0,
+    height: 3.0,
+    pxWidth: 1080,
+    rotationY: -Math.PI / 2,
+    style: 'whiteboard',
+    mount: 'wall',
+  },
+  boardBlocks: [
+    {
+      kind: 'lead',
+      text: '19 trabajadores cargaban a mano unos 1 800 gabinetes al día en camiones, sin ayudas mecánicas, a 2–3 levantamientos por minuto.',
+      dataKind: 'case',
+      source: 'NIOSH (1996)',
+    },
+    {
+      kind: 'stats',
+      items: [
+        { value: '0,7 – 6,0', label: 'FILI de 15 gabinetes típicos' },
+        { value: '3,9 – 8,2', label: 'índice compuesto del puesto' },
+        { value: '79 %', label: 'con dolor musculoesquelético (15 de 19)' },
+      ],
+      dataKind: 'case',
+      source: 'NIOSH (1996)',
+    },
+  ],
+  detailBlocks: [
+    {
+      kind: 'lead',
+      text: 'En 1995, a solicitud de la gerencia, NIOSH evaluó el departamento de despacho de Schrock Cabinet Company (Illinois), que fabrica gabinetes de madera; el informe es de marzo de 1996. Con la ecuación revisada se analizaron 15 gabinetes típicos, suponiendo agarre deficiente, sin asimetría y un recorrido vertical de 30 cm (12 pulgadas). Más de la mitad de los levantamientos superaba 1,0. El gabinete más pesado de la muestra, de la línea Gallery, pesaba 119 libras (unos 54 kg). En los primeros ocho meses de 1995 hubo cinco casos registrables en el libro de accidentes de OSHA, contra cero en 1992 y 1993.',
+      dataKind: 'case',
+      source: 'NIOSH (1996)',
+    },
+    {
+      kind: 'figure',
+      label: 'Figura 18',
+      title: 'Índice de levantamiento de 15 gabinetes del despacho de Schrock Cabinet',
+      src: 'figures/fig18.png',
+      note: 'Nota. Elaboración propia de los autores de la guía con los datos de la Tabla 1 del informe de NIOSH (1996). Cada barra corresponde a un tipo de gabinete; la línea punteada marca el límite de 1,0.',
+    },
+    {
+      kind: 'bullets',
+      title: 'Recomendaciones de NIOSH',
+      items: [
+        'Controles de ingeniería: carga automática de camiones con el lote armado fuera del tráiler; paletizado automatizado con montacargas o transpaletas; dispositivos de ayuda para levantar (neumáticos, de vacío o mecánicos, con un puente grúa si hace falta); medio motorizado para empujar carros en pendiente.',
+        'Controles administrativos: levantar entre dos personas, rotar al personal con más frecuencia, reducir el almacenamiento temporal (solo el 30 % iba directo a los muelles) y enviar los componentes más pesados en cajas separadas.',
+        'No recomienda las fajas lumbares para prevenir lesiones.',
+      ],
+      dataKind: 'case',
+      source: 'NIOSH (1996)',
+    },
+    {
+      kind: 'callout',
+      variant: 'case',
+      title: 'Qué enseña el caso',
+      text: 'La ecuación NIOSH sirve para priorizar: los gabinetes con FILI mayor a 3 son los primeros que hay que rediseñar. Conecta con la jerarquía del capítulo 9: primero rediseñar el puesto, luego ayudas mecánicas y después robots; las medidas administrativas no reemplazan la ingeniería.',
+    },
+  ],
+  animations: ['cabinet-loading'],
+  references: ['niosh1996'],
+  notes:
+    'Un operario carga gabinetes a mano desde el área de almacenamiento temporal hasta el remolque: así trabajaban los 19 operarios del despacho. Datos reales del informe de NIOSH (1996). La Figura 18 (con «C») muestra los 15 gabinetes; los valores individuales solo aparecen en la figura. La animación es didáctica.',
+};
+
+export const recepcionAlmacenamiento: SceneDef = {
+  id: 'recepcion-almacenamiento',
+  chapter: { number: '10', title: 'Recepción, envío y almacenamiento' },
+  subchapter: { number: '10.1–10.2', title: 'Equipo según la función en la planta y almacenamiento' },
+  presenter: 'nicole',
+  title: 'Recepción, envío y almacenamiento',
+  zone: 'pt',
+  camera: {
+    position: [38.6, 4.8, -2.4],
+    target: [41.4, 2.6, 10.0],
+    fov: 50,
+    duration: 3.0,
+  },
+  board: {
+    position: [40.4, 3.9, 4.6],
+    width: 5.6,
+    height: 3.0,
+    pxWidth: 1240,
+    style: 'screen',
+    mount: 'hanging',
+  },
+  boardBlocks: [
+    {
+      kind: 'table',
+      label: 'Tabla 20',
+      title: 'Equipo de manejo característico por zona de la planta',
+      columns: ['Zona', 'Función', 'Equipo frecuente'],
+      rows: [
+        ['Recepción y envío', 'Descarga, inspección, identificación, carga de camiones.', 'Montacargas, transpaletas, transportadores de rodillos, equipo de muelle (rampas niveladoras).'],
+        ['Almacén', 'Guardar, proteger y recuperar materiales y producto terminado.', 'Racks, entrepisos, estanterías, AS/RS, carruseles, montacargas de pasillo angosto.'],
+        ['Fabricación', 'Mover material entre estaciones y alimentar las máquinas.', 'Transportadores, AGV y AMR, grúas, carros de mano y de carga.'],
+        ['Estación de trabajo', 'Posicionar y sujetar piezas en el puesto.', 'Manipuladores, compensadores, robots.'],
+      ],
+      dataKind: 'synthesis',
+      source: 'Hassan (2010); Heragu y Ekren (s. f.); Castañeda (2026)',
+    },
+  ],
+  detailBlocks: [
+    {
+      kind: 'lead',
+      text: 'Hassan (2010) propone un marco de selección que parte de identificar las categorías de equipo según todas las funciones de manejo que se realizan en la instalación, y luego elige clases y tipos entre las alternativas según los requisitos y objetivos del usuario.',
+      dataKind: 'literature',
+      source: 'Hassan (2010)',
+    },
+    {
+      kind: 'lead',
+      text: 'El almacenamiento no agrega valor al producto, pero es indispensable para desacoplar la recepción, la producción y el despacho. El ahorro de espacio proviene de usar el volumen: el principio de utilización del espacio (capítulo 2) y el síntoma «carencia de almacenamiento en cubo» (capítulo 12) aluden a lo mismo.',
+      dataKind: 'synthesis',
+      source: 'Guía, §10.2; Kay (s. f.); Peters (1998)',
+    },
+  ],
+  animations: [],
+  references: ['hassan2010', 'heragu_sf', 'castaneda2026', 'kay_sf', 'peters1998'],
+  notes:
+    'Desde el pasillo se ven el almacén de producto terminado y, al fondo, el despacho: dos de las cuatro zonas de la Tabla 20. Repasar la lógica de Hassan (2010): primero las funciones de cada zona, después el equipo.',
+};
+
+export const asrs: SceneDef = {
+  id: 'asrs',
+  chapter: { number: '10', title: 'Recepción, envío y almacenamiento' },
+  subchapter: { number: '10.3', title: 'Sistemas de almacenamiento y recuperación automatizados (AS/RS)' },
+  presenter: 'nicole',
+  title: 'AS/RS',
+  zone: 'asrs',
+  camera: {
+    position: [-3.0, 4.8, 15.4],
+    target: [14.0, 4.6, 15.6],
+    fov: 50,
+    duration: 3.6,
+  },
+  board: {
+    position: [3.6, 2.8, 12.6],
+    width: 3.6,
+    height: 2.5,
+    pxWidth: 1000,
+    style: 'screen',
+    mount: 'stand',
+  },
+  boardBlocks: [
+    {
+      kind: 'lead',
+      text: 'Racks servidos por grúas que circulan por los pasillos entre ellos; manejan pallets sin intervención de un operario. Se usan desde la década de 1950.',
+      dataKind: 'literature',
+      source: 'Roodbergen y Vis (2009)',
+    },
+    {
+      kind: 'figure',
+      label: 'Figura 12',
+      title: 'Esquema de un AS/RS de pasillo fijo',
+      src: 'figures/fig12.png',
+      dataKind: 'literature',
+    },
+  ],
+  detailBlocks: [
+    {
+      kind: 'lead',
+      text: 'La configuración básica: dos filas de racks enfrentadas con un pasillo estrecho en medio, un riel en el centro y un mástil alto que se desplaza por él. Cuando el mástil llega a una posición, el carro sube o baja hasta el nivel y el dispositivo de carga introduce o retira la unidad. El mástil, el carro y el dispositivo de carga forman la máquina de almacenamiento y recuperación (SRM). Lo habitual es una máquina por pasillo.',
+      dataKind: 'literature',
+      source: 'Modern Materials Handling (s. f.-c)',
+    },
+    {
+      kind: 'table',
+      label: 'Tabla 21',
+      title: 'Tipos de sistemas de almacenamiento automatizado',
+      columns: ['Tipo', 'Carga manejada', 'Características'],
+      rows: [
+        ['AS/RS de carga unitaria', 'Pallets; mayores de 1000 libras (unos 450 kg)', 'Un sistema típico mide menos de 40 pies (unos 12 m) de altura, aunque puede llegar a 100 pies (30 m).'],
+        ['Mini-load', 'Cajas, bandejas y contenedores; menos de 1000 libras', 'Usados en fábricas y almacenes para piezas pequeñas y preparación de pedidos.'],
+        ['Carruseles verticales', 'Piezas pequeñas', 'Flexibles cuando cambia el inventario pero el perfil del producto se mantiene; llevan el producto al operario.'],
+        ['Módulos de elevación vertical (VLM)', 'Bandejas', 'Combinan el carrusel vertical con el AS/RS tradicional; un extractor entrega las bandejas en un mostrador ergonómico.'],
+        ['AVS/RS (con shuttles autónomos)', 'Contenedores y cajas', 'Vehículos autónomos que operan en cada nivel del rack; su desarrollo reciente se ha impulsado por la automatización de almacenes.'],
+      ],
+      note: 'Nota. Elaboración propia de los autores de la guía a partir de Modern Materials Handling (s. f.-c) y Azadeh et al. (2019). Las equivalencias métricas son aproximadas.',
+      dataKind: 'literature',
+    },
+    {
+      kind: 'lead',
+      text: 'Se atribuyen a los AS/RS menor mano de obra, mayor exactitud y flujo, y un impacto ambiental favorable (un edificio más compacto reduce iluminación, calefacción y refrigeración). La revisión de Roodbergen y Vis (2009) concluye que la mayoría de los modelos son válidos para problemas estáticos, y que los requerimientos actuales son más dinámicos.',
+      dataKind: 'literature',
+      source: 'Modern Materials Handling (s. f.-c); Roodbergen y Vis (2009)',
+    },
+    {
+      kind: 'callout',
+      variant: 'expo',
+      title: 'Para la exposición',
+      text: 'Aclare que el AS/RS no es solo un equipo sino un sistema con rack, máquina, controles y software de inventario. Su inversión se justifica por el volumen, el valor del espacio y la necesidad de exactitud; no es adecuado para cualquier almacén.',
+    },
+  ],
+  animations: ['asrs'],
+  references: ['roodbergen2009', 'mmh_sf_c', 'azadeh2019'],
+  notes:
+    'La máquina de almacenamiento y recuperación (SRM) recorre el pasillo, sube el carro al nivel, extrae el pallet con el dispositivo de carga y lo entrega en la estación de entrada/salida; luego lo vuelve a guardar. Señalar mástil, carro y dispositivo de carga (Figura 12). Los racks de esta planta miden unos 12 m, como el sistema típico de la Tabla 21. Demostración didáctica.',
+};

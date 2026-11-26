@@ -17,6 +17,8 @@ const LOWER = 2.4; // zócalo de concreto
 export const DOCKS_WEST = [-4, 6, 16];
 /** Muelle con la puerta abierta (descarga del camión, escena 1.2). */
 export const OPEN_DOCK_Z = 6;
+/** Muelle este con la puerta abierta (carga manual, caso Schrock). */
+export const OPEN_DOCK_EAST_Z = 26;
 export const DOCKS_EAST = [10, 18, 26];
 export const COLUMN_ROWS_Z = [-5.5, 5.5];
 
@@ -64,7 +66,10 @@ export function Building() {
       levelers.push(box([PLANT.x[0] + 1.3, 0.02, z], [2.6, 0.04, 2.4]));
     }
     for (const z of DOCKS_EAST) {
-      doors.push(box([PLANT.x[1] - 0.05, 2.1, z], [0.1, 4.2, 3.6]));
+      if (z === OPEN_DOCK_EAST_Z) {
+        doors.push(box([PLANT.x[1] - 0.05, 3.95, z], [0.1, 0.5, 3.6]));
+        openings.push(box([PLANT.x[1] - 0.04, 1.85, z], [0.06, 3.7, 3.4]));
+      } else doors.push(box([PLANT.x[1] - 0.05, 2.1, z], [0.1, 4.2, 3.6]));
       bumpers.push(box([PLANT.x[1] - 0.15, 4.35, z], [0.2, 0.3, 3.9]));
       levelers.push(box([PLANT.x[1] - 1.3, 0.02, z], [2.6, 0.04, 2.4]));
     }

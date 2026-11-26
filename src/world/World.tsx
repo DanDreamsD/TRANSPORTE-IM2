@@ -19,6 +19,12 @@ import { PalletSizesDemo } from './demos/PalletSizesDemo';
 import { DyneaDemo } from './demos/DyneaDemo';
 import { CranesDemo } from './demos/CranesDemo';
 import { AgvSeatsDemo } from './demos/AgvSeatsDemo';
+import { ForkliftRackDemo } from './demos/ForkliftRackDemo';
+import { AgvAmrDemo } from './demos/AgvAmrDemo';
+import { NioshDemo } from './demos/NioshDemo';
+import { RobotStationDemo } from './demos/RobotStationDemo';
+import { CabinetLoadingDemo } from './demos/CabinetLoadingDemo';
+import { AsrsDemo } from './demos/AsrsDemo';
 
 // Varias escenas pueden compartir una misma pizarra física (misma posición): se dibuja una sola vez.
 function boardKey(p: readonly number[]): string {
@@ -56,6 +62,12 @@ export function World() {
       <DyneaDemo />
       <CranesDemo />
       <AgvSeatsDemo />
+      <ForkliftRackDemo />
+      <AgvAmrDemo />
+      <NioshDemo />
+      <RobotStationDemo />
+      <CabinetLoadingDemo />
+      <AsrsDemo />
       {boardGroups.map((g) => {
         const current = g.find((i) => i === index);
         const scene = SCENES[current ?? g[0]];

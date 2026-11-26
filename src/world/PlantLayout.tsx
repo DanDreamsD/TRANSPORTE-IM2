@@ -23,7 +23,8 @@ export const MP_RACKS: RackRow[] = [
 
 const ASRS_LEVELS = [0, 1.8, 3.6, 5.4, 7.2, 9.0, 10.8];
 const ASRS_RACKS: RackRow[] = [
-  { x0: 6, z: 13.6, bays: 8, levels: ASRS_LEVELS, fill: 0.85, seed: 21 },
+  // vano 4, nivel 3 reservado para la demo del AS/RS
+  { x0: 6, z: 13.6, bays: 8, levels: ASRS_LEVELS, fill: 0.85, seed: 21, exclude: [[4, 3]] },
   { x0: 6, z: 17.6, bays: 8, levels: ASRS_LEVELS, fill: 0.8, seed: 22 },
   { x0: 6, z: 23.6, bays: 8, levels: ASRS_LEVELS, fill: 0.9, seed: 23 },
   { x0: 6, z: 27.6, bays: 8, levels: ASRS_LEVELS, fill: 0.75, seed: 24 },
@@ -37,6 +38,8 @@ const PT_RACKS: RackRow[] = [12, 13.2, 19, 20.2, 26, 27.2].map((z, i) => ({
   fill: 0.85,
   wrapped: true,
   seed: 31 + i,
+  // vano 3, nivel 1 de la primera fila reservado para la demo del montacargas
+  exclude: i === 0 ? ([[3, 1]] as [number, number][]) : undefined,
 }));
 
 function StagedLoads({ items }: { items: [number, number][] }) {
@@ -54,44 +57,7 @@ function StagedLoads({ items }: { items: [number, number][] }) {
   );
 }
 
-function AsrsMachines() {
-  return (
-    <group>
-      {[15.6, 25.6].map((z, i) => (
-        <group key={z} position={[10 + i * 9, 0, z]}>
-          <mesh geometry={GEO.box} material={mat('machineDark')} position={[0, 0.2, 0]} scale={[2.2, 0.4, 0.9]} castShadow />
-          <mesh geometry={GEO.box} material={mat('machineAccent')} position={[0, 6.4, 0]} scale={[0.35, 12.4, 0.5]} castShadow />
-          <mesh geometry={GEO.box} material={mat('galvanized')} position={[0.45, 4.2 + i * 2, 0]} scale={[0.6, 0.4, 1.2]} castShadow />
-          <mesh geometry={GEO.box} material={mat('machineDark')} position={[0, 12.7, 0]} scale={[1.6, 0.3, 0.6]} />
-        </group>
-      ))}
-      {/* rieles del pasillo */}
-      {[15.6, 25.6].map((z) => (
-        <mesh key={z} geometry={GEO.box} material={mat('steel')} position={[17, 0.03, z]} scale={[23, 0.06, 0.15]} />
-      ))}
-    </group>
-  );
-}
 
-function RobotCellStatic() {
-  return (
-    <group position={[-8, 0, 24]}>
-      <mesh geometry={GEO.box} material={mat('hazard')} position={[0, 0.006, 0]} scale={[7, 0.01, 6]} receiveShadow />
-      {[
-        [0, -3, 7, 0.04],
-        [0, 3, 7, 0.04],
-        [-3.5, 0, 0.04, 6],
-        [3.5, 0, 0.04, 6],
-      ].map(([x, z, sx, sz], i) => (
-        <mesh key={i} geometry={GEO.box} material={mat('glass')} position={[x, 1.1, z]} scale={[sx, 2.2, sz]} />
-      ))}
-      <mesh geometry={GEO.cylinder} material={mat('machineDark')} position={[0, 0.3, 0]} scale={[1.0, 0.6, 1.0]} castShadow />
-      <mesh geometry={GEO.cylinder} material={mat('machineAccent')} position={[0, 0.9, 0]} scale={[0.7, 0.6, 0.7]} />
-      <mesh geometry={GEO.box} material={mat('yellow')} position={[0.3, 1.8, 0]} rotation={[0, 0, -0.5]} scale={[0.35, 1.6, 0.35]} castShadow />
-      <mesh geometry={GEO.box} material={mat('yellow')} position={[1.1, 2.4, 0]} rotation={[0, 0, 1.1]} scale={[0.28, 1.4, 0.28]} castShadow />
-    </group>
-  );
-}
 
 export function PlantLayout() {
   return (
@@ -104,7 +70,7 @@ export function PlantLayout() {
         <Trailer key={`e${z}`} position={[PLANT.x[1] + 6.6, 0, z]} />
       ))}
       <StagedLoads items={[[-55, -1], [-55, 1], [-53, -1]]} />
-      <StagedLoads items={[[56, 12], [56, 14], [54, 12], [56, 24], [54, 24], [56, 28]]} />
+      <StagedLoads items={[[56, 12], [56, 14], [54, 12]]} />
 
       {/* Almacén de materia prima */}
       <RackField rows={MP_RACKS} />
@@ -128,7 +94,6 @@ export function PlantLayout() {
       {[-19, -15.5, -12, -8.5, -5].map((x) => (
         <Workbench key={x} position={[x, 0, 11]} length={2.6} rotationY={Math.PI} />
       ))}
-      <RobotCellStatic />
       <Machine position={[-17, 0, 25]} size={[3, 2, 2]} />
 
       {/* Línea de ensamble secundaria (la principal es la demo del transportador) */}
@@ -142,7 +107,6 @@ export function PlantLayout() {
 
       {/* Almacén automatizado AS/RS */}
       <RackField rows={ASRS_RACKS} />
-      <AsrsMachines />
 
       {/* Almacén de producto terminado */}
       <RackField rows={PT_RACKS} />

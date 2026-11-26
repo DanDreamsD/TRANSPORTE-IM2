@@ -20,18 +20,18 @@ un modelo externo se debe verificar y registrar su licencia en la tabla §5.
 | Transportador de rodillos por gravedad | `equipment/RollerConveyor.tsx` (variant) | Línea | 14 | Igual, con inclinación | ✅ MVP |
 | Sensor fotoeléctrico | en demo transportador | Línea | 14 | Mallas + haz emisivo | ✅ MVP |
 | Montacargas contrabalanceado | `equipment/Forklift.tsx` | REC, MP | 3, 19 | Mallas compuestas; refs para posición y altura de horquillas | ✅ (animado en escena 3) |
-| Camión con remolque | `equipment/Truck.tsx` | REC, DESP | 3, 23 | Mallas | ⏳ |
+| Camión con remolque | `equipment/Machines.tsx` (`Trailer`) | REC, DESP | 3, 23 | Mallas; muelles abiertos en z = 6 (oeste) y z = 26 (este) | ✅ |
 | Transpaleta / carretilla de mano | `equipment/Vehicles.tsx` (`PalletJack`, `HandCart`) | PREP | 8 | Mallas | ✅ |
 | Grúa puente + polipasto | `demos/CranesDemo.tsx` | PROC | 16, 17 | Rieles, puente, carro y gancho animados; bobina | ✅ |
 | Grúa pluma / monorriel | `demos/CranesDemo.tsx` | PROC | 16, 17 | Brazo giratorio y polipasto en riel, animados (pórtico solo en Figura 9) | ✅ |
 | AGV (cinta magnética) | `equipment/Vehicles.tsx` (`AgvModel`) | PREP, línea, pasillo | 8, 18, 20 | Mallas; ref para mover | ✅ modelo (usado en escena 8) |
-| AMR (plataforma elevadora, LiDAR) | `equipment/Amr.tsx` | Pasillo | 20 | Mallas + anillo de escaneo | ⏳ |
+| AMR (plataforma, LiDAR) | `demos/AgvAmrDemo.tsx` | Pasillo | 20 | Mallas + LiDAR giratorio y ruta planificada | ✅ |
 | Tren de arrastre (tugger) | `demos/TuggerDemo.tsx` | Pasillo | 7 | Tractor + 4 carros sobre curva cerrada, paradas con señal | ✅ |
 | Brazo robótico + EOAT | `equipment/RobotArm.tsx` | PREP, MAN | 8, 22 | Jerarquía de articulaciones; ciclo pick-and-place; ventosa o pinza | ✅ modelo (usado en escena 8) |
-| Compensador (balanceador) | `equipment/Balancer.tsx` | MAN | 22 | Mallas | ⏳ |
-| Operario estilizado (maniquí) | `equipment/Worker.tsx` | MAN, DESP | 21, 23 | Primitivas articuladas, poses NIOSH | ⏳ |
+| Compensador (balanceador) | `demos/RobotStationDemo.tsx` | MAN | 22 | Poste, brazo, cable y carga animados | ✅ |
+| Operario estilizado (maniquí) | `equipment/Worker.tsx` | MAN, DESP | 21, 22, 23 | Primitivas; brazos dirigidos a un punto, inclinación y flexión | ✅ |
 | Banco de trabajo | `equipment/Workbench.tsx` | MAN | 21 | Mallas | ⏳ |
-| AS/RS: racks altos + SRM | `equipment/Asrs.tsx` | AS/RS | 25 | Instanciado + mástil/carro animables | ⏳ (volumen estático en MVP) |
+| AS/RS: racks altos + SRM | `demos/AsrsDemo.tsx` + `RackField` | AS/RS | 25 | Mástil, carro y dispositivo de carga animados; estación E/S | ✅ |
 | Prensa / CNC | `equipment/Press.tsx` | PROC | 16 | Mallas | ⏳ (volúmenes en MVP) |
 | Oficina acristalada / sala | `equipment/Machines.tsx` (`GlassOffice`) | ENG, MEET | 4, 5, 6, 12, 27–31 | Vidrio simple, techo, escritorios, pantallas murales | ✅ básico |
 | Pizarra industrial / pantalla | `world/boards/Board.tsx` | Varias | Todas | Marco 3D + `<Html transform>` | ✅ MVP |

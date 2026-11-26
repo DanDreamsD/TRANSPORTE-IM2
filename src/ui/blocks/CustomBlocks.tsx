@@ -5,6 +5,8 @@ import { SCENES } from '../../content/sceneRegistry';
 import { useDemoTimeDom } from '../../world/demos/demoClock';
 import { landedCount, UNIT_LOAD, unitLoadDone } from '../../world/demos/unitLoadTimeline';
 import { activeMechLevel, MECH_LEVELS } from '../../world/demos/mechanizationTimeline';
+import { fmt, liLevel, niosh } from '../../world/demos/nioshCalc';
+import { agvAt } from '../../world/demos/AgvAmrDemo';
 import type { BlockVariant } from './BlockRenderer';
 import { AgvPaybackChart } from './Charts';
 
@@ -53,7 +55,7 @@ function ConveyorAnatomy() {
   const running = usePresentation((s) => s.demo.conveyorRunning);
   const parts = [
     { name: 'Motor-reductor', sub: running ? 'en marcha' : 'detenido', tone: running ? 'ok' : 'danger' },
-    { name: 'Rodillos motorizados', sub: running ? `${speed.toLocaleString('es-PE', { maximumFractionDigits: 1 })} m/s` : '0 m/s', tone: 'base' },
+    { name: 'Rodillos motorizados', sub: running ? `${speed.toLocaleString('es-ES', { maximumFractionDigits: 1 })} m/s` : '0 m/s', tone: 'base' },
     { name: 'Sensor fotoeléctrico', sub: 'detecta la carga', tone: 'base' },
     { name: 'Rodillos por gravedad', sub: 'acumulación', tone: 'accent' },
   ];
@@ -324,6 +326,87 @@ function AgvPayback({ compact }: { compact: boolean }) {
   );
 }
 
+/** Calculadora NIOSH en vivo (los valores se ajustan desde el panel de la demo). */
+function NioshCalc() {
+  const input = usePresentation((s) => s.demo.niosh);
+  const r = niosh(input);
+  const level = liLevel(r.LI);
+  const isExample = input.weight === 15 && input.H === 40 && input.V === 60 && input.D === 40 && input.A === 0;
+  const rows: [string, string, string][] = [
+    ['HM', `25 ÷ ${input.H}`, fmt(r.HM, 3)],
+    ['VM', `1 − 0,003 × |${input.V} − 75|`, fmt(r.VM, 3)],
+    ['DM', `0,82 + 4,5 ÷ ${input.D}`, fmt(r.DM, 3)],
+    ['AM', `1 − 0,0032 × ${input.A}`, fmt(r.AM, 3)],
+    ['FM · CM', 'ocasional · buen agarre', '1,00'],
+  ];
+  return (
+    <div className="blk niosh-calc">
+      <div className="nc-grid">
+        <table>
+          <tbody>
+            {rows.map(([k, f, v]) => (
+              <tr key={k}>
+                <td>{k}</td>
+                <td>{f}</td>
+                <td>{v}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className={`nc-result nc-result--${level}`}>
+          <div>
+            <span>RWL</span>
+            <strong>{fmt(r.RWL, 1)} kg</strong>
+          </div>
+          <div>
+            <span>LI = {input.weight} ÷ RWL</span>
+            <strong>{fmt(r.LI, 2)}</strong>
+          </div>
+          <em>{level === 'ok' ? 'LI ≤ 1: dentro del límite' : level === 'risk' ? 'LI > 1: puede suponer riesgo' : 'LI > 3: alto riesgo'}</em>
+        </div>
+      </div>
+      <span className="data-tag-row">
+        <span className={`data-tag data-tag--${isExample ? 'hypothetical' : 'synthesis'}`}>{isExample ? 'Ejemplo hipotético' : 'Cálculo con valores ajustados'}</span>
+        <span className="data-source">{isExample ? 'Tabla 18 de la guía' : 'ecuación de la Tabla 17'}</span>
+      </span>
+    </div>
+  );
+}
+
+/** Comparación AGV/AMR (Tabla 16) con el estado de la demo. */
+function AgvAmrCompare() {
+  const active = usePresentation((s) => s.view === '3d' && (SCENES[s.index]?.animations.includes('agv-amr') ?? false));
+  const t = useDemoTimeDom(active);
+  const phase = active ? agvAt(t).phase : 'moving';
+  return (
+    <div className="blk agv-amr">
+      <div className={`aa-card ${phase === 'stopped' ? 'is-stopped' : ''}`}>
+        <h3>AGV</h3>
+        <ul>
+          <li>Sigue rutas definidas con infraestructura instalada</li>
+          <li>Decisiones centralizadas</li>
+          <li>Cambiar la ruta exige modificar la infraestructura</li>
+        </ul>
+        <span className="aa-status">{phase === 'stopped' ? '● Detenido ante el obstáculo' : '● Siguiendo la cinta'}</span>
+      </div>
+      <div className="aa-card aa-card--amr">
+        <h3>AMR</h3>
+        <ul>
+          <li>Navega sin infraestructura previa</li>
+          <li>Decisiones descentralizadas</li>
+          <li>Reacciona al entorno dinámico</li>
+        </ul>
+        <span className="aa-status">● Replanifica la ruta</span>
+      </div>
+      <span className="data-tag-row">
+        <span className="data-tag data-tag--literature">Literatura</span>
+        <span className="data-source">Tabla 16 · Keith y La (2024); Fragapane et al. (2021)</span>
+        <span className="demo-badge">Demostración didáctica</span>
+      </span>
+    </div>
+  );
+}
+
 export function CustomBlockView({ id, variant }: { id: CustomBlockId; variant: BlockVariant }) {
   switch (id) {
     case 'unit-load-counter':
@@ -344,5 +427,9 @@ export function CustomBlockView({ id, variant }: { id: CustomBlockId; variant: B
       return <FamilyComparison />;
     case 'agv-payback':
       return <AgvPayback compact={variant === 'board'} />;
+    case 'niosh-calc':
+      return <NioshCalc />;
+    case 'agv-amr-compare':
+      return <AgvAmrCompare />;
   }
 }

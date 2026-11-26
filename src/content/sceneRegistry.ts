@@ -6,6 +6,7 @@ import { cargaUnitaria } from './scenes/cargaUnitaria';
 import { transportadores } from './scenes/transportadores';
 import { casoDynea, clasificacionEquipo, gradosMecanizacion, mecanizacionDecision, palletsNormalizacion } from './scenes/carlos';
 import { casoAgvAsientos, gruas, gruasServicio, transportadoresCriterios } from './scenes/vane';
+import { agvAmr, asrs, casoSchrock, estacionRobots, niosh, recepcionAlmacenamiento, transportesMontacargas } from './scenes/nicole';
 import { casoMarcopolo, definicionAlcance, moverMateriales, objetivosCostos, principios, trabajoFlujoDistancia } from './scenes/felipe';
 
 export const SCENES: readonly SceneDef[] = [
@@ -30,6 +31,14 @@ export const SCENES: readonly SceneDef[] = [
   gruas,
   gruasServicio,
   casoAgvAsientos,
+  // Nicole · cap. 8, 9 y 10 + caso 3
+  transportesMontacargas,
+  agvAmr,
+  niosh,
+  estacionRobots,
+  casoSchrock,
+  recepcionAlmacenamiento,
+  asrs,
 ];
 
 export function sceneIndexById(id: string): number {

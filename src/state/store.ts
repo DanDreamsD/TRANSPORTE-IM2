@@ -6,9 +6,21 @@ export type Quality = 'low' | 'medium' | 'high';
 export type CameraMode = 'guided' | 'free';
 export type ViewMode = '3d' | '2d';
 
+export interface NioshInput {
+  weight: number; // kg
+  H: number; // cm
+  V: number; // cm
+  D: number; // cm
+  A: number; // grados
+}
+
+/** Ejemplo hipotético de la Tabla 18 de la guía. */
+export const NIOSH_EXAMPLE: NioshInput = { weight: 15, H: 40, V: 60, D: 40, A: 0 };
+
 export interface DemoParams {
   conveyorSpeed: number; // m/s
   conveyorRunning: boolean;
+  niosh: NioshInput;
 }
 
 export interface PresentationState {
@@ -90,7 +102,7 @@ export const usePresentation = create<PresentationState>()((set, get) => ({
   replayToken: 0,
   demoStartedAt: now(),
   transitioning: false,
-  demo: { conveyorSpeed: 0.8, conveyorRunning: true },
+  demo: { conveyorSpeed: 0.8, conveyorRunning: true, niosh: NIOSH_EXAMPLE },
 
   goTo: (index) => {
     const i = clampIndex(index, get().sceneCount);

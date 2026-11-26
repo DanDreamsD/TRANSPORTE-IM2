@@ -2,7 +2,8 @@
 import type { ReactNode } from 'react';
 import { SCENES } from '../content/sceneRegistry';
 import { COURSE_INFO, PRESENTERS } from '../content/presenters';
-import { usePresentation, useCurrentScene } from '../state/store';
+import { NIOSH_EXAMPLE, usePresentation, useCurrentScene, type NioshInput } from '../state/store';
+import { fmt, liLevel, niosh as nioshCalc, NIOSH_RANGES } from '../world/demos/nioshCalc';
 import { Icon } from './icons';
 import { Minimap } from './Minimap';
 import { toggleFullscreen } from './useKeyboard';
@@ -149,11 +150,12 @@ function DemoControls() {
         <strong>Demostración didáctica</strong>
         <span>No es una simulación industrial validada.</span>
       </div>
+      {scene.animations.includes('niosh-lift') && <NioshControls />}
       {scene.animations.includes('conveyor') && (
         <div className="demo-dock__controls">
           <label className="slider">
             <span>
-              Velocidad <b>{demo.conveyorSpeed.toLocaleString('es-PE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} m/s</b>
+              Velocidad <b>{demo.conveyorSpeed.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} m/s</b>
             </span>
             <input
               type="range"
@@ -172,6 +174,49 @@ function DemoControls() {
         </div>
       )}
     </aside>
+  );
+}
+
+const NIOSH_SLIDERS: { key: keyof NioshInput; label: string; unit: string; min: number; max: number; step: number }[] = [
+  { key: 'weight', label: 'Peso', unit: 'kg', min: NIOSH_RANGES.weight[0], max: NIOSH_RANGES.weight[1], step: 1 },
+  { key: 'H', label: 'H', unit: 'cm', min: NIOSH_RANGES.H[0], max: NIOSH_RANGES.H[1], step: 1 },
+  { key: 'V', label: 'V', unit: 'cm', min: NIOSH_RANGES.V[0], max: NIOSH_RANGES.V[1], step: 5 },
+  { key: 'D', label: 'D', unit: 'cm', min: NIOSH_RANGES.D[0], max: NIOSH_RANGES.D[1], step: 5 },
+  { key: 'A', label: 'A', unit: 'grados', min: NIOSH_RANGES.A[0], max: NIOSH_RANGES.A[1], step: 5 },
+];
+
+function NioshControls() {
+  const input = usePresentation((s) => s.demo.niosh);
+  const setDemo = usePresentation((s) => s.setDemo);
+  const r = nioshCalc(input);
+  const set = (patch: Partial<NioshInput>) => {
+    const next = { ...input, ...patch };
+    // la carga no puede terminar por encima de 175 cm (rango de validez de V)
+    if (next.V + next.D > NIOSH_RANGES.V[1]) next.D = Math.max(NIOSH_RANGES.D[0], NIOSH_RANGES.V[1] - next.V);
+    setDemo({ niosh: next });
+  };
+  return (
+    <div className="demo-dock__controls niosh-controls">
+      {NIOSH_SLIDERS.map((s) => (
+        <label className="slider slider--compact" key={s.key}>
+          <span>
+            {s.label} <b>{input[s.key]} {s.unit}</b>
+          </span>
+          <input type="range" min={s.min} max={s.max} step={s.step} value={input[s.key]} onChange={(e) => set({ [s.key]: Number(e.target.value) })} aria-label={s.label} />
+        </label>
+      ))}
+      <div className={`niosh-readout niosh-readout--${liLevel(r.LI)}`}>
+        RWL <b>{fmt(r.RWL, 1)} kg</b> · LI <b>{fmt(r.LI, 2)}</b>
+      </div>
+      <div className="niosh-presets">
+        <button type="button" className="chip-btn" onClick={() => setDemo({ niosh: NIOSH_EXAMPLE })}>
+          Ejemplo (Tabla 18)
+        </button>
+        <button type="button" className="chip-btn" onClick={() => setDemo({ niosh: { ...NIOSH_EXAMPLE, H: 25 } })}>
+          Rediseño H = 25
+        </button>
+      </div>
+    </div>
   );
 }
 

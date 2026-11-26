@@ -86,3 +86,45 @@ describe('caso 4 (Tabla 30)', () => {
     expect(Math.round(agvPaybackMonths() * 10) / 10).toBe(7.4);
   });
 });
+
+import { niosh as nioshCalc } from './nioshCalc';
+
+describe('NIOSH (Tabla 18, ejemplo hipotético)', () => {
+  it('RWL 12,8 kg y LI 1,17', () => {
+    const r = nioshCalc({ weight: 15, H: 40, V: 60, D: 40, A: 0 });
+    expect(r.HM).toBeCloseTo(0.625, 3);
+    expect(r.VM).toBeCloseTo(0.955, 3);
+    expect(r.DM).toBeCloseTo(0.9325, 3);
+    expect(Math.round(r.RWL * 10) / 10).toBe(12.8);
+    expect(Math.round(r.LI * 100) / 100).toBe(1.17);
+  });
+  it('rediseño H = 25 cm: RWL 20,5 kg y LI 0,73', () => {
+    const r = nioshCalc({ weight: 15, H: 25, V: 60, D: 40, A: 0 });
+    expect(Math.round(r.RWL * 10) / 10).toBe(20.5);
+    expect(Math.round(r.LI * 100) / 100).toBe(0.73);
+  });
+});
+
+import { agvAt } from './AgvAmrDemo';
+import { srmAt, ASRS_CYCLE } from './AsrsDemo';
+
+describe('AGV frente a obstáculo', () => {
+  it('avanza, se detiene ante el pallet y reanuda cuando se despeja', () => {
+    expect(agvAt(2).phase).toBe('moving');
+    expect(agvAt(10).phase).toBe('stopped');
+    expect(agvAt(10).obstacle).toBe(true);
+    expect(agvAt(15).phase).toBe('resumed');
+    expect(agvAt(15).obstacle).toBe(false);
+  });
+});
+
+describe('SRM del AS/RS', () => {
+  it('retira el pallet del rack, lo entrega en E/S y lo vuelve a guardar', () => {
+    expect(srmAt(1).at).toBe('rack');
+    expect(srmAt(10).at).toBe('srm');
+    expect(srmAt(18).at).toBe('io');
+    expect(srmAt(25).at).toBe('srm');
+    expect(srmAt(33).at).toBe('rack');
+    expect(srmAt(ASRS_CYCLE + 18).at).toBe('io');
+  });
+});

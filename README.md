@@ -35,7 +35,7 @@ Parámetros de URL: `?scene=<id>` abre una escena concreta; `?mode=2d` fuerza el
 
 ## Estado
 
-18 de 33 escenas implementadas (Felipe, Carlos y Vane completos). Detalle en
+25 de 33 escenas implementadas (Felipe, Carlos, Vane y Nicole completos). Detalle en
 [`docs/STORYBOARD.md`](docs/STORYBOARD.md) y cobertura por capítulo en [`docs/CONTENT_MATRIX.md`](docs/CONTENT_MATRIX.md).
 
 ## Stack

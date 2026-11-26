@@ -28,13 +28,13 @@ Leyenda de datos: **[C]** curso (Castañeda, 2026) · **[L]** literatura · **[R
 | 16 | `gruas` | 7–7.1 | Vane | Grúas, polipastos y montacargas fijos | Procesamiento | grúas y polipastos (6) | ✅ |
 | 17 | `gruas-servicio` | 7.2–7.3 | Vane | Clasificación por servicio | Procesamiento | — | ✅ |
 | 18 | `caso-agv-asientos` | 13.4 | Vane | Caso 4: AGV en planta de asientos | Línea de asientos | 2 AGV con cinta | ✅ |
-| 19 | `transportes-montacargas` | 8–8.2 | Nicole | Transportes y montacargas | Pasillo / Almacén MP | montacargas (7) | ⏳ |
-| 20 | `agv-amr` | 8.3 | Nicole | Del AGV al AMR | Pasillo central | AGV vs AMR (8) | ⏳ |
-| 21 | `niosh` | 9.1 | Nicole | Ecuación de levantamiento NIOSH | Estación manual | levantamiento + calculadora (10) | ⏳ |
-| 22 | `estacion-robots` | 9.2–9.4 | Nicole | Compensadores, robots y automatización fija | Celda robótica | brazo robótico (9) | ⏳ |
-| 23 | `caso-schrock` | 13.3 | Nicole | Caso 3: Schrock Cabinet (EE. UU.) | Despacho | carga manual de camión | ⏳ |
-| 24 | `recepcion-almacenamiento` | 10.1–10.2 | Nicole | Recepción, envío y almacenamiento | Almacén PT | — | ⏳ |
-| 25 | `asrs` | 10.3 | Nicole | AS/RS | Almacén automatizado | SRM (11) | ⏳ |
+| 19 | `transportes-montacargas` | 8–8.2 | Nicole | Transportes y montacargas | Pasillo / Almacén MP | montacargas (7) | ✅ |
+| 20 | `agv-amr` | 8.3 | Nicole | Del AGV al AMR | Pasillo central | AGV vs AMR (8) | ✅ |
+| 21 | `niosh` | 9.1 | Nicole | Ecuación de levantamiento NIOSH | Estación manual | levantamiento + calculadora (10) | ✅ |
+| 22 | `estacion-robots` | 9.2–9.4 | Nicole | Compensadores, robots y automatización fija | Celda robótica | brazo robótico (9) | ✅ |
+| 23 | `caso-schrock` | 13.3 | Nicole | Caso 3: Schrock Cabinet (EE. UU.) | Despacho | carga manual de camión | ✅ |
+| 24 | `recepcion-almacenamiento` | 10.1–10.2 | Nicole | Recepción, envío y almacenamiento | Almacén PT | — | ✅ |
+| 25 | `asrs` | 10.3 | Nicole | AS/RS | Almacén automatizado | SRM (11) | ✅ |
 | 26 | `distribucion-manejo` | 11.1 | Wilson | Distribución y manejo: dos sistemas | Vista aérea | comparación de distribuciones (12) | ⏳ |
 | 27 | `seleccion-equipo` | 11.2–11.3 | Wilson | Selección del equipo y puntuación ponderada | Oficina de ingeniería | puntuación interactiva | ⏳ |
 | 28 | `caso-ahp-moora` | 13.5 | Wilson | Caso 5: AHP y MOORA (Turquía) | Oficina de ingeniería | — | ⏳ |
@@ -135,30 +135,36 @@ Leyenda de datos: **[C]** curso (Castañeda, 2026) · **[L]** literatura · **[R
   carga en el piso / fin de línea). Pantalla compartida: contexto + Figura 19 recreada con la Tabla 30 (≈ 7,4 meses;
   los autores reportan ~8) **[R]**; nota de inconsistencias del artículo.
 
-### 19 · `transportes-montacargas` — Nicole (8–8.2)
-- **Demo 7:** montacargas toma un pallet del rack y lo deja en el pasillo. Tabla 14 **[C]**, Tabla 15 (7 clases OSHA) **[L]**.
+### 19 · `transportes-montacargas` — Nicole (8–8.2) ✅
+- **Almacén PT:** el montacargas retira un pallet del nivel 1 del rack y lo vuelve a guardar (ciclo de 24 s), con el
+  pasillo de maniobra marcado. Pizarra: definición + Tabla 14 **[C]**; complementario: Tabla 15 (7 clases OSHA) **[L]**.
 
-### 20 · `agv-amr` — Nicole (8.3)
-- **Demo 8:** AGV sigue la cinta y se detiene ante un obstáculo; AMR lo rodea. Línea de tiempo (Figura 10), Tabla 16 **[L]**.
+### 20 · `agv-amr` — Nicole (8.3) ✅
+- **Pasillo central:** el AGV sigue su cinta y se detiene ante un pallet olvidado (campo del escáner en rojo) hasta que
+  despejan la ruta; el AMR replanifica y lo rodea (ruta en cian). Pantalla: comparación sincronizada con la demo;
+  complementario: Tabla 16, Figura 10 **[L]**.
 
-### 21 · `niosh` — Nicole (9.1)
-- **Demo 10:** operario levanta una caja; calculadora interactiva (H, V, D, A, peso). Fórmula KaTeX
-  RWL = LC·HM·VM·DM·AM·FM·CM; ejemplo Tabla 18: RWL 12,8 kg, LI 1,17; rediseño H = 25 cm → 20,5 kg, LI 0,73 **[H]**.
+### 21 · `niosh` — Nicole (9.1) ✅
+- **Estación manual:** el operario levanta una caja de V a V + D a la distancia H. Calculadora en el panel de la demo
+  (peso, H, V, D, A; FM = CM = 1,00) sincronizada con la pizarra y la etiqueta 3D; botones «Ejemplo (Tabla 18)» →
+  RWL 12,8 kg, LI 1,17 y «Rediseño H = 25» → 20,5 kg, LI 0,73 **[H]**.
 
-### 22 · `estacion-robots` — Nicole (9.2–9.4)
-- **Demo 9:** brazo robótico con EOAT (ventosa/pinza) en ciclo pick-and-place; compensador; transferencia sincrónica.
-  Tabla 19; jerarquía de intervención **[C] [S]**.
+### 22 · `estacion-robots` — Nicole (9.2–9.4) ✅
+- **Estaciones manuales:** transferencia sincrónica de 5 estaciones, compensador con operario que guía la carga y celda
+  con brazo robótico (EOAT de pinza). Pantalla colgante: Tabla 19 **[S]**; complementario: textos del curso e idea clave.
 
-### 23 · `caso-schrock` — Nicole (13.3)
-- **Despacho:** carga manual de gabinetes a un camión; Figura 18 (FILI 0,7–6,0), índice compuesto 3,9–8,2, 79 % con
-  dolor (15/19) **[R]**; recomendaciones de ingeniería.
+### 23 · `caso-schrock` — Nicole (13.3) ✅
+- **Despacho, muelle este abierto:** un operario lleva gabinetes a mano desde el almacenamiento temporal al remolque.
+  Pizarra mural: contexto + FILI 0,7–6,0, índice compuesto 3,9–8,2, 79 % con dolor (15/19) **[R]**; complementario:
+  Figura 18 y recomendaciones de NIOSH.
 
-### 24 · `recepcion-almacenamiento` — Nicole (10.1–10.2)
-- Tabla 20 (equipo por zona) con etiquetas que se encienden en cada zona de la planta **[S]**.
+### 24 · `recepcion-almacenamiento` — Nicole (10.1–10.2) ✅
+- Pantalla colgante frente al almacén PT con la Tabla 20 **[S]**; complementario: marco de Hassan (2010) y §10.2.
 
-### 25 · `asrs` — Nicole (10.3)
-- **Demo 11:** SRM se desplaza por el pasillo, el carro sube al nivel y el dispositivo extrae el pallet; Figura 12,
-  Tabla 21 **[L]**.
+### 25 · `asrs` — Nicole (10.3) ✅
+- **Vista a lo largo del pasillo del AS/RS:** la SRM recorre el pasillo, sube el carro a 5,4 m, extrae el pallet, lo
+  entrega en la estación de entrada/salida y lo vuelve a guardar (ciclo de 36 s). Pantalla: definición + Figura 12;
+  complementario: Tabla 21 **[L]**.
 
 ### 26 · `distribucion-manejo` — Wilson (11.1)
 - **Demo 12:** comparación de distribuciones (espina vs desordenada) proyectada sobre la planta; Figura 13 **[C]**; SLP (Muther).

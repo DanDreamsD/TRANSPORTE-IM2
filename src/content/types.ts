@@ -31,6 +31,7 @@ export type AnimationId =
   | 'dynea-rack'
   | 'conveyor-failure'
   | 'agv-seats'
+  | 'cabinet-loading'
   // Planificadas (aún sin implementación; se ignoran si no existen):
   | 'mechanization-levels'
   | 'pallet-sizes'
@@ -136,7 +137,9 @@ export type CustomBlockId =
   | 'material-flow-types'
   | 'mechanization-levels'
   | 'family-comparison'
-  | 'agv-payback';
+  | 'agv-payback'
+  | 'niosh-calc'
+  | 'agv-amr-compare';
 
 export interface CustomBlock extends BlockBase {
   kind: 'custom';
