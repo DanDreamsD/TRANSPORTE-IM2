@@ -21,9 +21,11 @@ Otros comandos: `npm run typecheck`, `npm test`, `npm run build` (genera `dist/`
 
 ### Diapositivas en PDF
 
-`npm run pdf` compila y genera [`pdf/NOVATEK_Diapositivas.pdf`](pdf/NOVATEK_Diapositivas.pdf): carátula, una
-página 16:9 por pizarra de la simulación y cierre. Usa la vista `?mode=print` y Edge o Chrome instalados (sin
-dependencias nuevas; otra ruta de navegador con la variable `BROWSER_PATH`).
+`npm run pdf` compila y genera [`pdf/IM2_Cap6_Manejo_de_Materiales.pdf`](pdf/IM2_Cap6_Manejo_de_Materiales.pdf),
+la versión para el aula virtual: carátula; por cada escena, la pizarra de la simulación (página 16:9) seguida de su
+información complementaria (panel «C», paginado y con el color del expositor); referencias en APA 7 y cierre.
+No lleva la marca de la empresa ficticia ni las recomendaciones «Para la exposición». Usa la vista `?mode=print` y
+Edge o Chrome instalados (sin dependencias nuevas; otra ruta de navegador con la variable `BROWSER_PATH`).
 
 Parámetros de URL: `?scene=<id>` abre una escena concreta; `?mode=2d` fuerza el modo 2D alternativo; `?mode=print` muestra la vista de impresión de diapositivas.
 

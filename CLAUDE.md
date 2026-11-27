@@ -50,7 +50,7 @@ npm run typecheck  # tsc -b --noEmit
 npm test           # vitest run (validación de escenas, rutas de cámara, store)
 npm run build      # tsc -b && vite build → dist/
 npm run preview    # sirve dist/
-npm run pdf        # build + pdf/NOVATEK_Diapositivas.pdf (vista ?mode=print, Edge/Chrome sin interfaz)
+npm run pdf        # build + pdf/IM2_Cap6_Manejo_de_Materiales.pdf (aula virtual; vista ?mode=print, Edge/Chrome sin interfaz)
 ```
 
 Antes de dar por terminada una fase: `npm run typecheck && npm test && npm run build` y revisión visual en el navegador.

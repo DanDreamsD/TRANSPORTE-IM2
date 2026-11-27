@@ -54,3 +54,43 @@ body { overflow: visible; -webkit-print-color-adjust: exact; print-color-adjust:
 .print-cover .team-list__dot { width: 18px; height: 18px; }
 .print-cover .team-list__code { font-size: 26px; }
 .print-cover--closing .print-cover__title { font-size: 110px; }
+.print-cover__title--topic { font-size: 96px; }
+.print-cover__title--topic span { font-size: 52px; }
+
+/* Hojas de información complementaria (mismo aspecto claro que el panel ampliado) */
+.print-sheet {
+  background: #f5f6f4; color: #182128;
+  --chart-grid: rgba(0, 0, 0, 0.12); --chart-text: #33424d; --chart-before: #9aa6ae; --chart-after: #0e7c86;
+}
+.print-detail {
+  box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden;
+  border-radius: 18px; border-top: 6px solid var(--presenter); box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+}
+.print-detail__head {
+  box-sizing: border-box; flex: none; padding: 20px 36px 0; border-bottom: 1px solid #dde2e0;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+}
+.print-detail__crumb { font-size: 20px; color: #5b6b76; }
+.print-detail__title { margin: 4px 0 0; font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em; }
+.print-detail__tag {
+  flex: none; margin-top: 6px; padding: 6px 14px; border-radius: 999px; border: 2px solid var(--presenter);
+  font-size: 16px; font-weight: 750; text-transform: uppercase; letter-spacing: 0.08em; color: #33424d;
+}
+.print-detail__body { flex: 1; min-height: 0; overflow: hidden; }
+.print-flow { display: flex; flex-direction: column; transform-origin: top left; }
+.print-sheet .blk-figure img { display: block; width: auto; max-width: 100%; max-height: 540px; margin: 0 auto; }
+.print-sheet .recharts-tooltip-wrapper { display: none; }
+.print-split table { table-layout: fixed; }
+.print-split th:nth-child(1) { width: var(--c1); }
+.print-split th:nth-child(2) { width: var(--c2); }
+.print-split th:nth-child(3) { width: var(--c3); }
+.print-split th:nth-child(4) { width: var(--c4); }
+.print-split th:nth-child(5) { width: var(--c5); }
+.print-split th:nth-child(6) { width: var(--c6); }
+.print-ref { margin: 0; padding-left: 36px; text-indent: -36px; font-size: 18px; line-height: 1.5; }
+.print-ref .ref-url { color: #0e7c86; }
+
+/* Medición fuera de la página: no ocupa espacio ni se imprime visible. */
+.print-measure { position: absolute; left: -30000px; top: 0; height: 0; overflow: hidden; visibility: hidden; }
+.print-measure__item { display: flow-root; }
+.print-fig-fit .blk-figure img { max-height: var(--img-max); }

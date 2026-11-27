@@ -28,7 +28,7 @@ const root = createRoot(document.getElementById('root')!);
 if (new URLSearchParams(window.location.search).get('mode') === 'print') {
   // Vista de impresión de diapositivas (sin escena 3D). Los bloques sincronizados con demos muestran su estado estático.
   usePresentation.getState().setView('2d');
-  document.title = 'NOVATEK · Material Flow — Diapositivas';
+  document.title = 'Manejo de materiales — Diapositivas · Ingeniería de Métodos 2';
   void import('./app/PrintDeck').then(({ PrintDeck }) =>
     root.render(
       <StrictMode>

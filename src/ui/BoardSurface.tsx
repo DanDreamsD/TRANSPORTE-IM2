@@ -16,8 +16,11 @@ export function boardPixelSize(scene: SceneDef): { pxW: number; pxH: number; sty
   return { pxW, pxH: Math.round((pxW * h) / b.width), style: b.style };
 }
 
-/** `fit`: la altura crece con el contenido (PDF) en vez de recortarse al tamaño físico de la pizarra. */
-export function BoardSurface({ scene, live, fit = false }: { scene: SceneDef; live: boolean; fit?: boolean }) {
+/**
+ * `fit`: la altura crece con el contenido (PDF) en vez de recortarse al tamaño físico de la pizarra.
+ * `brand`: muestra la marca de la empresa ficticia en el encabezado (no se usa en el PDF).
+ */
+export function BoardSurface({ scene, live, fit = false, brand = true }: { scene: SceneDef; live: boolean; fit?: boolean; brand?: boolean }) {
   const { pxW, pxH, style } = boardPixelSize(scene);
   return (
     <div
@@ -29,7 +32,7 @@ export function BoardSurface({ scene, live, fit = false }: { scene: SceneDef; li
           {scene.chapter.number !== '—' ? `Cap. ${scene.subchapter?.number ?? scene.chapter.number}` : ''}
         </span>
         <h2 className="board__title">{scene.title}</h2>
-        <span className="board__brand">NOVATEK</span>
+        <span className="board__brand">{brand ? 'NOVATEK' : ''}</span>
       </header>
       <div className="board__body">
         <BlockRenderer blocks={scene.boardBlocks} variant="board" />

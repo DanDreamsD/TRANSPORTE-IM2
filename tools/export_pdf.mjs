@@ -1,5 +1,5 @@
 // Exporta las diapositivas de la simulación a PDF.
-// Uso: npm run pdf            (compila y genera pdf/NOVATEK_Diapositivas.pdf)
+// Uso: npm run pdf            (compila y genera pdf/IM2_Cap6_Manejo_de_Materiales.pdf)
 //      node tools/export_pdf.mjs [salida.pdf]   (requiere dist/ ya compilado)
 // Sirve dist/ con `vite preview`, abre ?mode=print en Edge o Chrome sin interfaz y lo imprime a PDF.
 // Navegador: variable de entorno BROWSER_PATH o las rutas habituales de Edge/Chrome/Chromium.
@@ -9,7 +9,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { preview } from 'vite';
 
-const out = path.resolve(process.argv[2] ?? 'pdf/NOVATEK_Diapositivas.pdf');
+const out = path.resolve(process.argv[2] ?? 'pdf/IM2_Cap6_Manejo_de_Materiales.pdf');
 
 function findBrowser() {
   const env = process.env.BROWSER_PATH;
